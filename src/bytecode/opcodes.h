@@ -115,6 +115,10 @@ enum op_box_shadow_flags {
 	BOX_SHADOW_CURRENT_COLOR	= 0x0002
 };
 
+enum op_border_radius {
+	BORDER_RADIUS_SET		= 0x0001
+};
+
 enum op_border_collapse {
 	BORDER_COLLAPSE_SEPARATE	= 0x0000,
 	BORDER_COLLAPSE_COLLAPSE	= 0x0001

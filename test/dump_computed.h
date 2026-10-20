@@ -433,6 +433,58 @@ static void dump_computed_style(const css_computed_style *style, char *buf,
 	ptr += wrote;
 	*len -= wrote;
 
+	/* border-radius, only where it is not the initial value */
+	{
+		static const struct {
+			const char *name;
+			uint8_t (*get)(const css_computed_style *style,
+					css_fixed *hlength, css_unit *hunit,
+					css_fixed *vlength, css_unit *vunit);
+		} radii[] = {
+			{ "border-top-left-radius",
+				css_computed_border_top_left_radius },
+			{ "border-top-right-radius",
+				css_computed_border_top_right_radius },
+			{ "border-bottom-right-radius",
+				css_computed_border_bottom_right_radius },
+			{ "border-bottom-left-radius",
+				css_computed_border_bottom_left_radius },
+		};
+		size_t r;
+
+		for (r = 0; r < sizeof(radii) / sizeof(radii[0]); r++) {
+			val = radii[r].get(style, &len1, &unit1,
+					&len2, &unit2);
+			if (val == CSS_BORDER_RADIUS_INHERIT) {
+				wrote = snprintf(ptr, *len, "%s: inherit\n",
+						radii[r].name);
+			} else if (len1 == 0 && len2 == 0) {
+				continue;
+			} else {
+				wrote = snprintf(ptr, *len, "%s: ",
+						radii[r].name);
+				ptr += wrote;
+				*len -= wrote;
+
+				wrote = dump_css_unit(len1, unit1, ptr, *len);
+				ptr += wrote;
+				*len -= wrote;
+
+				wrote = snprintf(ptr, *len, " ");
+				ptr += wrote;
+				*len -= wrote;
+
+				wrote = dump_css_unit(len2, unit2, ptr, *len);
+				ptr += wrote;
+				*len -= wrote;
+
+				wrote = snprintf(ptr, *len, "\n");
+			}
+			ptr += wrote;
+			*len -= wrote;
+		}
+	}
+
 	/* border-collapse */
 	val = css_computed_border_collapse(style);
 	switch (val) {

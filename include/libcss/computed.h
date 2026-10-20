@@ -426,6 +426,26 @@ uint8_t css_computed_background_size(
 		css_fixed *width, css_unit *wunit,
 		css_fixed *height, css_unit *hunit);
 
+uint8_t css_computed_border_top_left_radius(
+		const css_computed_style *style,
+		css_fixed *hlength, css_unit *hunit,
+		css_fixed *vlength, css_unit *vunit);
+
+uint8_t css_computed_border_top_right_radius(
+		const css_computed_style *style,
+		css_fixed *hlength, css_unit *hunit,
+		css_fixed *vlength, css_unit *vunit);
+
+uint8_t css_computed_border_bottom_right_radius(
+		const css_computed_style *style,
+		css_fixed *hlength, css_unit *hunit,
+		css_fixed *vlength, css_unit *vunit);
+
+uint8_t css_computed_border_bottom_left_radius(
+		const css_computed_style *style,
+		css_fixed *hlength, css_unit *hunit,
+		css_fixed *vlength, css_unit *vunit);
+
 uint8_t css_computed_break_after(
 		const css_computed_style *style);
 

@@ -55,6 +55,21 @@ css_error css__parse_background_repeat(css_language *c,
 css_error css__parse_background_size(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
+css_error css__parse_border_bottom_left_radius(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_border_bottom_right_radius(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_border_top_left_radius(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_border_top_right_radius(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_border_radius(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
 css_error css__parse_border(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
@@ -481,6 +496,7 @@ extern const uint32_t property_unit_mask[CSS_N_PROPERTIES];
 #define UNIT_MASK_BACKGROUND_REPEAT     (0)
 #define UNIT_MASK_BACKGROUND_SIZE       (UNIT_LENGTH | UNIT_PCT)
 #define UNIT_MASK_BOX_SHADOW            (UNIT_LENGTH)
+#define UNIT_MASK_BORDER_RADIUS         (UNIT_LENGTH | UNIT_PCT)
 #define UNIT_MASK_BORDER_COLLAPSE       (0)
 #define UNIT_MASK_BORDER_SPACING        (UNIT_LENGTH)
 #define UNIT_MASK_BORDER_SIDE_COLOR     (0)

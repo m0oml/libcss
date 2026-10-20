@@ -495,6 +495,10 @@ static const char *opcode_names[] = {
 	"stroke-opacity",
 	"background-size",
 	"box-shadow",
+	"border-top-left-radius",
+	"border-top-right-radius",
+	"border-bottom-right-radius",
+	"border-bottom-left-radius",
 };
 
 static void dump_css_fixed(css_fixed f, char **ptr)
@@ -1208,6 +1212,26 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 						} else {
 							*ptr += sprintf(*ptr, "auto");
 						}
+					}
+				}
+				break;
+			case CSS_PROP_BORDER_TOP_LEFT_RADIUS:
+			case CSS_PROP_BORDER_TOP_RIGHT_RADIUS:
+			case CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS:
+			case CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS:
+				if (value == BORDER_RADIUS_SET) {
+					uint32_t i;
+
+					for (i = 0; i < 2; i++) {
+						uint32_t unit;
+						css_fixed val = *((css_fixed *)
+								bytecode);
+						ADVANCE(sizeof(val));
+						unit = *((uint32_t *) bytecode);
+						ADVANCE(sizeof(unit));
+						if (i == 1)
+							*ptr += sprintf(*ptr, " ");
+						dump_unit(val, unit, ptr);
 					}
 				}
 				break;

@@ -154,6 +154,14 @@ void css__make_style_important(css_style *style)
 					offset += 2; /* length + units */
 				break;
 
+			case CSS_PROP_BORDER_TOP_LEFT_RADIUS:
+			case CSS_PROP_BORDER_TOP_RIGHT_RADIUS:
+			case CSS_PROP_BORDER_BOTTOM_RIGHT_RADIUS:
+			case CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS:
+				if (value == BORDER_RADIUS_SET)
+					offset += 4; /* two length + units */
+				break;
+
 			case CSS_PROP_BORDER_SPACING:
 				if (value == BORDER_SPACING_SET)
 					offset += 4; /* two length + units */

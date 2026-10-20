@@ -1453,7 +1453,20 @@ Opcodes
 	offsets, the blur radius and the spread distance (each a length
 	and unit) and the colour.
 
-80-3fe - Reserved for future expansion.
+80 - border-top-left-radius
+81 - border-top-right-radius
+82 - border-bottom-right-radius
+83 - border-bottom-left-radius
+	<value> (14bits) :
+		bits 1-13: MBZ
+		bit 0 set => radii follow
+		bit 0 clear => reserved for future expansion
+
+	The radii are the horizontal radius then the vertical radius, each
+	a length and unit, where the unit may be a percentage.  The
+	shorthand, border-radius, is parsed into these four.
+
+84-3fe - Reserved for future expansion.
 
 3ff - custom property (--name: value)
 	<value> (14bits) : MBZ

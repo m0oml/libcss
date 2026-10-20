@@ -1000,6 +1000,34 @@ uint8_t css_computed_background_size(const css_computed_style *style,
 	return get_background_size(style, width, wunit, height, hunit);
 }
 
+uint8_t css_computed_border_top_left_radius(const css_computed_style *style,
+		css_fixed *hlength, css_unit *hunit,
+		css_fixed *vlength, css_unit *vunit)
+{
+	return get_border_top_left_radius(style, hlength, hunit, vlength, vunit);
+}
+
+uint8_t css_computed_border_top_right_radius(const css_computed_style *style,
+		css_fixed *hlength, css_unit *hunit,
+		css_fixed *vlength, css_unit *vunit)
+{
+	return get_border_top_right_radius(style, hlength, hunit, vlength, vunit);
+}
+
+uint8_t css_computed_border_bottom_right_radius(const css_computed_style *style,
+		css_fixed *hlength, css_unit *hunit,
+		css_fixed *vlength, css_unit *vunit)
+{
+	return get_border_bottom_right_radius(style, hlength, hunit, vlength, vunit);
+}
+
+uint8_t css_computed_border_bottom_left_radius(const css_computed_style *style,
+		css_fixed *hlength, css_unit *hunit,
+		css_fixed *vlength, css_unit *vunit)
+{
+	return get_border_bottom_left_radius(style, hlength, hunit, vlength, vunit);
+}
+
 uint8_t css_computed_break_after(const css_computed_style *style)
 {
 	return get_break_after(style);

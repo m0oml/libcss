@@ -9,6 +9,7 @@ background_color.c \
 background_image.c \
 background_position.c \
 background_size.c \
+border_radius.c \
 background_repeat.c \
 border_bottom_color.c \
 border_bottom_style.c \

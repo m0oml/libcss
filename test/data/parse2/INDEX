@@ -29,3 +29,4 @@ calc.dat			calc() tests
 custom.dat		Custom properties and var()
 bgsize.dat		background-size tests
 boxshadow.dat		box-shadow tests
+borderradius.dat		border-radius tests

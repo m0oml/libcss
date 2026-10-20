@@ -37,6 +37,7 @@ DIR_SOURCES :=				\
 	box_shadow.c			\
 	border.c			\
 	border_color.c			\
+	border_radius.c			\
 	border_spacing.c		\
 	border_style.c			\
 	border_width.c			\
