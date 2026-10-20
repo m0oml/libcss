@@ -26,6 +26,7 @@
 #include "select/select.h"
 #include "select/strings.h"
 #include "select/unit.h"
+#include "select/vars.h"
 #include "utils/parserutilserror.h"
 #include "utils/utils.h"
 
@@ -1035,6 +1036,8 @@ static void css_select__finalise_selection_state(
 	lwc_string_unref(state->element.ns);
 	lwc_string_unref(state->element.name);
 
+	css__select_vars_destroy(state);
+
 	if (state->revert != NULL) {
 		for (size_t i = 0; i < CSS_ORIGIN_AUTHOR; i++) {
 			for (size_t j = 0; j < CSS_PSEUDO_ELEMENT_COUNT; j++) {
@@ -1481,6 +1484,11 @@ css_error css_select_style(css_select_ctx *ctx, void *node,
 			}
 		}
 	}
+
+	/* Attach custom properties and declarations using var() */
+	error = css__select_vars_finish(&state, parent == NULL);
+	if (error != CSS_OK)
+		goto cleanup;
 
 	/* If this is the root element, then we must ensure that all
 	 * length values are absolute, display and float are correctly
@@ -2751,7 +2759,13 @@ css_error cascade_style(const css_style *style, css_select_state *state)
 
 		op = getOpcode(opv);
 
-		error = prop_dispatch[op].cascade(opv, &s, state);
+		if (op == OP_CUSTOM_PROPERTY) {
+			error = css__select_vars_custom(opv, &s, state);
+		} else if (getFlagValue(opv) == FLAG_VALUE_VAR) {
+			error = css__select_vars_pending(opv, &s, state);
+		} else {
+			error = prop_dispatch[op].cascade(opv, &s, state);
+		}
 		if (error != CSS_OK)
 			return error;
 	}
@@ -2759,10 +2773,22 @@ css_error cascade_style(const css_style *style, css_select_state *state)
 	return CSS_OK;
 }
 
+/* Internally exported function, documented in select/select.h */
+css_error css__cascade_style(const css_style *style, css_select_state *state)
+{
+	return cascade_style(style, state);
+}
+
 bool css__outranks_existing(uint16_t op, bool important, css_select_state *state,
 		enum flag_value explicit_default)
 {
-	prop_state *existing = &state->props[op][state->current_pseudo];
+	return css__outranks_state(&state->props[op][state->current_pseudo],
+			important, state, explicit_default);
+}
+
+bool css__outranks_state(prop_state *existing, bool important,
+		css_select_state *state, enum flag_value explicit_default)
+{
 	bool outranks = false;
 
 	/* Sorting on origin & importance gives the following:

@@ -96,6 +96,8 @@ typedef struct css_select_state {
 
 	struct css_node_data *node_data;	/* Data we'll store on node */
 
+	struct css_select_vars *vars;	/* Custom properties, if any */
+
 	prop_state props[CSS_N_PROPERTIES][CSS_PSEUDO_ELEMENT_COUNT];
 } css_select_state;
 
@@ -107,6 +109,11 @@ static inline void advance_bytecode(css_style *style, uint32_t n_bytes)
 
 bool css__outranks_existing(uint16_t op, bool important,
 		css_select_state *state, enum flag_value explicit_default);
+
+bool css__outranks_state(prop_state *existing, bool important,
+		css_select_state *state, enum flag_value explicit_default);
+
+css_error css__cascade_style(const css_style *style, css_select_state *state);
 
 #endif
 

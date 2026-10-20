@@ -26,3 +26,4 @@ units.dat			Length unit tests
 dodgy-media-block.dat		Media block with incomplete ruleset
 svg.dat				SVG property tests
 calc.dat			calc() tests
+custom.dat		Custom properties and var()

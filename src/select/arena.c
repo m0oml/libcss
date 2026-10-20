@@ -11,6 +11,7 @@
 #include "select/arena.h"
 #include "select/arena_hash.h"
 #include "select/computed.h"
+#include "select/vars.h"
 
 #define TU_SIZE 3037
 #define TS_SIZE 5101
@@ -138,6 +139,10 @@ static inline bool css__arena_style_is_equal(
 	if (!arena__compare_string_list(
 			a->quotes,
 			b->quotes)) {
+		return false;
+	}
+
+	if (!css__computed_vars_equal(a->vars, b->vars)) {
 		return false;
 	}
 

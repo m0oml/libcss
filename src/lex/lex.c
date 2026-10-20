@@ -555,7 +555,7 @@ css_error CDCOrIdentOrFunctionOrNPD(css_lexer *lexer, css_token **token)
 	enum { Initial = 0, Escape = 1, Gt = 2 };
 
 	/* CDC = "-->"
-	 * IDENT = [-]? nmstart nmchar*
+	 * IDENT = [-]? nmstart nmchar* | "--" nmchar+
 	 * FUNCTION = [-]? nmstart nmchar* '('
 	 * NUMBER = num = [-+]? ([0-9]+ | [0-9]* '.' [0-9]+)
 	 * PERCENTAGE = num '%'
@@ -636,6 +636,12 @@ css_error CDCOrIdentOrFunctionOrNPD(css_lexer *lexer, css_token **token)
 			APPEND(lexer, cptr, clen);
 
 			t->type = CSS_TOKEN_CDC;
+		} else if (c != '\\' && startNMChar(c)) {
+			/* Two dashes followed by a name, as used by
+			 * custom properties (--name) */
+			lexer->state = sIDENT;
+			lexer->substate = 0;
+			return IdentOrFunction(lexer, token);
 		} else {
 			/* Remove the '-' we read above */
 			lexer->bytesReadForToken -= 1;

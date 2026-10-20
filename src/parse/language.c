@@ -12,6 +12,7 @@
 
 #include "stylesheet.h"
 #include "lex/lex.h"
+#include "parse/custom.h"
 #include "parse/font_face.h"
 #include "parse/important.h"
 #include "parse/language.h"
@@ -1849,6 +1850,25 @@ css_error parseProperty(css_language *c, const css_token *property,
 	uint8_t flags = 0;
 	css_style *style = NULL;
 	const css_token *token;
+	bool important = false;
+
+	if (css__is_custom_property_name(property->idata)) {
+		error = css__stylesheet_style_create(c->sheet, &style);
+		if (error != CSS_OK)
+			return error;
+
+		error = css__parse_custom_property(c, property->idata,
+				vector, ctx, style, &important);
+		if (error == CSS_OK) {
+			if (important)
+				css__make_style_important(style);
+			error = css__stylesheet_rule_append_style(c->sheet,
+					rule, style);
+		}
+		if (error != CSS_OK)
+			css__stylesheet_style_destroy(style);
+		return error;
+	}
 
 	/* Find property index */
 	/** \todo improve on this linear search */
@@ -1872,6 +1892,21 @@ css_error parseProperty(css_language *c, const css_token *property,
 		return error;
 
 	assert (style != NULL);
+
+	if (css__value_uses_var(vector, *ctx)) {
+		/* The value can only be parsed during selection */
+		error = css__parse_var_declaration(c, handler, c->strings[i],
+				vector, ctx, style, &important);
+		if (error == CSS_OK) {
+			if (important)
+				css__make_style_important(style);
+			error = css__stylesheet_rule_append_style(c->sheet,
+					rule, style);
+		}
+		if (error != CSS_OK)
+			css__stylesheet_style_destroy(style);
+		return error;
+	}
 
 	/* Call the handler */
 	error = handler(c, vector, ctx, style);

@@ -293,6 +293,7 @@ struct css_computed_style {
 	uint32_t count;
 	uint32_t bin;
 	css_calculator *calc;
+	struct css_computed_vars *vars;
 };
 
 #endif

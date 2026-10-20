@@ -1,0 +1,75 @@
+#data
+* { --main-color: #06c; }
+#errors
+#expected
+| *
+|  --main-color: #06c
+#reset
+
+#data
+* { --spacing:  1px   2px  ; --font: "Helvetica Neue", sans-serif; }
+#errors
+#expected
+| *
+|  --spacing: 1px 2px
+|  --font: "Helvetica Neue", sans-serif
+#reset
+
+#data
+* { --x: 1px !important; }
+#errors
+#expected
+| *
+|  --x: 1px !important
+#reset
+
+#data
+* { --img: url(a.png); --calc: calc(1px + 2em); }
+#errors
+#expected
+| *
+|  --img: url("a.png")
+|  --calc: calc(1px + 2em)
+#reset
+
+#data
+* { color: var(--c); }
+#errors
+#expected
+| *
+|  color: var(color: var(--c))
+#reset
+
+#data
+* { margin-left: var(--m, 4px) !important; }
+#errors
+#expected
+| *
+|  margin-left: var(margin-left: var(--m, 4px)) !important
+#reset
+
+#data
+* { padding: var(--a) 2px; }
+#errors
+#expected
+| *
+|  padding-top: var(padding: var(--a) 2px)
+|  padding-right: var(padding: var(--a) 2px)
+|  padding-bottom: var(padding: var(--a) 2px)
+|  padding-left: var(padding: var(--a) 2px)
+#reset
+
+#data
+* { colour: var(--c); color: red; }
+#errors
+#expected
+| *
+|  color: #ffff0000
+#reset
+
+#data
+* { -moz-thing: 1; --: x; }
+#errors
+#expected
+| *
+#reset

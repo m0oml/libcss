@@ -1,0 +1,1510 @@
+# inherited from the root
+#tree
+| html
+|  div*
+#ua
+div { display: block; }
+#user
+#author
+html { --c: #00ff00; --w: 10px; }
+div { color: var(--c); width: var(--w); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff00ff00
+border-right-color: #ff00ff00
+border-bottom-color: #ff00ff00
+border-left-color: #ff00ff00
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff00ff00
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff00ff00
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: block
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: 10px
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# fallback used when the property is missing
+#tree
+| html
+|  div*
+#ua
+#user
+#author
+div { width: var(--missing, 7px); margin-left: var(--missing,); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff000000
+border-right-color: #ff000000
+border-bottom-color: #ff000000
+border-left-color: #ff000000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff000000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff000000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: 7px
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# invalid at computed-value time is unset
+#tree
+| html
+|  div*
+#ua
+#user
+#author
+html { color: #0000ff; }
+div { width: 3px; color: #ff0000; }
+div { width: var(--missing); color: var(--missing); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff0000ff
+border-right-color: #ff0000ff
+border-bottom-color: #ff0000ff
+border-left-color: #ff0000ff
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff0000ff
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff0000ff
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: auto
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# references between custom properties
+#tree
+| html
+|  div*
+#ua
+#user
+#author
+html { --a: 4px; --b: var(--a); }
+div { --x: 2px; margin-left: var(--b); padding-left: var(--x); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff000000
+border-right-color: #ff000000
+border-bottom-color: #ff000000
+border-left-color: #ff000000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff000000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff000000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 4px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 2px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: auto
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# cycles are invalid
+#tree
+| html
+|  div*
+#ua
+#user
+#author
+div { --a: var(--b); --b: var(--a); width: var(--a, 9px); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff000000
+border-right-color: #ff000000
+border-bottom-color: #ff000000
+border-left-color: #ff000000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff000000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff000000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: 9px
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# shorthands
+#tree
+| html
+|  div*
+#ua
+#user
+#author
+html { --bg: #ff0000; --pad: 1px 2px; }
+div { background: none var(--bg); padding: var(--pad) 3px; }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #ffff0000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff000000
+border-right-color: #ff000000
+border-bottom-color: #ff000000
+border-left-color: #ff000000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff000000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff000000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 1px
+padding-right: 2px
+padding-bottom: 3px
+padding-left: 2px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: auto
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# cascade order with a more specific declaration
+#tree
+| html
+|  div*
+|   id=foo
+#ua
+#user
+#author
+html { --w: 6px; }
+div#foo { width: 5px; height: var(--w); }
+div { width: var(--w); height: 4px; }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff000000
+border-right-color: #ff000000
+border-bottom-color: #ff000000
+border-left-color: #ff000000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff000000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff000000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: 6px
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: 5px
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# child overrides inherited value
+#tree
+| html
+|  div*
+#ua
+#user
+#author
+html { --c: #ff0000; }
+div { --c: #008000; color: var(--c); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff008000
+border-right-color: #ff008000
+border-bottom-color: #ff008000
+border-left-color: #ff008000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff008000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff008000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: auto
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# important custom property
+#tree
+| html
+|  div*
+|   id=foo
+#ua
+#user
+#author
+div { --c: #0000ff !important; }
+#foo { --c: #ff0000; }
+div { color: var(--c); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff0000ff
+border-right-color: #ff0000ff
+border-bottom-color: #ff0000ff
+border-left-color: #ff0000ff
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff0000ff
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff0000ff
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: auto
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# relative units in substituted values
+#tree
+| html
+|  div*
+#ua
+#user
+#author
+html { font-size: 10px; --s: 2em; }
+div { width: var(--s); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff000000
+border-right-color: #ff000000
+border-bottom-color: #ff000000
+border-left-color: #ff000000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff000000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff000000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 10px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: 2em
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# root element
+#tree
+| html*
+#ua
+#user
+#author
+html { --c: #ff0000; color: var(--c); width: var(--missing); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ffff0000
+border-right-color: #ffff0000
+border-bottom-color: #ffff0000
+border-left-color: #ffff0000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ffff0000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ffff0000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: auto
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# grandchild inherits through an element without custom properties
+#tree
+| html
+|  div
+|   p*
+#ua
+#user
+#author
+html { --gap: 12px; }
+p { margin-top: var(--gap); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff000000
+border-right-color: #ff000000
+border-bottom-color: #ff000000
+border-left-color: #ff000000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff000000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff000000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 12px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: auto
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset
+
+# initial makes the custom property invalid
+#tree
+| html
+|  div*
+#ua
+#user
+#author
+html { --w: 5px; }
+div { --w: initial; width: var(--w, 8px); }
+#errors
+#expected
+align-content: stretch
+align-items: stretch
+align-self: auto
+background-attachment: scroll
+background-color: #00000000
+background-image: none
+background-position: 0% 0%
+background-repeat: repeat
+border-collapse: separate
+border-spacing: 0px 0px
+border-top-color: #ff000000
+border-right-color: #ff000000
+border-bottom-color: #ff000000
+border-left-color: #ff000000
+border-top-style: none
+border-right-style: none
+border-bottom-style: none
+border-left-style: none
+border-top-width: 2px
+border-right-width: 2px
+border-bottom-width: 2px
+border-left-width: 2px
+bottom: auto
+box-sizing: content-box
+break-after: auto
+break-before: auto
+break-inside: auto
+caption-side: top
+clear: none
+clip: auto
+color: #ff000000
+column-count: auto
+column-fill: balance
+column-gap: normal
+column-rule-color: #ff000000
+column-rule-style: none
+column-rule-width: 2px
+column-span: none
+column-width: auto
+content: normal
+counter-increment: none
+counter-reset: none
+cursor: auto
+direction: ltr
+display: inline
+empty-cells: show
+fill-opacity: 1.000
+flex-basis: auto
+flex-direction: row
+flex-grow: 0.000
+flex-shrink: 1.000
+flex-wrap: nowrap
+float: none
+font-family: sans-serif
+font-size: 16px
+font-style: normal
+font-variant: normal
+font-weight: normal
+height: auto
+justify-content: flex-start
+left: auto
+letter-spacing: normal
+line-height: normal
+list-style-image: none
+list-style-position: outside
+list-style-type: disc
+margin-top: 0px
+margin-right: 0px
+margin-bottom: 0px
+margin-left: 0px
+max-height: none
+max-width: none
+min-height: 0px
+min-width: 0px
+opacity: 1.000
+order: 0
+outline-color: invert
+outline-style: none
+outline-width: 2px
+overflow-x: visible
+overflow-y: visible
+padding-top: 0px
+padding-right: 0px
+padding-bottom: 0px
+padding-left: 0px
+position: static
+quotes: none
+right: auto
+stroke-opacity: 1.000
+table-layout: auto
+text-align: default
+text-decoration: none
+text-indent: 0px
+text-transform: none
+top: auto
+unicode-bidi: normal
+vertical-align: baseline
+visibility: visible
+white-space: normal
+width: 8px
+word-spacing: normal
+writing-mode: horizontal-tb
+z-index: auto
+#reset

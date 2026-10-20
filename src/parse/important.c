@@ -87,7 +87,11 @@ void css__make_style_important(css_style *style)
 		offset++;
 
 		/* Advance past any property-specific data */
-		if (hasFlagValue(opv) == false && value == VALUE_IS_CALC) {
+		if (op == OP_CUSTOM_PROPERTY ||
+				getFlagValue(opv) == FLAG_VALUE_VAR) {
+			/* Two string table indices */
+			offset += 2;
+		} else if (hasFlagValue(opv) == false && value == VALUE_IS_CALC) {
 			/* All VALUE_IS_CALC have the form OPV UNIT STRIDX */
 			offset += 2;
 		} else if (hasFlagValue(opv) == false) {

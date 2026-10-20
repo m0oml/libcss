@@ -794,6 +794,41 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 		*((*ptr)++) = '|';
 		for (i = 0; i < depth; i++)
 			*((*ptr)++) = ' ';
+
+		if (op == OP_CUSTOM_PROPERTY || getFlagValue(opv) ==
+				FLAG_VALUE_VAR) {
+			lwc_string *first = NULL;
+			lwc_string *second = NULL;
+
+			css__stylesheet_string_get(style->sheet,
+					*((uint32_t *) bytecode), &first);
+			ADVANCE(sizeof(uint32_t));
+			css__stylesheet_string_get(style->sheet,
+					*((uint32_t *) bytecode), &second);
+			ADVANCE(sizeof(uint32_t));
+
+			if (op == OP_CUSTOM_PROPERTY) {
+				/* name, value */
+				*ptr += sprintf(*ptr, "%.*s: %.*s",
+					(int) lwc_string_length(first),
+					lwc_string_data(first),
+					(int) lwc_string_length(second),
+					lwc_string_data(second));
+			} else {
+				/* value, declared property */
+				*ptr += sprintf(*ptr, "%s: var(%.*s: %.*s)",
+					opcode_names[op],
+					(int) lwc_string_length(second),
+					lwc_string_data(second),
+					(int) lwc_string_length(first),
+					lwc_string_data(first));
+			}
+			if (isImportant(opv))
+				*ptr += sprintf(*ptr, " !important");
+			*((*ptr)++) = '\n';
+			continue;
+		}
+
 		*ptr += sprintf(*ptr, "%s: ", opcode_names[op]);
 
 		if (getFlagValue(opv) == FLAG_VALUE_INHERIT) {

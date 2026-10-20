@@ -26,6 +26,7 @@ enum flag_value {
 	FLAG_VALUE_INITIAL = 2,
 	FLAG_VALUE_REVERT  = 3,
 	FLAG_VALUE_UNSET   = 4,
+	FLAG_VALUE_VAR     = 5, /**< Value uses var(), resolved later */
 };
 
 enum flag {
@@ -34,7 +35,23 @@ enum flag {
 	FLAG_INITIAL   = (FLAG_VALUE_INITIAL << 1),
 	FLAG_REVERT    = (FLAG_VALUE_REVERT  << 1),
 	FLAG_UNSET     = (FLAG_VALUE_UNSET   << 1),
+	FLAG_VAR       = (FLAG_VALUE_VAR     << 1),
 };
+
+/**
+ * Opcode of a custom property declaration (--name: value).
+ *
+ * Followed by the string table indices of the name and the value.
+ * It is not a property, so is outside the range of css_properties_e.
+ */
+#define OP_CUSTOM_PROPERTY ((opcode_t) 0x3ff)
+
+/*
+ * A declaration whose value uses var() has the FLAG_VAR flag value and
+ * is followed by the string table indices of its value text and of the
+ * name of the property it was declared as, which may be a shorthand.
+ * The value is parsed once the custom properties are known.
+ */
 
 enum calc_opcodes {
 	CALC_PUSH_NUMBER = 'N',

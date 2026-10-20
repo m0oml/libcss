@@ -508,6 +508,7 @@ class CSSGroup:
         t.append('uint32_t count;')
         t.append('uint32_t bin;')
         t.append('css_calculator *calc;')
+        t.append('struct css_computed_vars *vars;')
         t.indent(-1)
         t.append('};')
 
