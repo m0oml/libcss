@@ -494,6 +494,7 @@ static const char *opcode_names[] = {
 	"fill-opacity",
 	"stroke-opacity",
 	"background-size",
+	"box-shadow",
 };
 
 static void dump_css_fixed(css_fixed f, char **ptr)
@@ -1140,6 +1141,45 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 				case BACKGROUND_POSITION_VERT_TOP:
 					*ptr += sprintf(*ptr, "top");
 					break;
+				}
+				break;
+			case CSS_PROP_BOX_SHADOW:
+				if (value == BOX_SHADOW_NONE) {
+					*ptr += sprintf(*ptr, "none");
+				} else {
+					uint32_t n = *((uint32_t *) bytecode);
+					uint32_t s, j;
+
+					ADVANCE(sizeof(n));
+					for (s = 0; s < n; s++) {
+						uint32_t flags =
+							*((uint32_t *) bytecode);
+
+						ADVANCE(sizeof(flags));
+						if (s > 0)
+							*ptr += sprintf(*ptr, ", ");
+						if (flags & BOX_SHADOW_INSET)
+							*ptr += sprintf(*ptr,
+									"inset ");
+						for (j = 0; j < 4; j++) {
+							uint32_t unit;
+							css_fixed val = *((css_fixed *)
+									bytecode);
+							ADVANCE(sizeof(val));
+							unit = *((uint32_t *) bytecode);
+							ADVANCE(sizeof(unit));
+							dump_unit(val, unit, ptr);
+							*ptr += sprintf(*ptr, " ");
+						}
+						if (flags & BOX_SHADOW_CURRENT_COLOR)
+							*ptr += sprintf(*ptr,
+								"currentColor");
+						else
+							*ptr += sprintf(*ptr, "#%08x",
+								*((uint32_t *)
+								  bytecode));
+						ADVANCE(sizeof(uint32_t));
+					}
 				}
 				break;
 			case CSS_PROP_BACKGROUND_SIZE:

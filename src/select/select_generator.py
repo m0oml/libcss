@@ -340,7 +340,7 @@ class CSSProperty:
             vt, vn = shift_star(v.type, v.name)
             vn = star + vn + v.suffix
             if pointer:
-                if v.name == 'counter_arr' or v.name == 'content_item':
+                if v.name in ('counter_arr', 'content_item', 'shadow_arr'):
                     vt = 'const ' + vt
             vals.append((vt + or_calc, vn))
             if v.bits is not None:

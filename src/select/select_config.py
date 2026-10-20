@@ -16,6 +16,7 @@ values = {
     ('string', 'lwc_string*'),
     ('string_arr', 'lwc_string**'),
     ('counter_arr', 'css_computed_counter*'),
+    ('shadow_arr', 'css_computed_shadow*'),
     ('content_item', 'css_computed_content_item*')
 }
 
@@ -155,6 +156,9 @@ style = {
     ('counter_increment', 1, 'counter_arr', None, 'CSS_COUNTER_INCREMENT_NONE',
         'Encode counter_increment as an array of name, value pairs, '
         'terminated with a blank entry.'),
+    ('box_shadow', 2, 'shadow_arr', None, 'CSS_BOX_SHADOW_NONE',
+        'Encode box-shadow as an array of shadows, terminated with an '
+        'entry flagged CSS_COMPUTED_SHADOW_END.', 'set'),
     ('counter_reset', 1, 'counter_arr', None, 'CSS_COUNTER_RESET_NONE',
         'Encode counter_reset as an array of name, value pairs, '
         'terminated with a blank entry.'),

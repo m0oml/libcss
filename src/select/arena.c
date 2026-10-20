@@ -67,6 +67,26 @@ static inline bool arena__compare_css_computed_counter(
 	return false;
 }
 
+static inline bool arena__compare_shadows(
+		const css_computed_shadow *a,
+		const css_computed_shadow *b)
+{
+	if (a == NULL || b == NULL) {
+		return a == b;
+	}
+
+	while (true) {
+		if (memcmp(a, b, sizeof(*a)) != 0) {
+			return false;
+		}
+		if (a->flags & CSS_COMPUTED_SHADOW_END) {
+			return true;
+		}
+		a++;
+		b++;
+	}
+}
+
 static inline bool arena__compare_string_list(
 		lwc_string **a,
 		lwc_string **b)
@@ -139,6 +159,10 @@ static inline bool css__arena_style_is_equal(
 	if (!arena__compare_string_list(
 			a->quotes,
 			b->quotes)) {
+		return false;
+	}
+
+	if (!arena__compare_shadows(a->box_shadow, b->box_shadow)) {
 		return false;
 	}
 

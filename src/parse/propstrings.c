@@ -120,6 +120,7 @@ const stringmap_entry stringmap[LAST_KNOWN] = {
 	SMAP("border-top-width"),
 	SMAP("border-width"),
 	SMAP("bottom"),
+	SMAP("box-shadow"),
 	SMAP("box-sizing"),
 	SMAP("break-after"),
 	SMAP("break-before"),

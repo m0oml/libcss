@@ -141,6 +141,7 @@ enum css_properties_e {
 	CSS_PROP_FILL_OPACITY			= 0x07c,
 	CSS_PROP_STROKE_OPACITY			= 0x07d,
 	CSS_PROP_BACKGROUND_SIZE		= 0x07e,
+	CSS_PROP_BOX_SHADOW			= 0x07f,
 
 	CSS_N_PROPERTIES
 };
@@ -219,6 +220,12 @@ enum css_background_size_e {
 	CSS_BACKGROUND_SIZE_HEIGHT		= 0x5,
 	/* Width and height given */
 	CSS_BACKGROUND_SIZE_SET			= 0x6
+};
+
+enum css_box_shadow_e {
+	CSS_BOX_SHADOW_INHERIT			= 0x0,
+	CSS_BOX_SHADOW_NONE			= 0x1,
+	CSS_BOX_SHADOW_SET			= 0x2
 };
 
 enum css_border_collapse_e {

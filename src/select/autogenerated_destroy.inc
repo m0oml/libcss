@@ -30,6 +30,7 @@
 /* set_border_top_style(style, 0, 0, CSS_UNIT_PX); */
 /* set_border_top_width(style, 0, 0, CSS_UNIT_PX); */
 /* set_bottom(style, 0, 0, CSS_UNIT_PX); */
+/* set_box_shadow(style, 0, 0, CSS_UNIT_PX); */
 /* set_box_sizing(style, 0, 0, CSS_UNIT_PX); */
 /* set_break_after(style, 0, 0, CSS_UNIT_PX); */
 /* set_break_before(style, 0, 0, CSS_UNIT_PX); */

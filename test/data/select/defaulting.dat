@@ -28,6 +28,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -142,6 +143,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -257,6 +259,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -373,6 +376,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -485,6 +489,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -601,6 +606,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -716,6 +722,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -831,6 +838,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -946,6 +954,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -1058,6 +1067,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -1173,6 +1183,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -1290,6 +1301,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto
@@ -1407,6 +1419,7 @@ border-right-width: 2px
 border-bottom-width: 2px
 border-left-width: 2px
 bottom: auto
+box-shadow: none
 box-sizing: content-box
 break-after: auto
 break-before: auto

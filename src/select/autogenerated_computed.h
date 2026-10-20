@@ -124,6 +124,11 @@ struct css_computed_style_i {
  * writing_mode                     2             
  * z_index                          2               4
  * 
+ * Encode box-shadow as an array of shadows, terminated with an entry flagged
+ * CSS_COMPUTED_SHADOW_END.
+ * 
+ * box_shadow                       2             sizeof(ptr)
+ * 
  * Encode content as an array of content items, terminated with a blank entry.
  * 
  * content                          2             sizeof(ptr)
@@ -153,9 +158,9 @@ struct css_computed_style_i {
  * quotes                           1             sizeof(ptr)
  * 
  * ---                            ---             ---
- *                                477 bits        244 + 8sizeof(ptr) bytes
+ *                                479 bits        244 + 9sizeof(ptr) bytes
  *                                ===================
- *                                304 + 8sizeof(ptr) bytes
+ *                                304 + 9sizeof(ptr) bytes
  * 
  * Bit allocations:
  * 
@@ -208,9 +213,9 @@ struct css_computed_style_i {
  * 13 bbbbbbbppppppaaaaaaddddddiiiiiiw
  * bottom; padding_top; padding_right; padding_left; padding_bottom; widows
  * 
- * 14 bboorrddeettaaccsqpOilfxyunCk...
- * box_sizing; border_top_color; border_right_color; border_left_color;
- * border_collapse; border_bottom_color; background_color;
+ * 14 bboorrddeeccttaakksqpOilfxyunCg.
+ * box_sizing; box_shadow; border_top_color; border_right_color;
+ * border_left_color; border_collapse; border_bottom_color; background_color;
  * background_attachment; stroke_opacity; quotes; orphans; order; opacity;
  * list_style_image; flex_shrink; flex_grow; fill_opacity; counter_reset;
  * counter_increment; color; background_image
@@ -285,6 +290,7 @@ struct css_computed_style_i {
 struct css_computed_style {
 	struct css_computed_style_i i;
 
+	css_computed_shadow *box_shadow;
 	css_computed_content_item *content;
 	css_computed_counter *counter_increment;
 	css_computed_counter *counter_reset;

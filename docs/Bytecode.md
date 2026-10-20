@@ -1437,7 +1437,23 @@ Opcodes
 
 	If both lengths follow, the width comes first.
 
-7f-3fe - Reserved for future expansion.
+7f - box-shadow
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => shadows follow
+				bits 0-6: MBZ
+			bit 7 clear => keyword
+				bits 0-6:
+					0000000 => none
+					other   => Reserved for future expansion
+
+	The shadows are a count, then for each shadow ten values: flags
+	(bit 0 set => inset, bit 1 set => current colour), the x and y
+	offsets, the blur radius and the spread distance (each a length
+	and unit) and the colour.
+
+80-3fe - Reserved for future expansion.
 
 3ff - custom property (--name: value)
 	<value> (14bits) : MBZ

@@ -47,6 +47,7 @@ PROPERTY_FUNCS(border_right_width);
 PROPERTY_FUNCS(border_bottom_width);
 PROPERTY_FUNCS(border_left_width);
 PROPERTY_FUNCS(bottom);
+PROPERTY_FUNCS(box_shadow);
 PROPERTY_FUNCS(box_sizing);
 PROPERTY_FUNCS(break_after);
 PROPERTY_FUNCS(break_before);

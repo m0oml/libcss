@@ -1,0 +1,74 @@
+#data
+* { box-shadow: none; }
+#errors
+#expected
+| *
+|  box-shadow: none
+#reset
+
+#data
+* { box-shadow: 0 2px 8px #22262e40; }
+#errors
+#expected
+| *
+|  box-shadow: 0px 2px 8px 0px #4022262e
+#reset
+
+#data
+* { box-shadow: inset 1px 1px red, 2px 3px 4px 5px currentColor; }
+#errors
+#expected
+| *
+|  box-shadow: inset 1px 1px 0px 0px #ffff0000, 2px 3px 4px 5px currentColor
+#reset
+
+#data
+* { box-shadow: blue 1em -2px inset !important; }
+#errors
+#expected
+| *
+|  box-shadow: inset 1em -2px 0px 0px #ff0000ff !important
+#reset
+
+#data
+* { box-shadow: 1px; }
+#errors
+#expected
+| *
+#reset
+
+#data
+* { box-shadow: 1px 1px -1px red; }
+#errors
+#expected
+| *
+#reset
+
+#data
+* { box-shadow: 1px 1px red 2px; }
+#errors
+#expected
+| *
+#reset
+
+#data
+* { box-shadow: 1px 1px 1px 1px 1px; }
+#errors
+#expected
+| *
+#reset
+
+#data
+* { box-shadow: 1px 1px, ; }
+#errors
+#expected
+| *
+#reset
+
+#data
+* { box-shadow: inherit; }
+#errors
+#expected
+| *
+|  box-shadow: inherit
+#reset

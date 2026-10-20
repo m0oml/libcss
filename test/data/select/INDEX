@@ -8,3 +8,4 @@ calc.dat		Tests involving calc
 counter.dat		counter-increment/counter-reset named counters
 vars.dat		Custom properties and var()
 bgsize.dat		background-size
+boxshadow.dat		box-shadow

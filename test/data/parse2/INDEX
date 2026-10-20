@@ -28,3 +28,4 @@ svg.dat				SVG property tests
 calc.dat			calc() tests
 custom.dat		Custom properties and var()
 bgsize.dat		background-size tests
+boxshadow.dat		box-shadow tests

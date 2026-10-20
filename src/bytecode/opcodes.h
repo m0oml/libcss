@@ -101,6 +101,20 @@ enum op_background_size {
 	BACKGROUND_SIZE_HEIGHT_SET	= 0x0020
 };
 
+enum op_box_shadow {
+	BOX_SHADOW_NONE			= 0x0000,
+	/* Followed by the number of shadows, then for each of them:
+	 * flags, x, x unit, y, y unit, blur, blur unit, spread,
+	 * spread unit and colour */
+	BOX_SHADOW_SET			= 0x0080
+};
+
+/* Flags of each shadow in the bytecode */
+enum op_box_shadow_flags {
+	BOX_SHADOW_INSET		= 0x0001,
+	BOX_SHADOW_CURRENT_COLOR	= 0x0002
+};
+
 enum op_border_collapse {
 	BORDER_COLLAPSE_SEPARATE	= 0x0000,
 	BORDER_COLLAPSE_COLLAPSE	= 0x0001

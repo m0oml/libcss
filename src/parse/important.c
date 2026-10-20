@@ -139,6 +139,12 @@ void css__make_style_important(css_style *style)
 					offset += 2; /* length + units */
 				break;
 
+			case CSS_PROP_BOX_SHADOW:
+				if (value == BOX_SHADOW_SET)
+					/* count, then 10 words per shadow */
+					offset += 1 + bytecode[offset] * 10;
+				break;
+
 			case CSS_PROP_BACKGROUND_SIZE:
 				if ((value & BACKGROUND_SIZE_SET) == 0)
 					break;

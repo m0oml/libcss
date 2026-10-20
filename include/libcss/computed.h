@@ -29,6 +29,33 @@ typedef struct css_computed_counter {
 	css_fixed value;
 } css_computed_counter;
 
+/**
+ * Flags of a box shadow
+ */
+enum css_computed_shadow_flags {
+	CSS_COMPUTED_SHADOW_INSET		= 0x01,
+	/** Use the computed value of color */
+	CSS_COMPUTED_SHADOW_CURRENT_COLOR	= 0x02,
+	/** Marks the end of an array of shadows */
+	CSS_COMPUTED_SHADOW_END			= 0x80
+};
+
+/**
+ * A box shadow
+ */
+typedef struct css_computed_shadow {
+	css_fixed x;
+	css_fixed y;
+	css_fixed blur;
+	css_fixed spread;
+	css_unit x_unit;
+	css_unit y_unit;
+	css_unit blur_unit;
+	css_unit spread_unit;
+	css_color color;
+	uint8_t flags;
+} css_computed_shadow;
+
 typedef struct css_computed_clip_rect {
 	css_fixed top;
 	css_fixed right;
@@ -381,6 +408,18 @@ uint8_t css_computed_background_position(
 		const css_computed_style *style,
 		css_fixed *hlength, css_unit *hunit,
 		css_fixed *vlength, css_unit *vunit);
+
+/**
+ * Get the box-shadow of a computed style
+ *
+ * \param style    The style
+ * \param shadows  Updated to the shadows, ending with one flagged
+ *                 CSS_COMPUTED_SHADOW_END, or NULL if there are none
+ * \return CSS_BOX_SHADOW_NONE or CSS_BOX_SHADOW_SET
+ */
+uint8_t css_computed_box_shadow(
+		const css_computed_style *style,
+		const css_computed_shadow **shadows);
 
 uint8_t css_computed_background_size(
 		const css_computed_style *style,

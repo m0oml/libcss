@@ -890,6 +890,72 @@ static void dump_computed_style(const css_computed_style *style, char *buf,
 	ptr += wrote;
 	*len -= wrote;
 
+	/* box-shadow */
+	{
+		const css_computed_shadow *shadows = NULL;
+
+		val = css_computed_box_shadow(style, &shadows);
+		if (val == CSS_BOX_SHADOW_INHERIT) {
+			wrote = snprintf(ptr, *len, "box-shadow: inherit\n");
+		} else if (val == CSS_BOX_SHADOW_NONE || shadows == NULL) {
+			wrote = snprintf(ptr, *len, "box-shadow: none\n");
+		} else {
+			const css_computed_shadow *s;
+
+			wrote = snprintf(ptr, *len, "box-shadow:");
+			for (s = shadows; (s->flags &
+					CSS_COMPUTED_SHADOW_END) == 0; s++) {
+				ptr += wrote;
+				*len -= wrote;
+				wrote = snprintf(ptr, *len, "%s%s ",
+						s == shadows ? "" : ",",
+						(s->flags &
+						 CSS_COMPUTED_SHADOW_INSET) ?
+						" inset" : "");
+				ptr += wrote;
+				*len -= wrote;
+				wrote = dump_css_unit(s->x, s->x_unit,
+						ptr, *len);
+				ptr += wrote;
+				*len -= wrote;
+				wrote = snprintf(ptr, *len, " ");
+				ptr += wrote;
+				*len -= wrote;
+				wrote = dump_css_unit(s->y, s->y_unit,
+						ptr, *len);
+				ptr += wrote;
+				*len -= wrote;
+				wrote = snprintf(ptr, *len, " ");
+				ptr += wrote;
+				*len -= wrote;
+				wrote = dump_css_unit(s->blur, s->blur_unit,
+						ptr, *len);
+				ptr += wrote;
+				*len -= wrote;
+				wrote = snprintf(ptr, *len, " ");
+				ptr += wrote;
+				*len -= wrote;
+				wrote = dump_css_unit(s->spread,
+						s->spread_unit, ptr, *len);
+				ptr += wrote;
+				*len -= wrote;
+				if (s->flags &
+					CSS_COMPUTED_SHADOW_CURRENT_COLOR) {
+					wrote = snprintf(ptr, *len,
+							" currentColor");
+				} else {
+					wrote = snprintf(ptr, *len, " #%08x",
+							s->color);
+				}
+			}
+			ptr += wrote;
+			*len -= wrote;
+			wrote = snprintf(ptr, *len, "\n");
+		}
+		ptr += wrote;
+		*len -= wrote;
+	}
+
 	/* box-sizing */
 	val = css_computed_box_sizing(style);
 	switch (val) {

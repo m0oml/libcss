@@ -106,6 +106,28 @@ static inline uint8_t get_line_height(
 	return (bits & 0x3);
 }'''
 
+overrides['set']['box_shadow'] = '''\
+static inline css_error set_box_shadow(
+		css_computed_style *style, uint8_t type,
+		css_computed_shadow *shadow_arr)
+{
+	uint32_t *bits;
+	css_computed_shadow *old = style->box_shadow;
+
+	/* 2bits: type */
+	bits = &style->i.bits[BOX_SHADOW_INDEX];
+	*bits = (*bits & ~BOX_SHADOW_MASK) |
+			((type & 0x3) << BOX_SHADOW_SHIFT);
+
+	style->box_shadow = shadow_arr;
+
+	/* Shadows hold no references, so just free any old array */
+	if (old != NULL && old != shadow_arr)
+		free(old);
+
+	return CSS_OK;
+}'''
+
 overrides['set']['content'] = '''\
 static inline css_error set_content(
 		css_computed_style *style, uint8_t type,
