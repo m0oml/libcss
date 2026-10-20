@@ -382,6 +382,11 @@ uint8_t css_computed_background_position(
 		css_fixed *hlength, css_unit *hunit,
 		css_fixed *vlength, css_unit *vunit);
 
+uint8_t css_computed_background_size(
+		const css_computed_style *style,
+		css_fixed *width, css_unit *wunit,
+		css_fixed *height, css_unit *hunit);
+
 uint8_t css_computed_break_after(
 		const css_computed_style *style);
 

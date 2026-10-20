@@ -30,6 +30,7 @@ PROPERTY_FUNCS(background_attachment);
 PROPERTY_FUNCS(background_color);
 PROPERTY_FUNCS(background_image);
 PROPERTY_FUNCS(background_position);
+PROPERTY_FUNCS(background_size);
 PROPERTY_FUNCS(background_repeat);
 PROPERTY_FUNCS(border_collapse);
 PROPERTY_FUNCS(border_spacing);

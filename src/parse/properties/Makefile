@@ -33,6 +33,7 @@ DIR_SOURCES :=				\
 	azimuth.c			\
 	background.c			\
 	background_position.c		\
+	background_size.c		\
 	border.c			\
 	border_color.c			\
 	border_spacing.c		\

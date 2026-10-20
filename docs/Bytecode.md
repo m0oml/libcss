@@ -20,10 +20,18 @@ The 8 bits of flag data are defined as follows:
 		010 => initial
 		011 => revert
 		100 => unset
+		101 => uses var()
 	bit 0   : value is important
 ```
 
 The 14 bits of value are opcode-specific.
+
+A declaration whose value uses `var()` cannot be parsed until the custom
+properties are known. It has the generic value 101 and a value of zero for
+each property it sets (all of a shorthand's properties), followed by two
+string table indices: the text of the value and the name of the property
+as declared, which may be a shorthand. The value is parsed during
+selection, after the `var()` references have been substituted.
 
 Parameters are opcode-specific. Each parameter must begin on a 4 byte boundary.
 
@@ -1410,5 +1418,29 @@ Opcodes
 			bit 7 clear => Reserved for future expansion
 				bits 0-6: MBZ
 
-7e-3ff - Reserved for future expansion.
+7e - background-size
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => size given
+				bit 6: MBZ
+				bit 5: set => height length follows
+				       clear => height is auto
+				bit 4: set => width length follows
+				       clear => width is auto
+				bits 0-3: MBZ
+			bit 7 clear => keyword
+				bits 0-6:
+					0000001 => cover
+					0000010 => contain
+					other   => Reserved for future expansion
+
+	If both lengths follow, the width comes first.
+
+7f-3fe - Reserved for future expansion.
+
+3ff - custom property (--name: value)
+	<value> (14bits) : MBZ
+	Followed by two string table indices: the name and the text of
+	the value.
 ```

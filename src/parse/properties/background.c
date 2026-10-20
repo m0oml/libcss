@@ -40,11 +40,13 @@ css_error css__parse_background(css_language *c,
 	bool image = true;
 	bool position = true;
 	bool repeat = true;
+	bool size = true;
 	css_style * attachment_style;
 	css_style * color_style;
 	css_style * image_style;
 	css_style * position_style;
 	css_style * repeat_style;
+	css_style * size_style;
 	enum flag_value flag_value;
 
 	/* Firstly, handle inherit */
@@ -77,6 +79,11 @@ css_error css__parse_background(css_language *c,
 
 		error = css_stylesheet_style_flag_value(result, flag_value,
 				CSS_PROP_BACKGROUND_REPEAT);
+		if (error != CSS_OK)
+			return error;
+
+		error = css_stylesheet_style_flag_value(result, flag_value,
+				CSS_PROP_BACKGROUND_SIZE);
 		if (error == CSS_OK)
 			parserutils_vector_iterate(vector, ctx);
 
@@ -118,6 +125,16 @@ css_error css__parse_background(css_language *c,
 		return error;
 	}
 
+	error = css__stylesheet_style_create(c->sheet, &size_style);
+	if (error != CSS_OK) {
+		css__stylesheet_style_destroy(attachment_style);
+		css__stylesheet_style_destroy(color_style);
+		css__stylesheet_style_destroy(image_style);
+		css__stylesheet_style_destroy(position_style);
+		css__stylesheet_style_destroy(repeat_style);
+		return error;
+	}
+
 	/* Attempt to parse the various longhand properties */
 	do {
 		prev_ctx = *ctx;
@@ -147,6 +164,19 @@ css_error css__parse_background(css_language *c,
 			   (error = css__parse_background_position(c, vector, ctx,
 					position_style)) == CSS_OK) {
 			position = false;
+
+			/* The size may follow the position: position / size */
+			consumeWhitespace(vector, ctx);
+			token = parserutils_vector_peek(vector, *ctx);
+			if (token != NULL && tokenIsChar(token, '/')) {
+				parserutils_vector_iterate(vector, ctx);
+				consumeWhitespace(vector, ctx);
+				error = css__parse_background_size(c, vector,
+						ctx, size_style);
+				if (error != CSS_OK)
+					goto css__parse_background_cleanup;
+				size = false;
+			}
 		} else if ((repeat) &&
 			   (error = css__parse_background_repeat(c, vector, ctx,
 					repeat_style)) == CSS_OK) {
@@ -204,6 +234,14 @@ css_error css__parse_background(css_language *c,
 			goto css__parse_background_cleanup;
 	}
 
+	if (size) {
+		error = css__stylesheet_style_appendOPV(size_style,
+				CSS_PROP_BACKGROUND_SIZE,
+				0, BACKGROUND_SIZE_SET);
+		if (error != CSS_OK)
+			goto css__parse_background_cleanup;
+	}
+
 	error = css__stylesheet_merge_style(result, attachment_style);
 	if (error != CSS_OK)
 		goto css__parse_background_cleanup;
@@ -221,6 +259,10 @@ css_error css__parse_background(css_language *c,
 		goto css__parse_background_cleanup;
 
 	error = css__stylesheet_merge_style(result, repeat_style);
+	if (error != CSS_OK)
+		goto css__parse_background_cleanup;
+
+	error = css__stylesheet_merge_style(result, size_style);
 
 css__parse_background_cleanup:
 	css__stylesheet_style_destroy(attachment_style);
@@ -228,6 +270,7 @@ css__parse_background_cleanup:
 	css__stylesheet_style_destroy(image_style);
 	css__stylesheet_style_destroy(position_style);
 	css__stylesheet_style_destroy(repeat_style);
+	css__stylesheet_style_destroy(size_style);
 
 	if (error != CSS_OK)
 		*ctx = orig_ctx;

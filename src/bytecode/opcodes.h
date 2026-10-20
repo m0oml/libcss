@@ -92,6 +92,15 @@ enum op_background_repeat {
 	BACKGROUND_REPEAT_REPEAT	= 0x0003
 };
 
+enum op_background_size {
+	BACKGROUND_SIZE_COVER		= 0x0001,
+	BACKGROUND_SIZE_CONTAIN		= 0x0002,
+	BACKGROUND_SIZE_SET		= 0x0080,
+	/* With BACKGROUND_SIZE_SET: lengths which follow, otherwise auto */
+	BACKGROUND_SIZE_WIDTH_SET	= 0x0010,
+	BACKGROUND_SIZE_HEIGHT_SET	= 0x0020
+};
+
 enum op_border_collapse {
 	BORDER_COLLAPSE_SEPARATE	= 0x0000,
 	BORDER_COLLAPSE_COLLAPSE	= 0x0001

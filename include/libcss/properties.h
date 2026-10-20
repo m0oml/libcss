@@ -140,6 +140,7 @@ enum css_properties_e {
 	CSS_PROP_ORDER				= 0x07b,
 	CSS_PROP_FILL_OPACITY			= 0x07c,
 	CSS_PROP_STROKE_OPACITY			= 0x07d,
+	CSS_PROP_BACKGROUND_SIZE		= 0x07e,
 
 	CSS_N_PROPERTIES
 };
@@ -204,6 +205,20 @@ enum css_background_repeat_e {
 	CSS_BACKGROUND_REPEAT_REPEAT_Y		= 0x2,
 	CSS_BACKGROUND_REPEAT_REPEAT		= 0x3,
 	CSS_BACKGROUND_REPEAT_NO_REPEAT		= 0x4
+};
+
+enum css_background_size_e {
+	CSS_BACKGROUND_SIZE_INHERIT		= 0x0,
+	CSS_BACKGROUND_SIZE_COVER		= 0x1,
+	CSS_BACKGROUND_SIZE_CONTAIN		= 0x2,
+	/* Both dimensions auto */
+	CSS_BACKGROUND_SIZE_AUTO		= 0x3,
+	/* Width given, height auto */
+	CSS_BACKGROUND_SIZE_WIDTH		= 0x4,
+	/* Height given, width auto */
+	CSS_BACKGROUND_SIZE_HEIGHT		= 0x5,
+	/* Width and height given */
+	CSS_BACKGROUND_SIZE_SET			= 0x6
 };
 
 enum css_border_collapse_e {

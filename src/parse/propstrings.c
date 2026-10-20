@@ -96,6 +96,7 @@ const stringmap_entry stringmap[LAST_KNOWN] = {
 	SMAP("background-image"),
 	SMAP("background-position"),
 	SMAP("background-repeat"),
+	SMAP("background-size"),
 	SMAP("border"),
 	SMAP("border-bottom"),
 	SMAP("border-bottom-color"),
@@ -493,6 +494,8 @@ const stringmap_entry stringmap[LAST_KNOWN] = {
 	SMAP("inline-grid"),
 	SMAP("sticky"),
 	SMAP("calc"),
+	SMAP("cover"),
+	SMAP("contain"),
 
 	/* Named colours */
 	SMAP("aliceblue"),

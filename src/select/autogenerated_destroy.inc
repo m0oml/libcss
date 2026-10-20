@@ -14,6 +14,7 @@
 /* set_background_image(style, 0, 0, CSS_UNIT_PX); */
 /* set_background_position(style, 0, 0, CSS_UNIT_PX); */
 /* set_background_repeat(style, 0, 0, CSS_UNIT_PX); */
+/* set_background_size(style, 0, 0, CSS_UNIT_PX); */
 /* set_border_bottom_color(style, 0, 0, CSS_UNIT_PX); */
 /* set_border_bottom_style(style, 0, 0, CSS_UNIT_PX); */
 /* set_border_bottom_width(style, 0, 0, CSS_UNIT_PX); */

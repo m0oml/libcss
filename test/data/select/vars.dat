@@ -18,6 +18,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff00ff00
@@ -133,6 +134,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff000000
@@ -250,6 +252,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff0000ff
@@ -366,6 +369,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff000000
@@ -481,6 +485,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff000000
@@ -597,6 +602,7 @@ background-color: #ffff0000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff000000
@@ -715,6 +721,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff000000
@@ -831,6 +838,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff008000
@@ -949,6 +957,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff0000ff
@@ -1065,6 +1074,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff000000
@@ -1179,6 +1189,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ffff0000
@@ -1296,6 +1307,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff000000
@@ -1412,6 +1424,7 @@ background-color: #00000000
 background-image: none
 background-position: 0% 0%
 background-repeat: repeat
+background-size: auto auto
 border-collapse: separate
 border-spacing: 0px 0px
 border-top-color: #ff000000

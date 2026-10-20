@@ -139,6 +139,15 @@ void css__make_style_important(css_style *style)
 					offset += 2; /* length + units */
 				break;
 
+			case CSS_PROP_BACKGROUND_SIZE:
+				if ((value & BACKGROUND_SIZE_SET) == 0)
+					break;
+				if (value & BACKGROUND_SIZE_WIDTH_SET)
+					offset += 2; /* length + units */
+				if (value & BACKGROUND_SIZE_HEIGHT_SET)
+					offset += 2; /* length + units */
+				break;
+
 			case CSS_PROP_BORDER_SPACING:
 				if (value == BORDER_SPACING_SET)
 					offset += 4; /* two length + units */

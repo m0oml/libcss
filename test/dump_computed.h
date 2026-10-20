@@ -389,6 +389,50 @@ static void dump_computed_style(const css_computed_style *style, char *buf,
 	ptr += wrote;
 	*len -= wrote;
 
+	/* background-size */
+	val = css_computed_background_size(style, &len1, &unit1,
+			&len2, &unit2);
+	switch (val) {
+	case CSS_BACKGROUND_SIZE_INHERIT:
+		wrote = snprintf(ptr, *len, "background-size: inherit\n");
+		break;
+	case CSS_BACKGROUND_SIZE_COVER:
+		wrote = snprintf(ptr, *len, "background-size: cover\n");
+		break;
+	case CSS_BACKGROUND_SIZE_CONTAIN:
+		wrote = snprintf(ptr, *len, "background-size: contain\n");
+		break;
+	default:
+		wrote = snprintf(ptr, *len, "background-size: ");
+		ptr += wrote;
+		*len -= wrote;
+
+		if (val == CSS_BACKGROUND_SIZE_WIDTH ||
+				val == CSS_BACKGROUND_SIZE_SET)
+			wrote = dump_css_unit(len1, unit1, ptr, *len);
+		else
+			wrote = snprintf(ptr, *len, "auto");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, " ");
+		ptr += wrote;
+		*len -= wrote;
+
+		if (val == CSS_BACKGROUND_SIZE_HEIGHT ||
+				val == CSS_BACKGROUND_SIZE_SET)
+			wrote = dump_css_unit(len2, unit2, ptr, *len);
+		else
+			wrote = snprintf(ptr, *len, "auto");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, "\n");
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
 	/* border-collapse */
 	val = css_computed_border_collapse(style);
 	switch (val) {

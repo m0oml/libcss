@@ -493,6 +493,7 @@ static const char *opcode_names[] = {
 	"order",
 	"fill-opacity",
 	"stroke-opacity",
+	"background-size",
 };
 
 static void dump_css_fixed(css_fixed f, char **ptr)
@@ -1139,6 +1140,35 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 				case BACKGROUND_POSITION_VERT_TOP:
 					*ptr += sprintf(*ptr, "top");
 					break;
+				}
+				break;
+			case CSS_PROP_BACKGROUND_SIZE:
+				if (value == BACKGROUND_SIZE_COVER) {
+					*ptr += sprintf(*ptr, "cover");
+				} else if (value == BACKGROUND_SIZE_CONTAIN) {
+					*ptr += sprintf(*ptr, "contain");
+				} else {
+					uint32_t i;
+
+					for (i = 0; i < 2; i++) {
+						uint32_t bit = i == 0 ?
+							BACKGROUND_SIZE_WIDTH_SET :
+							BACKGROUND_SIZE_HEIGHT_SET;
+
+						if (i == 1)
+							*ptr += sprintf(*ptr, " ");
+						if (value & bit) {
+							uint32_t unit;
+							css_fixed val = *((css_fixed *)
+									bytecode);
+							ADVANCE(sizeof(val));
+							unit = *((uint32_t *) bytecode);
+							ADVANCE(sizeof(unit));
+							dump_unit(val, unit, ptr);
+						} else {
+							*ptr += sprintf(*ptr, "auto");
+						}
+					}
 				}
 				break;
 			case CSS_PROP_BACKGROUND_REPEAT:

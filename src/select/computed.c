@@ -985,6 +985,13 @@ uint8_t css_computed_background_position(const css_computed_style *style,
 	return get_background_position(style, hlength, hunit, vlength, vunit);
 }
 
+uint8_t css_computed_background_size(const css_computed_style *style,
+		css_fixed *width, css_unit *wunit,
+		css_fixed *height, css_unit *hunit)
+{
+	return get_background_size(style, width, wunit, height, hunit);
+}
+
 uint8_t css_computed_break_after(const css_computed_style *style)
 {
 	return get_break_after(style);

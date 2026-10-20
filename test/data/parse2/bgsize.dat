@@ -1,0 +1,116 @@
+#data
+* { background-size: cover; }
+#errors
+#expected
+| *
+|  background-size: cover
+#reset
+
+#data
+* { background-size: CONTAIN; }
+#errors
+#expected
+| *
+|  background-size: contain
+#reset
+
+#data
+* { background-size: auto; }
+#errors
+#expected
+| *
+|  background-size: auto auto
+#reset
+
+#data
+* { background-size: 50%; }
+#errors
+#expected
+| *
+|  background-size: 50% auto
+#reset
+
+#data
+* { background-size: auto 2em; }
+#errors
+#expected
+| *
+|  background-size: auto 2em
+#reset
+
+#data
+* { background-size: 10px 0 !important; }
+#errors
+#expected
+| *
+|  background-size: 10px 0px !important
+#reset
+
+#data
+* { background-size: inherit; }
+#errors
+#expected
+| *
+|  background-size: inherit
+#reset
+
+#data
+* { background-size: -1px; }
+#errors
+#expected
+| *
+#reset
+
+#data
+* { background-size: 5; }
+#errors
+#expected
+| *
+#reset
+
+#data
+* { background-size: cover 10px; }
+#errors
+#expected
+| *
+#reset
+
+#data
+* { background-size: 1px 2px 3px; }
+#errors
+#expected
+| *
+#reset
+
+#data
+* { background: url(a.png) 50%/contain no-repeat; }
+#errors
+#expected
+| *
+|  background-attachment: scroll
+|  background-color: transparent
+|  background-image: url('a.png')
+|  background-position: 50% center
+|  background-repeat: no-repeat
+|  background-size: contain
+#reset
+
+#data
+* { background: center / 10px 20px red; }
+#errors
+#expected
+| *
+|  background-attachment: scroll
+|  background-color: #ffff0000
+|  background-image: none
+|  background-position: center center
+|  background-repeat: repeat
+|  background-size: 10px 20px
+#reset
+
+#data
+* { background: red / cover; }
+#errors
+#expected
+| *
+#reset
