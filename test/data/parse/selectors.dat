@@ -204,6 +204,13 @@ E:checked {}
 #reset
 
 #data
+E:placeholder-shown {}
+#errors
+#expected
+| 1 E:placeholder-shown
+#reset
+
+#data
 E:first-line {}
 #errors
 #expected

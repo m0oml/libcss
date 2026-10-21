@@ -79,6 +79,7 @@ const stringmap_entry stringmap[LAST_KNOWN] = {
 	SMAP("enabled"),
 	SMAP("disabled"),
 	SMAP("checked"),
+	SMAP("placeholder-shown"),
 	SMAP("not"),
 
 	SMAP("first-line"),

@@ -35,6 +35,7 @@ typedef struct {
 	lwc_string *enabled;
 	lwc_string *disabled;
 	lwc_string *checked;
+	lwc_string *placeholder_shown;
 	lwc_string *first_line;
 	lwc_string *first_letter;
 	lwc_string *before;

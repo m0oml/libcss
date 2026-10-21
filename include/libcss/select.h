@@ -148,6 +148,18 @@ typedef struct css_select_handler {
 	 */
 	css_error (*get_libcss_node_data)(void *pw, void *node,
 			void **libcss_node_data);
+
+	/**
+	 * Determine if a node is an input or textarea showing its
+	 * placeholder text (the :placeholder-shown pseudo-class).
+	 *
+	 * \param pw		Client data
+	 * \param node		DOM node to test
+	 * \param match		Updated to true if the node matches
+	 * \return CSS_OK on success, or appropriate error otherwise
+	 */
+	css_error (*node_is_placeholder_shown)(void *pw, void *node,
+			bool *match);
 } css_select_handler;
 
 /**

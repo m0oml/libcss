@@ -102,6 +102,8 @@ static css_error set_libcss_node_data(void *pw, void *n,
 		void *libcss_node_data);
 static css_error get_libcss_node_data(void *pw, void *n,
 		void **libcss_node_data);
+static css_error node_is_placeholder_shown(void *pw, void *node,
+		bool *match);
 
 static css_unit_ctx unit_len_ctx = {
 	.viewport_width    = 800 * (1 << CSS_RADIX_POINT),
@@ -154,6 +156,7 @@ static css_select_handler select_handler = {
 	ua_default_for_property,
 	set_libcss_node_data,
 	get_libcss_node_data,
+	node_is_placeholder_shown,
 };
 
 /* LWC leak callback */
@@ -619,6 +622,14 @@ css_error node_is_disabled(void *pw, void *n, bool *match)
 }
 
 css_error node_is_checked(void *pw, void *n, bool *match)
+{
+	UNUSED(pw);
+	UNUSED(n);
+	*match = false;
+	return CSS_OK;
+}
+
+css_error node_is_placeholder_shown(void *pw, void *n, bool *match)
 {
 	UNUSED(pw);
 	UNUSED(n);

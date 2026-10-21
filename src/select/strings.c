@@ -152,6 +152,12 @@ css_error css_select_strings_intern(css_select_strings *str)
 	if (error != lwc_error_ok)
 		return css_error_from_lwc_error(error);
 
+	error = lwc_intern_string(
+			"placeholder-shown", SLEN("placeholder-shown"),
+			&str->placeholder_shown);
+	if (error != lwc_error_ok)
+		return css_error_from_lwc_error(error);
+
 	/* Pseudo elements */
 	error = lwc_intern_string(
 			"first-line", SLEN("first-line"),
@@ -223,6 +229,7 @@ void css_select_strings_unref(css_select_strings *str)
 	lwc_string_unref(str->enabled);
 	lwc_string_unref(str->disabled);
 	lwc_string_unref(str->checked);
+	lwc_string_unref(str->placeholder_shown);
 	lwc_string_unref(str->first_line);
 	lwc_string_unref(str->first_letter);
 	lwc_string_unref(str->before);

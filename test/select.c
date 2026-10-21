@@ -719,6 +719,16 @@ static css_error node_is_checked(void *pw, void *n, bool *match)
 	return CSS_OK;
 }
 
+static css_error node_is_placeholder_shown(void *pw, void *n, bool *match)
+{
+	UNUSED(pw);
+	UNUSED(n);
+
+	*match = false;
+
+	return CSS_OK;
+}
+
 static css_error node_is_target(void *pw, void *n, bool *match)
 {
 	node *node = n;
@@ -851,6 +861,7 @@ static css_select_handler select_handler = {
 
 	set_libcss_node_data,
 	get_libcss_node_data,
+	node_is_placeholder_shown,
 };
 
 static css_error resolve_url(void *pw,

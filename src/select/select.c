@@ -2677,6 +2677,9 @@ css_error match_detail(css_select_ctx *ctx, void *node,
 		} else if (detail->qname.name == ctx->str.checked) {
 			error = state->handler->node_is_checked(state->pw,
 					node, match);
+		} else if (detail->qname.name == ctx->str.placeholder_shown) {
+			error = state->handler->node_is_placeholder_shown(
+					state->pw, node, match);
 		} else {
 			*match = false;
 		}
