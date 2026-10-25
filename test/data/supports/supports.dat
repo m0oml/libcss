@@ -1,0 +1,102 @@
+#data
+(display: grid)
+#expected
+true
+#reset
+
+#data
+(display:grid)
+#expected
+true
+#reset
+
+#data
+(display: bogus)
+#expected
+false
+#reset
+
+#data
+(bogus: grid)
+#expected
+false
+#reset
+
+#data
+not (display: bogus)
+#expected
+true
+#reset
+
+#data
+(display: flex) and (gap: 1px)
+#expected
+true
+#reset
+
+#data
+(display: flex) and (gap: nope)
+#expected
+false
+#reset
+
+#data
+(display: nope) or (position: sticky)
+#expected
+true
+#reset
+
+#data
+selector(a > b)
+#expected
+false
+#reset
+
+#data
+(--custom: 1)
+#expected
+true
+#reset
+
+#data
+(transform: translateX(1px))
+#expected
+true
+#reset
+
+#data
+(grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)))
+#expected
+true
+#reset
+
+#data
+(grid-template-columns: 1fr 1fr) and (grid-area: 1 / 2)
+#expected
+true
+#reset
+
+#data
+(width: calc(100% - 10px))
+#expected
+true
+#reset
+
+#data
+(color: red
+#expected
+false
+#reset
+
+#data
+display: grid
+#expected
+false
+#reset
+
+#data
+(display: grid) and (color: red) or (x: y)
+#expected
+false
+#reset
+

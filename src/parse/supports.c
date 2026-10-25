@@ -6,6 +6,8 @@
  */
 
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "stylesheet.h"
 #include "parse/custom.h"
@@ -14,6 +16,7 @@
 #include "parse/supports.h"
 #include "parse/properties/properties.h"
 #include "parse/properties/utils.h"
+#include "utils/utils.h"
 
 static css_error supports_condition(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx, bool *result);
@@ -267,4 +270,75 @@ css_error css__parse_supports(css_language *c,
 		return CSS_INVALID;
 
 	return CSS_OK;
+}
+
+static css_error supports_resolve(void *pw, const char *base,
+		lwc_string *rel, lwc_string **abs)
+{
+	UNUSED(pw);
+	UNUSED(base);
+
+	*abs = lwc_string_ref(rel);
+	return CSS_OK;
+}
+
+/* Exported function, documented in include/libcss/stylesheet.h */
+css_error css_supports(const char *condition, size_t len, bool *supported)
+{
+	static const char prefix[] = "@supports ";
+	static const char suffix[] = " { a { color: red } }";
+	css_stylesheet_params params;
+	css_stylesheet *sheet;
+	css_error error;
+	char *text;
+
+	if (condition == NULL || supported == NULL)
+		return CSS_BADPARM;
+
+	*supported = false;
+
+	text = malloc(sizeof(prefix) + len + sizeof(suffix));
+	if (text == NULL)
+		return CSS_NOMEM;
+
+	memcpy(text, prefix, sizeof(prefix) - 1);
+	memcpy(text + sizeof(prefix) - 1, condition, len);
+	memcpy(text + sizeof(prefix) - 1 + len, suffix, sizeof(suffix));
+
+	memset(&params, 0, sizeof(params));
+	params.params_version = CSS_STYLESHEET_PARAMS_VERSION_1;
+	params.level = CSS_LEVEL_DEFAULT;
+	params.charset = "UTF-8";
+	params.url = "supports:";
+	params.title = NULL;
+	params.resolve = supports_resolve;
+
+	error = css_stylesheet_create(&params, &sheet);
+	if (error != CSS_OK) {
+		free(text);
+		return error;
+	}
+
+	error = css_stylesheet_append_data(sheet, (const uint8_t *) text,
+			sizeof(prefix) - 1 + len + sizeof(suffix) - 1);
+	if (error == CSS_NEEDDATA)
+		error = css_stylesheet_data_done(sheet);
+
+	/* The condition holds if the sheet has a media rule which matches */
+	if (error == CSS_OK || error == CSS_IMPORTS_PENDING) {
+		const css_rule *rule = sheet->rule_list;
+
+		if (rule != NULL && rule->type == CSS_RULE_MEDIA) {
+			const css_mq_query *media =
+				((const css_rule_media *) rule)->media;
+
+			*supported = media != NULL && media->type != 0;
+		}
+		error = CSS_OK;
+	}
+
+	css_stylesheet_destroy(sheet);
+	free(text);
+
+	return error;
 }

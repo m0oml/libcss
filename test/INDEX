@@ -12,6 +12,7 @@ parse-auto	Automated parser tests (bytecode)			parse
 parse2-auto	Automated parser tests (om & invalid)			parse2
 select		Automated selection engine tests			select
 select2		Automated selection engine tests (resolved units)	select2
+supports	CSS.supports conditions					supports
 
 # Regression tests
 
