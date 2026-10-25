@@ -17,6 +17,8 @@ values = {
     ('string_arr', 'lwc_string**'),
     ('counter_arr', 'css_computed_counter*'),
     ('shadow_arr', 'css_computed_shadow*'),
+    ('grid_track_arr', 'css_computed_grid_track*'),
+    ('grid_area_arr', 'css_computed_grid_area*'),
     ('content_item', 'css_computed_content_item*')
 }
 
@@ -164,6 +166,18 @@ style = {
     ('word_break', 3, None, None, 'CSS_WORD_BREAK_NORMAL'),
     ('transform', 2, (('length',), ('length',)), 'CSS_TRANSFORM_TRANSLATE',
         'CSS_TRANSFORM_NONE'),
+    ('grid_auto_flow', 3, None, None, 'CSS_GRID_AUTO_FLOW_ROW'),
+    ('grid_column_start', 2, (('integer',), ('string',)), None,
+        'CSS_GRID_LINE_AUTO'),
+    ('grid_column_end', 2, (('integer',), ('string',)), None,
+        'CSS_GRID_LINE_AUTO'),
+    ('grid_row_start', 2, (('integer',), ('string',)), None,
+        'CSS_GRID_LINE_AUTO'),
+    ('grid_row_end', 2, (('integer',), ('string',)), None,
+        'CSS_GRID_LINE_AUTO'),
+    ('row_gap', 2, 'length', 'CSS_ROW_GAP_SET', 'CSS_ROW_GAP_NORMAL'),
+    ('justify_items', 3, None, None, 'CSS_JUSTIFY_ITEMS_STRETCH'),
+    ('justify_self', 3, None, None, 'CSS_JUSTIFY_SELF_AUTO'),
     # Uncommon group, arrays
     ('counter_increment', 1, 'counter_arr', None, 'CSS_COUNTER_INCREMENT_NONE',
         'Encode counter_increment as an array of name, value pairs, '
@@ -171,6 +185,24 @@ style = {
     ('box_shadow', 2, 'shadow_arr', None, 'CSS_BOX_SHADOW_NONE',
         'Encode box-shadow as an array of shadows, terminated with an '
         'entry flagged CSS_COMPUTED_SHADOW_END.', 'set'),
+    ('grid_template_columns', 2, 'grid_track_arr', None,
+        'CSS_GRID_TEMPLATE_NONE',
+        'Encode grid-template-columns as an array of tracks and line '
+        'names, terminated with a CSS_COMPUTED_GRID_TRACK_END entry.', 'set'),
+    ('grid_template_rows', 2, 'grid_track_arr', None,
+        'CSS_GRID_TEMPLATE_NONE',
+        'Encode grid-template-rows as an array of tracks and line '
+        'names, terminated with a CSS_COMPUTED_GRID_TRACK_END entry.', 'set'),
+    ('grid_auto_columns', 2, 'grid_track_arr', None, 'CSS_GRID_AUTO_AUTO',
+        'Encode grid-auto-columns as an array of tracks, terminated '
+        'with a CSS_COMPUTED_GRID_TRACK_END entry.', 'set'),
+    ('grid_auto_rows', 2, 'grid_track_arr', None, 'CSS_GRID_AUTO_AUTO',
+        'Encode grid-auto-rows as an array of tracks, terminated '
+        'with a CSS_COMPUTED_GRID_TRACK_END entry.', 'set'),
+    ('grid_template_areas', 2, 'grid_area_arr', None,
+        'CSS_GRID_TEMPLATE_AREAS_NONE',
+        'Encode grid-template-areas as an array of areas, terminated '
+        'with an entry with no name.', 'set'),
     ('counter_reset', 1, 'counter_arr', None, 'CSS_COUNTER_RESET_NONE',
         'Encode counter_reset as an array of name, value pairs, '
         'terminated with a blank entry.'),

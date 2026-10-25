@@ -56,6 +56,74 @@ typedef struct css_computed_shadow {
 	uint8_t flags;
 } css_computed_shadow;
 
+/**
+ * Kinds of entry in a grid track list
+ */
+enum css_computed_grid_track_kind {
+	/** Marks the end of a track list */
+	CSS_COMPUTED_GRID_TRACK_END		= 0,
+	/** A track, with a minimum and a maximum sizing function */
+	CSS_COMPUTED_GRID_TRACK_SIZE		= 1,
+	/** A name of the grid line between the tracks either side */
+	CSS_COMPUTED_GRID_TRACK_NAME		= 2
+};
+
+/**
+ * Flags of an entry in a grid track list
+ *
+ * The entries of a repeat(auto-fill, ...) or repeat(auto-fit, ...) are
+ * kept once, each flagged as being in the repeated group.
+ */
+enum css_computed_grid_track_flags {
+	CSS_COMPUTED_GRID_TRACK_AUTO_FILL	= 0x01,
+	CSS_COMPUTED_GRID_TRACK_AUTO_FIT	= 0x02
+};
+
+/**
+ * Sizing functions of a grid track
+ */
+enum css_computed_grid_sizing {
+	/** A length or percentage, in the value and unit */
+	CSS_COMPUTED_GRID_SIZING_LENGTH		= 0,
+	/** A share of the free space, in fr, in the value */
+	CSS_COMPUTED_GRID_SIZING_FLEX		= 1,
+	CSS_COMPUTED_GRID_SIZING_AUTO		= 2,
+	CSS_COMPUTED_GRID_SIZING_MIN_CONTENT	= 3,
+	CSS_COMPUTED_GRID_SIZING_MAX_CONTENT	= 4,
+	/** fit-content(), clamped to the value and unit; maximum only */
+	CSS_COMPUTED_GRID_SIZING_FIT_CONTENT	= 5
+};
+
+/**
+ * An entry in a grid track list
+ */
+typedef struct css_computed_grid_track {
+	uint8_t kind;
+	uint8_t flags;
+	uint8_t min_type;
+	uint8_t max_type;
+	css_unit min_unit;
+	css_unit max_unit;
+	css_fixed min;
+	css_fixed max;
+	lwc_string *name;
+} css_computed_grid_track;
+
+/**
+ * A named area of grid-template-areas
+ *
+ * Lines are numbered from 1.  The entry at the end of the array has no
+ * name, and gives the number of rows and columns of the template in
+ * row_end and column_end.
+ */
+typedef struct css_computed_grid_area {
+	lwc_string *name;
+	int32_t row_start;
+	int32_t row_end;
+	int32_t column_start;
+	int32_t column_end;
+} css_computed_grid_area;
+
 typedef struct css_computed_clip_rect {
 	css_fixed top;
 	css_fixed right;
@@ -347,6 +415,55 @@ uint8_t css_computed_transform(
 		const css_computed_style *style,
 		css_fixed *x, css_unit *x_unit,
 		css_fixed *y, css_unit *y_unit);
+
+uint8_t css_computed_grid_template_columns(
+		const css_computed_style *style,
+		const css_computed_grid_track **tracks);
+
+uint8_t css_computed_grid_template_rows(
+		const css_computed_style *style,
+		const css_computed_grid_track **tracks);
+
+uint8_t css_computed_grid_template_areas(
+		const css_computed_style *style,
+		const css_computed_grid_area **areas);
+
+uint8_t css_computed_grid_auto_columns(
+		const css_computed_style *style,
+		const css_computed_grid_track **tracks);
+
+uint8_t css_computed_grid_auto_rows(
+		const css_computed_style *style,
+		const css_computed_grid_track **tracks);
+
+uint8_t css_computed_grid_auto_flow(
+		const css_computed_style *style);
+
+uint8_t css_computed_grid_column_start(
+		const css_computed_style *style,
+		int32_t *integer, lwc_string **name);
+
+uint8_t css_computed_grid_column_end(
+		const css_computed_style *style,
+		int32_t *integer, lwc_string **name);
+
+uint8_t css_computed_grid_row_start(
+		const css_computed_style *style,
+		int32_t *integer, lwc_string **name);
+
+uint8_t css_computed_grid_row_end(
+		const css_computed_style *style,
+		int32_t *integer, lwc_string **name);
+
+uint8_t css_computed_row_gap(
+		const css_computed_style *style,
+		css_fixed *length, css_unit *unit);
+
+uint8_t css_computed_justify_items(
+		const css_computed_style *style);
+
+uint8_t css_computed_justify_self(
+		const css_computed_style *style);
 
 uint8_t css_computed_writing_mode(
 		const css_computed_style *style);

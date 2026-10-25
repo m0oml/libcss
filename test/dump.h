@@ -26,6 +26,8 @@ static void dump_selector(css_selector *selector, char **ptr);
 static void dump_selector_detail(css_selector_detail *detail, char **ptr);
 static void dump_bytecode(css_style *style, char **ptr, uint32_t depth);
 static void dump_string(lwc_string *string, char **ptr);
+static size_t dump_grid_tracks(const css_style *style, const void *bytecode,
+		char **ptr);
 static void dump_font_face(css_font_face *font_face, char**ptr);
 
 void dump_sheet(css_stylesheet *sheet, char *buf, size_t *buflen)
@@ -502,6 +504,19 @@ static const char *opcode_names[] = {
 	"overflow-wrap",
 	"word-break",
 	"transform",
+	"grid-template-columns",
+	"grid-template-rows",
+	"grid-template-areas",
+	"grid-auto-columns",
+	"grid-auto-rows",
+	"grid-auto-flow",
+	"grid-column-start",
+	"grid-column-end",
+	"grid-row-start",
+	"grid-row-end",
+	"row-gap",
+	"justify-items",
+	"justify-self",
 };
 
 static void dump_css_fixed(css_fixed f, char **ptr)
@@ -1238,6 +1253,138 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 					}
 				}
 				break;
+			case CSS_PROP_GRID_TEMPLATE_COLUMNS:
+			case CSS_PROP_GRID_TEMPLATE_ROWS:
+				if (value == GRID_TEMPLATE_NONE) {
+					*ptr += sprintf(*ptr, "none");
+				} else {
+					size_t n = dump_grid_tracks(style,
+							bytecode, ptr);
+					ADVANCE(n);
+				}
+				break;
+
+			case CSS_PROP_GRID_AUTO_COLUMNS:
+			case CSS_PROP_GRID_AUTO_ROWS:
+				if (value == GRID_AUTO_AUTO) {
+					*ptr += sprintf(*ptr, "auto");
+				} else {
+					size_t n = dump_grid_tracks(style,
+							bytecode, ptr);
+					ADVANCE(n);
+				}
+				break;
+
+			case CSS_PROP_GRID_TEMPLATE_AREAS:
+				if (value == GRID_TEMPLATE_AREAS_NONE) {
+					*ptr += sprintf(*ptr, "none");
+				} else {
+					uint32_t *code = bytecode;
+					uint32_t count = code[0], i;
+
+					*ptr += sprintf(*ptr, "%ux%u",
+							code[1], code[2]);
+					ADVANCE(3 * sizeof(uint32_t));
+					for (i = 0; i < count; i++) {
+						lwc_string *he;
+
+						code = bytecode;
+						css__stylesheet_string_get(
+								style->sheet,
+								code[0], &he);
+						*ptr += sprintf(*ptr,
+							" %.*s %u/%u/%u/%u",
+							(int) lwc_string_length(he),
+							lwc_string_data(he),
+							code[1], code[3],
+							code[2], code[4]);
+						ADVANCE(GRID_AREA_WORDS *
+							sizeof(uint32_t));
+					}
+				}
+				break;
+
+			case CSS_PROP_GRID_AUTO_FLOW:
+				switch (value) {
+				case GRID_AUTO_FLOW_ROW:
+					*ptr += sprintf(*ptr, "row");
+					break;
+				case GRID_AUTO_FLOW_COLUMN:
+					*ptr += sprintf(*ptr, "column");
+					break;
+				case GRID_AUTO_FLOW_ROW_DENSE:
+					*ptr += sprintf(*ptr, "row dense");
+					break;
+				case GRID_AUTO_FLOW_COLUMN_DENSE:
+					*ptr += sprintf(*ptr, "column dense");
+					break;
+				}
+				break;
+
+			case CSS_PROP_GRID_COLUMN_START:
+			case CSS_PROP_GRID_COLUMN_END:
+			case CSS_PROP_GRID_ROW_START:
+			case CSS_PROP_GRID_ROW_END:
+				if (value == GRID_LINE_AUTO) {
+					*ptr += sprintf(*ptr, "auto");
+				} else {
+					int32_t integer = *((int32_t *) bytecode);
+					const char *sep = "";
+
+					ADVANCE(sizeof(integer));
+					if ((value & ~GRID_LINE_NAMED) ==
+							GRID_LINE_SPAN) {
+						*ptr += sprintf(*ptr, "span");
+						sep = " ";
+					}
+					if (integer != 0) {
+						*ptr += sprintf(*ptr, "%s%d",
+								sep, integer);
+						sep = " ";
+					}
+					if (value & GRID_LINE_NAMED) {
+						lwc_string *he;
+						uint32_t snum =
+							*((uint32_t *) bytecode);
+
+						ADVANCE(sizeof(snum));
+						css__stylesheet_string_get(
+								style->sheet,
+								snum, &he);
+						*ptr += sprintf(*ptr, "%s%.*s",
+							sep,
+							(int) lwc_string_length(he),
+							lwc_string_data(he));
+					}
+				}
+				break;
+
+			case CSS_PROP_ROW_GAP:
+				if (value == ROW_GAP_SET) {
+					uint32_t unit;
+					css_fixed val = *((css_fixed *) bytecode);
+					ADVANCE(sizeof(val));
+					unit = *((uint32_t *) bytecode);
+					ADVANCE(sizeof(unit));
+					dump_unit(val, unit, ptr);
+				} else if (value == ROW_GAP_NORMAL) {
+					*ptr += sprintf(*ptr, "normal");
+				}
+				break;
+
+			case CSS_PROP_JUSTIFY_ITEMS:
+			case CSS_PROP_JUSTIFY_SELF:
+			{
+				static const char *names[] = {
+					"stretch", "start", "end", "center",
+					"baseline", "auto"
+				};
+				if (value < sizeof(names) / sizeof(names[0]))
+					*ptr += sprintf(*ptr, "%s",
+							names[value]);
+			}
+				break;
+
 			case CSS_PROP_TRANSFORM:
 				if (value == TRANSFORM_NONE) {
 					*ptr += sprintf(*ptr, "none");
@@ -3234,4 +3381,87 @@ void dump_font_face(css_font_face *font_face, char **ptr)
 	}
 }
 
+/**
+ * Dump one breadth of a grid track
+ */
+static void dump_grid_breadth(uint32_t type, css_fixed val, uint32_t unit,
+		char **ptr)
+{
+	switch (type) {
+	case CSS_COMPUTED_GRID_SIZING_LENGTH:
+		dump_unit(val, unit, ptr);
+		break;
+	case CSS_COMPUTED_GRID_SIZING_FLEX:
+		dump_number(val, ptr);
+		*ptr += sprintf(*ptr, "fr");
+		break;
+	case CSS_COMPUTED_GRID_SIZING_AUTO:
+		*ptr += sprintf(*ptr, "auto");
+		break;
+	case CSS_COMPUTED_GRID_SIZING_MIN_CONTENT:
+		*ptr += sprintf(*ptr, "min-content");
+		break;
+	case CSS_COMPUTED_GRID_SIZING_MAX_CONTENT:
+		*ptr += sprintf(*ptr, "max-content");
+		break;
+	}
+}
+
+/**
+ * Dump a grid track list from bytecode
+ *
+ * Tracks of an automatic repeat are marked with fill: or fit:.
+ *
+ * \return The number of bytes of bytecode dumped
+ */
+static size_t dump_grid_tracks(const css_style *style, const void *bytecode,
+		char **ptr)
+{
+	const uint32_t *code = bytecode;
+	uint32_t count = code[0], i;
+
+	code++;
+	for (i = 0; i < count; i++, code += GRID_TRACK_WORDS) {
+		uint32_t kind = code[0] & 0xff;
+		uint32_t flags = (code[0] >> 8) & 0xff;
+		uint32_t min_type = (code[0] >> 16) & 0xff;
+		uint32_t max_type = (code[0] >> 24) & 0xff;
+
+		if (i > 0)
+			*ptr += sprintf(*ptr, " ");
+		if (flags & CSS_COMPUTED_GRID_TRACK_AUTO_FILL)
+			*ptr += sprintf(*ptr, "fill:");
+		if (flags & CSS_COMPUTED_GRID_TRACK_AUTO_FIT)
+			*ptr += sprintf(*ptr, "fit:");
+
+		if (kind == CSS_COMPUTED_GRID_TRACK_NAME) {
+			lwc_string *he;
+
+			css__stylesheet_string_get(style->sheet, code[5], &he);
+			*ptr += sprintf(*ptr, "[%.*s]",
+					(int) lwc_string_length(he),
+					lwc_string_data(he));
+		} else if (max_type == CSS_COMPUTED_GRID_SIZING_FIT_CONTENT) {
+			*ptr += sprintf(*ptr, "fit-content(");
+			dump_unit(code[3], code[4], ptr);
+			*ptr += sprintf(*ptr, ")");
+		} else if (min_type == max_type && code[1] == code[3] &&
+				code[2] == code[4]) {
+			dump_grid_breadth(min_type, code[1], code[2], ptr);
+		} else if (min_type == CSS_COMPUTED_GRID_SIZING_AUTO &&
+				max_type == CSS_COMPUTED_GRID_SIZING_FLEX) {
+			dump_grid_breadth(max_type, code[3], code[4], ptr);
+		} else {
+			*ptr += sprintf(*ptr, "minmax(");
+			dump_grid_breadth(min_type, code[1], code[2], ptr);
+			*ptr += sprintf(*ptr, ", ");
+			dump_grid_breadth(max_type, code[3], code[4], ptr);
+			*ptr += sprintf(*ptr, ")");
+		}
+	}
+
+	return (count * GRID_TRACK_WORDS + 1) * sizeof(uint32_t);
+}
+
 #endif
+

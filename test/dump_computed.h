@@ -168,6 +168,105 @@ static size_t dump_css_unit(css_fixed val, css_unit unit, char *ptr, size_t len)
 }
 
 
+/**
+ * Dump one breadth of a grid track
+ */
+static size_t dump_grid_breadth(uint8_t type, css_fixed val, css_unit unit,
+		char *ptr, size_t len)
+{
+	size_t wrote;
+
+	switch (type) {
+	case CSS_COMPUTED_GRID_SIZING_LENGTH:
+		return dump_css_unit(val, unit, ptr, len);
+	case CSS_COMPUTED_GRID_SIZING_FLEX:
+		wrote = dump_css_number(val, ptr, len);
+		return wrote + snprintf(ptr + wrote, len - wrote, "fr");
+	case CSS_COMPUTED_GRID_SIZING_AUTO:
+		return snprintf(ptr, len, "auto");
+	case CSS_COMPUTED_GRID_SIZING_MIN_CONTENT:
+		return snprintf(ptr, len, "min-content");
+	case CSS_COMPUTED_GRID_SIZING_MAX_CONTENT:
+		return snprintf(ptr, len, "max-content");
+	}
+
+	return 0;
+}
+
+/**
+ * Dump a computed grid track list as a line of output
+ */
+static size_t dump_grid_tracks(const char *name,
+		const css_computed_grid_track *t, char *ptr, size_t len)
+{
+	size_t total = 0, wrote;
+
+#define GRID_OUT(x) do { wrote = (x); ptr += wrote; len -= wrote; \
+		total += wrote; } while (0)
+
+	GRID_OUT(snprintf(ptr, len, "%s:", name));
+	for (; t != NULL && t->kind != CSS_COMPUTED_GRID_TRACK_END; t++) {
+		GRID_OUT(snprintf(ptr, len, " %s",
+				t->flags & CSS_COMPUTED_GRID_TRACK_AUTO_FILL ?
+				"fill:" : t->flags &
+				CSS_COMPUTED_GRID_TRACK_AUTO_FIT ? "fit:" : ""));
+
+		if (t->kind == CSS_COMPUTED_GRID_TRACK_NAME) {
+			GRID_OUT(snprintf(ptr, len, "[%.*s]",
+					(int) lwc_string_length(t->name),
+					lwc_string_data(t->name)));
+		} else if (t->max_type ==
+				CSS_COMPUTED_GRID_SIZING_FIT_CONTENT) {
+			GRID_OUT(snprintf(ptr, len, "fit-content("));
+			GRID_OUT(dump_css_unit(t->max, t->max_unit, ptr, len));
+			GRID_OUT(snprintf(ptr, len, ")"));
+		} else if (t->min_type == t->max_type && t->min == t->max &&
+				t->min_unit == t->max_unit) {
+			GRID_OUT(dump_grid_breadth(t->min_type, t->min,
+					t->min_unit, ptr, len));
+		} else if (t->min_type == CSS_COMPUTED_GRID_SIZING_AUTO &&
+				t->max_type == CSS_COMPUTED_GRID_SIZING_FLEX) {
+			GRID_OUT(dump_grid_breadth(t->max_type, t->max,
+					t->max_unit, ptr, len));
+		} else {
+			GRID_OUT(snprintf(ptr, len, "minmax("));
+			GRID_OUT(dump_grid_breadth(t->min_type, t->min,
+					t->min_unit, ptr, len));
+			GRID_OUT(snprintf(ptr, len, ", "));
+			GRID_OUT(dump_grid_breadth(t->max_type, t->max,
+					t->max_unit, ptr, len));
+			GRID_OUT(snprintf(ptr, len, ")"));
+		}
+	}
+	GRID_OUT(snprintf(ptr, len, "\n"));
+
+#undef GRID_OUT
+
+	return total;
+}
+
+/**
+ * Dump a computed grid line as a line of output
+ */
+static size_t dump_grid_line(const char *name, uint8_t type,
+		int32_t integer, lwc_string *string, char *ptr, size_t len)
+{
+	size_t total;
+
+	total = snprintf(ptr, len, "%s:", name);
+	if (type == CSS_GRID_LINE_SPAN)
+		total += snprintf(ptr + total, len - total, " span");
+	if (integer != 0)
+		total += snprintf(ptr + total, len - total, " %d", integer);
+	if (string != NULL)
+		total += snprintf(ptr + total, len - total, " %.*s",
+				(int) lwc_string_length(string),
+				lwc_string_data(string));
+	total += snprintf(ptr + total, len - total, "\n");
+
+	return total;
+}
+
 static void dump_computed_style(const css_computed_style *style, char *buf,
 		size_t *len, css_unit_ctx *unit_ctx)
 {
@@ -3442,6 +3541,129 @@ static void dump_computed_style(const css_computed_style *style, char *buf,
 		wrote = snprintf(ptr, *len, ")\n");
 		ptr += wrote;
 		*len -= wrote;
+	}
+
+	/* grid properties, only where they are not the initial value */
+	{
+		const css_computed_grid_track *tracks = NULL;
+		const css_computed_grid_area *areas = NULL;
+		lwc_string *name = NULL;
+		int32_t integer = 0;
+		static const char *justify[] = { "inherit", "stretch",
+				"start", "end", "center", "baseline", "auto" };
+		static const char *flow[] = { "inherit", "row", "column",
+				"row dense", "column dense" };
+
+		if (css_computed_grid_template_columns(style, &tracks) !=
+				CSS_GRID_TEMPLATE_NONE) {
+			wrote = dump_grid_tracks("grid-template-columns",
+					tracks, ptr, *len);
+			ptr += wrote;
+			*len -= wrote;
+		}
+
+		if (css_computed_grid_template_rows(style, &tracks) !=
+				CSS_GRID_TEMPLATE_NONE) {
+			wrote = dump_grid_tracks("grid-template-rows",
+					tracks, ptr, *len);
+			ptr += wrote;
+			*len -= wrote;
+		}
+
+		if (css_computed_grid_auto_columns(style, &tracks) !=
+				CSS_GRID_AUTO_AUTO) {
+			wrote = dump_grid_tracks("grid-auto-columns",
+					tracks, ptr, *len);
+			ptr += wrote;
+			*len -= wrote;
+		}
+
+		if (css_computed_grid_auto_rows(style, &tracks) !=
+				CSS_GRID_AUTO_AUTO) {
+			wrote = dump_grid_tracks("grid-auto-rows",
+					tracks, ptr, *len);
+			ptr += wrote;
+			*len -= wrote;
+		}
+
+		if (css_computed_grid_template_areas(style, &areas) !=
+				CSS_GRID_TEMPLATE_AREAS_NONE) {
+			wrote = snprintf(ptr, *len, "grid-template-areas:");
+			ptr += wrote;
+			*len -= wrote;
+			for (; areas != NULL && areas->name != NULL; areas++) {
+				wrote = snprintf(ptr, *len, " %.*s %d/%d/%d/%d",
+					(int) lwc_string_length(areas->name),
+					lwc_string_data(areas->name),
+					areas->row_start, areas->column_start,
+					areas->row_end, areas->column_end);
+				ptr += wrote;
+				*len -= wrote;
+			}
+			if (areas != NULL) {
+				wrote = snprintf(ptr, *len, " %dx%d",
+						areas->row_end,
+						areas->column_end);
+				ptr += wrote;
+				*len -= wrote;
+			}
+			wrote = snprintf(ptr, *len, "\n");
+			ptr += wrote;
+			*len -= wrote;
+		}
+
+		val = css_computed_grid_auto_flow(style);
+		if (val != CSS_GRID_AUTO_FLOW_ROW && val < 5) {
+			wrote = snprintf(ptr, *len, "grid-auto-flow: %s\n",
+					flow[val]);
+			ptr += wrote;
+			*len -= wrote;
+		}
+
+#define GRID_DUMP_LINE(prop, text)					\
+		val = css_computed_##prop(style, &integer, &name);	\
+		if (val != CSS_GRID_LINE_AUTO) {			\
+			wrote = dump_grid_line(text, val, integer, name, \
+					ptr, *len);			\
+			ptr += wrote;					\
+			*len -= wrote;					\
+		}
+
+		GRID_DUMP_LINE(grid_column_start, "grid-column-start")
+		GRID_DUMP_LINE(grid_column_end, "grid-column-end")
+		GRID_DUMP_LINE(grid_row_start, "grid-row-start")
+		GRID_DUMP_LINE(grid_row_end, "grid-row-end")
+
+#undef GRID_DUMP_LINE
+
+		val = css_computed_row_gap(style, &len1, &unit1);
+		if (val == CSS_ROW_GAP_SET) {
+			wrote = snprintf(ptr, *len, "row-gap: ");
+			ptr += wrote;
+			*len -= wrote;
+			wrote = dump_css_unit(len1, unit1, ptr, *len);
+			ptr += wrote;
+			*len -= wrote;
+			wrote = snprintf(ptr, *len, "\n");
+			ptr += wrote;
+			*len -= wrote;
+		}
+
+		val = css_computed_justify_items(style);
+		if (val != CSS_JUSTIFY_ITEMS_STRETCH && val < 7) {
+			wrote = snprintf(ptr, *len, "justify-items: %s\n",
+					justify[val]);
+			ptr += wrote;
+			*len -= wrote;
+		}
+
+		val = css_computed_justify_self(style);
+		if (val != CSS_JUSTIFY_SELF_AUTO && val < 7) {
+			wrote = snprintf(ptr, *len, "justify-self: %s\n",
+					justify[val]);
+			ptr += wrote;
+			*len -= wrote;
+		}
 	}
 
 	/* writing-mode */

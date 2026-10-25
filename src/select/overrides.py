@@ -205,3 +205,108 @@ static inline css_error set_content(
 
 	return CSS_OK;
 }'''
+
+overrides['set']['grid_template_columns'] = '''\
+static inline css_error set_grid_template_columns(
+		css_computed_style *style, uint8_t type,
+		css_computed_grid_track *grid_track_arr)
+{
+	uint32_t *bits;
+	css_computed_grid_track *old = style->grid_template_columns;
+
+	/* 2bits: type */
+	bits = &style->i.bits[GRID_TEMPLATE_COLUMNS_INDEX];
+	*bits = (*bits & ~GRID_TEMPLATE_COLUMNS_MASK) |
+			((type & 0x3) << GRID_TEMPLATE_COLUMNS_SHIFT);
+
+	style->grid_template_columns = grid_track_arr;
+
+	if (old != NULL && old != grid_track_arr)
+		css__grid_tracks_free(old);
+
+	return CSS_OK;
+}'''
+
+overrides['set']['grid_template_rows'] = '''\
+static inline css_error set_grid_template_rows(
+		css_computed_style *style, uint8_t type,
+		css_computed_grid_track *grid_track_arr)
+{
+	uint32_t *bits;
+	css_computed_grid_track *old = style->grid_template_rows;
+
+	/* 2bits: type */
+	bits = &style->i.bits[GRID_TEMPLATE_ROWS_INDEX];
+	*bits = (*bits & ~GRID_TEMPLATE_ROWS_MASK) |
+			((type & 0x3) << GRID_TEMPLATE_ROWS_SHIFT);
+
+	style->grid_template_rows = grid_track_arr;
+
+	if (old != NULL && old != grid_track_arr)
+		css__grid_tracks_free(old);
+
+	return CSS_OK;
+}'''
+
+overrides['set']['grid_auto_columns'] = '''\
+static inline css_error set_grid_auto_columns(
+		css_computed_style *style, uint8_t type,
+		css_computed_grid_track *grid_track_arr)
+{
+	uint32_t *bits;
+	css_computed_grid_track *old = style->grid_auto_columns;
+
+	/* 2bits: type */
+	bits = &style->i.bits[GRID_AUTO_COLUMNS_INDEX];
+	*bits = (*bits & ~GRID_AUTO_COLUMNS_MASK) |
+			((type & 0x3) << GRID_AUTO_COLUMNS_SHIFT);
+
+	style->grid_auto_columns = grid_track_arr;
+
+	if (old != NULL && old != grid_track_arr)
+		css__grid_tracks_free(old);
+
+	return CSS_OK;
+}'''
+
+overrides['set']['grid_auto_rows'] = '''\
+static inline css_error set_grid_auto_rows(
+		css_computed_style *style, uint8_t type,
+		css_computed_grid_track *grid_track_arr)
+{
+	uint32_t *bits;
+	css_computed_grid_track *old = style->grid_auto_rows;
+
+	/* 2bits: type */
+	bits = &style->i.bits[GRID_AUTO_ROWS_INDEX];
+	*bits = (*bits & ~GRID_AUTO_ROWS_MASK) |
+			((type & 0x3) << GRID_AUTO_ROWS_SHIFT);
+
+	style->grid_auto_rows = grid_track_arr;
+
+	if (old != NULL && old != grid_track_arr)
+		css__grid_tracks_free(old);
+
+	return CSS_OK;
+}'''
+
+overrides['set']['grid_template_areas'] = '''\
+static inline css_error set_grid_template_areas(
+		css_computed_style *style, uint8_t type,
+		css_computed_grid_area *grid_area_arr)
+{
+	uint32_t *bits;
+	css_computed_grid_area *old = style->grid_template_areas;
+
+	/* 2bits: type */
+	bits = &style->i.bits[GRID_TEMPLATE_AREAS_INDEX];
+	*bits = (*bits & ~GRID_TEMPLATE_AREAS_MASK) |
+			((type & 0x3) << GRID_TEMPLATE_AREAS_SHIFT);
+
+	style->grid_template_areas = grid_area_arr;
+
+	if (old != NULL && old != grid_area_arr)
+		css__grid_areas_free(old);
+
+	return CSS_OK;
+}'''

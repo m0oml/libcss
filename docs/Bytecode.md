@@ -1502,7 +1502,104 @@ Opcodes
 	translateY(), translate3d() and the translation of matrix() and
 	matrix3d().  Other functions are accepted and ignored.
 
-87-3fe - Reserved for future expansion.
+87 - grid-template-columns
+88 - grid-template-rows
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => track list follows:
+				bits 0-6: MBZ
+			bit 7 clear =>
+				0000000 => none,
+				other   => Reserved for future expansion.
+
+	The track list is the number of entries, then six words per
+	entry: the kind of entry, flags and the minimum and maximum
+	sizing functions (one byte each, from the least significant;
+	see css_computed_grid_track); the minimum value and unit; the
+	maximum value and unit; and a string table index for a line
+	name, or 0.  repeat() with a count is expanded.  The entries of
+	repeat(auto-fill, ...) or repeat(auto-fit, ...) appear once,
+	flagged.
+
+89 - grid-template-areas
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => areas follow:
+				bits 0-6: MBZ
+			bit 7 clear =>
+				0000000 => none,
+				other   => Reserved for future expansion.
+
+	The areas are the number of areas, the number of rows and the
+	number of columns, then five words per area: a string table
+	index for its name, its first and last row lines and its first
+	and last column lines, numbered from 1.
+
+8a - grid-auto-columns
+8b - grid-auto-rows
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => track list follows, as for
+				grid-template-columns, without names:
+				bits 0-6: MBZ
+			bit 7 clear =>
+				0000000 => auto,
+				other   => Reserved for future expansion.
+
+8c - grid-auto-flow
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			00000000 => row,
+			00000001 => column,
+			00000010 => row dense,
+			00000011 => column dense,
+			other    => Reserved for future expansion.
+
+8d - grid-column-start
+8e - grid-column-end
+8f - grid-row-start
+90 - grid-row-end
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => a string table index for a name
+				follows the integer
+			bits 0-6 :
+				0000000 => auto,
+				0000001 => line, integer follows,
+				0000010 => span, integer follows,
+				other   => Reserved for future expansion.
+
+	An integer of 0 means the line is given only by its name.
+
+91 - row-gap
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			bit 7 set => length follows:
+				bits 0-6: MBZ
+			bit 7 clear =>
+				0000000 => normal,
+				other   => Reserved for future expansion.
+
+92 - justify-items
+93 - justify-self
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			00000000 => stretch,
+			00000001 => start,
+			00000010 => end,
+			00000011 => center,
+			00000100 => baseline,
+			00000101 => auto (justify-self only),
+			other    => Reserved for future expansion.
+
+94-3fe - Reserved for future expansion.
 
 3ff - custom property (--name: value)
 	<value> (14bits) : MBZ

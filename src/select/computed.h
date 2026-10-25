@@ -31,6 +31,17 @@ static inline css_computed_style * css__computed_style_ref(
 	return style;
 }
 
+void css__grid_tracks_free(css_computed_grid_track *tracks);
+css_error css__grid_tracks_copy(const css_computed_grid_track *tracks,
+		css_computed_grid_track **copy);
+bool css__grid_tracks_equal(const css_computed_grid_track *a,
+		const css_computed_grid_track *b);
+void css__grid_areas_free(css_computed_grid_area *areas);
+css_error css__grid_areas_copy(const css_computed_grid_area *areas,
+		css_computed_grid_area **copy);
+bool css__grid_areas_equal(const css_computed_grid_area *a,
+		const css_computed_grid_area *b);
+
 css_error css__computed_style_create(css_computed_style **result, css_calculator *calc);
 
 css_error css__computed_style_initialise(css_computed_style *style,

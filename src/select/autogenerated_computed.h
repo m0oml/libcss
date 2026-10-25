@@ -78,8 +78,15 @@ struct css_computed_style_i {
  * font_style                       2             
  * font_variant                     2             
  * font_weight                      4             
+ * grid_auto_flow                   3             
+ * grid_column_end                  2               4 + sizeof(ptr)
+ * grid_column_start                2               4 + sizeof(ptr)
+ * grid_row_end                     2               4 + sizeof(ptr)
+ * grid_row_start                   2               4 + sizeof(ptr)
  * height                           2 + 5           4
  * justify_content                  3             
+ * justify_items                    3             
+ * justify_self                     3             
  * left                             2 + 5           4
  * letter_spacing                   2 + 5           4
  * line_height                      2 + 5           4
@@ -112,6 +119,7 @@ struct css_computed_style_i {
  * page_break_inside                2             
  * position                         3             
  * right                            2 + 5           4
+ * row_gap                          2 + 5           4
  * stroke_opacity                   1               4
  * table_layout                     2             
  * text_align                       4             
@@ -160,14 +168,39 @@ struct css_computed_style_i {
  * 
  * font_family                      3             sizeof(ptr)
  * 
+ * Encode grid-auto-columns as an array of tracks, terminated with a
+ * CSS_COMPUTED_GRID_TRACK_END entry.
+ * 
+ * grid_auto_columns                2             sizeof(ptr)
+ * 
+ * Encode grid-auto-rows as an array of tracks, terminated with a
+ * CSS_COMPUTED_GRID_TRACK_END entry.
+ * 
+ * grid_auto_rows                   2             sizeof(ptr)
+ * 
+ * Encode grid-template-areas as an array of areas, terminated with an entry
+ * with no name.
+ * 
+ * grid_template_areas              2             sizeof(ptr)
+ * 
+ * Encode grid-template-columns as an array of tracks and line names,
+ * terminated with a CSS_COMPUTED_GRID_TRACK_END entry.
+ * 
+ * grid_template_columns            2             sizeof(ptr)
+ * 
+ * Encode grid-template-rows as an array of tracks and line names, terminated
+ * with a CSS_COMPUTED_GRID_TRACK_END entry.
+ * 
+ * grid_template_rows               2             sizeof(ptr)
+ * 
  * Encode quotes as an array of string objects, terminated with a blank entry.
  * 
  * quotes                           1             sizeof(ptr)
  * 
  * ---                            ---             ---
- *                                540 bits        284 + 9sizeof(ptr) bytes
+ *                                574 bits        304 + 18sizeof(ptr) bytes
  *                                ===================
- *                                352 + 9sizeof(ptr) bytes
+ *                                376 + 18sizeof(ptr) bytes
  * 
  * Bit allocations:
  * 
@@ -180,61 +213,66 @@ struct css_computed_style_i {
  * 2  cccccccccccccccccccccccccctttttt
  * clip; text_indent
  * 
- * 3  mmmmmmmiiiiiiiaaaaaaaxxxxxxxtttt
- * min_width; min_height; max_width; max_height; text_align
+ * 3  rrrrrrrmmmmmmmiiiiiiiaaaaaaatttt
+ * right; min_width; min_height; max_width; text_align
  * 
  * 4  mmmmmmmaaaaaaarrrrrrrgggggggoooo
- * margin_top; margin_right; margin_left; margin_bottom; outline_style
+ * max_height; margin_top; margin_right; margin_left; outline_style
  * 
- * 5  llllllleeeeeeefffffffhhhhhhhoooo
- * line_height; letter_spacing; left; height; font_weight
+ * 5  mmmmmmmllllllleeeeeeefffffffoooo
+ * margin_bottom; line_height; letter_spacing; left; font_weight
  * 
- * 6  fffffffcccccccooooooobbbbbbbllll
- * flex_basis; column_width; column_gap; bottom; column_rule_style
+ * 6  hhhhhhhfffffffcccccccooooooollll
+ * height; flex_basis; column_width; column_gap; column_rule_style
  * 
  * 7  bbbbbbbbwwwwwwwtttttttrrrrrrrooo
- * border_bottom_width; width; top; right; word_break
+ * border_bottom_width; width; top; row_gap; word_break
  * 
- * 8  bbbbbbbbbbbaaaaaaaaaaaoooooooozz
+ * 8  lllllltttttdddddcccccbbbbrrrrwww
+ * list_style_type; text_decoration; display; cursor; break_inside;
+ * break_before; white_space
+ * 
+ * 9  bbbboooorrrrddddeeeetttpppaaaggg
+ * break_after; border_top_style; border_right_style; border_left_style;
+ * border_bottom_style; text_transform; position; page_break_before;
+ * page_break_after
+ * 
+ * 10 bbbbbbbbbbbaaaaaaaaaaaoooooooozz
  * border_bottom_left_radius; background_position; outline_width; z_index
  * 
- * 9  ppppppaaaaaaddddddiiiiiillllllww
- * padding_top; padding_right; padding_left; padding_bottom; list_style_type;
+ * 11 ooovvvjjjuuusssgggffflllcccbbbww
+ * overflow_y; overflow_x; justify_self; justify_items; justify_content;
+ * grid_auto_flow; font_family; flex_direction; clear; background_repeat;
  * writing_mode
  * 
- * 10 bbbboooorrrrwwwtttpppaaagggvvvii
- * border_right_style; border_left_style; border_bottom_style; white_space;
- * text_transform; position; page_break_before; page_break_after; overflow_y;
- * visibility
+ * 12 ggrriiddaaffoolleemmccnnuuCCOOtt
+ * grid_row_end; grid_column_start; grid_column_end; grid_auto_rows;
+ * grid_auto_columns; font_variant; font_style; float; flex_wrap; empty_cells;
+ * direction; content; column_span; column_rule_color; column_fill; column_count
  * 
- * 11 ppoouullffnnaaeemmddccssrriittCC
- * page_break_inside; overflow_wrap; outline_color; list_style_position;
- * font_variant; font_style; float; flex_wrap; empty_cells; direction; content;
- * column_span; column_rule_color; column_fill; column_count; caption_side
- * 
- * 12 bbbbbbbbbbbooooooooooovvvvvvvvvw
+ * 13 bbbbbbbbbbbooooooooooovvvvvvvvvw
  * border_top_right_radius; border_top_left_radius; vertical_align; widows
  * 
- * 13 bbbbbbbbbbbooooooooooofffffffffs
+ * 14 bbbbbbbbbbbooooooooooofffffffffs
  * border_spacing; border_bottom_right_radius; font_size; stroke_opacity
  * 
- * 14 tttttdddddcccccbbbbrrrreeeeooooq
- * text_decoration; display; cursor; break_inside; break_before; break_after;
- * border_top_style; quotes
+ * 15 bbbbbbbppppppaaaaaaddddddiiiiiiq
+ * bottom; padding_top; padding_right; padding_left; padding_bottom; quotes
  * 
- * 15 ooojjjffflllcccbbbaaaiiiggguuttr
- * overflow_x; justify_content; font_family; flex_direction; clear;
- * background_repeat; align_self; align_items; align_content; unicode_bidi;
- * table_layout; orphans
+ * 16 aaallliiivvuuttppoonnssggrrddwwh
+ * align_self; align_items; align_content; visibility; unicode_bidi;
+ * table_layout; page_break_inside; overflow_wrap; outline_color;
+ * list_style_position; grid_template_rows; grid_template_columns;
+ * grid_template_areas; grid_row_start; orphans
  * 
- * 16 bboorrddeeccttaakkOplfxiunCg....
- * box_sizing; box_shadow; border_top_color; border_right_color;
+ * 17 ccbboorrddeellttaakkOpifxyunCg..
+ * caption_side; box_sizing; box_shadow; border_top_color; border_right_color;
  * border_left_color; border_collapse; border_bottom_color; background_color;
  * background_attachment; order; opacity; list_style_image; flex_shrink;
  * flex_grow; fill_opacity; counter_reset; counter_increment; color;
  * background_image
  */
-	uint32_t bits[17];
+	uint32_t bits[18];
 
 	css_color background_color;
 	lwc_string *background_image;
@@ -276,6 +314,14 @@ struct css_computed_style_i {
 	css_fixed flex_grow;
 	css_fixed flex_shrink;
 	css_fixed font_size;
+	int32_t grid_column_end_a;
+	lwc_string *grid_column_end_b;
+	int32_t grid_column_start_a;
+	lwc_string *grid_column_start_b;
+	int32_t grid_row_end_a;
+	lwc_string *grid_row_end_b;
+	int32_t grid_row_start_a;
+	lwc_string *grid_row_start_b;
 	css_fixed height;
 	css_fixed left;
 	css_fixed letter_spacing;
@@ -299,6 +345,7 @@ struct css_computed_style_i {
 	css_fixed padding_right;
 	css_fixed padding_top;
 	css_fixed right;
+	css_fixed row_gap;
 	css_fixed stroke_opacity;
 	css_fixed text_indent;
 	css_fixed top;
@@ -320,6 +367,11 @@ struct css_computed_style {
 	css_computed_counter *counter_reset;
 	lwc_string **cursor;
 	lwc_string **font_family;
+	css_computed_grid_track *grid_auto_columns;
+	css_computed_grid_track *grid_auto_rows;
+	css_computed_grid_area *grid_template_areas;
+	css_computed_grid_track *grid_template_columns;
+	css_computed_grid_track *grid_template_rows;
 	lwc_string **quotes;
 
 	struct css_computed_style *next;

@@ -166,6 +166,19 @@ static inline bool css__arena_style_is_equal(
 		return false;
 	}
 
+	if (!css__grid_tracks_equal(a->grid_template_columns,
+			b->grid_template_columns) ||
+			!css__grid_tracks_equal(a->grid_template_rows,
+			b->grid_template_rows) ||
+			!css__grid_tracks_equal(a->grid_auto_columns,
+			b->grid_auto_columns) ||
+			!css__grid_tracks_equal(a->grid_auto_rows,
+			b->grid_auto_rows) ||
+			!css__grid_areas_equal(a->grid_template_areas,
+			b->grid_template_areas)) {
+		return false;
+	}
+
 	if (!css__computed_vars_equal(a->vars, b->vars)) {
 		return false;
 	}

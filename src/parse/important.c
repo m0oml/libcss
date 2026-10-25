@@ -145,6 +145,36 @@ void css__make_style_important(css_style *style)
 					offset += 1 + bytecode[offset] * 10;
 				break;
 
+			case CSS_PROP_GRID_TEMPLATE_COLUMNS:
+			case CSS_PROP_GRID_TEMPLATE_ROWS:
+			case CSS_PROP_GRID_AUTO_COLUMNS:
+			case CSS_PROP_GRID_AUTO_ROWS:
+				assert(GRID_TEMPLATE_SET ==
+				       (enum op_grid_template)GRID_AUTO_SET);
+
+				if (value == GRID_TEMPLATE_SET)
+					/* count, then the entries */
+					offset += 1 + bytecode[offset] *
+							GRID_TRACK_WORDS;
+				break;
+
+			case CSS_PROP_GRID_TEMPLATE_AREAS:
+				if (value == GRID_TEMPLATE_AREAS_SET)
+					/* count, rows, columns, then areas */
+					offset += 3 + bytecode[offset] *
+							GRID_AREA_WORDS;
+				break;
+
+			case CSS_PROP_GRID_COLUMN_START:
+			case CSS_PROP_GRID_COLUMN_END:
+			case CSS_PROP_GRID_ROW_START:
+			case CSS_PROP_GRID_ROW_END:
+				if (value != GRID_LINE_AUTO)
+					offset++; /* integer */
+				if (value & GRID_LINE_NAMED)
+					offset++; /* string table entry */
+				break;
+
 			case CSS_PROP_BACKGROUND_SIZE:
 				if ((value & BACKGROUND_SIZE_SET) == 0)
 					break;
@@ -194,6 +224,7 @@ void css__make_style_important(css_style *style)
 			case CSS_PROP_WIDTH:
 			case CSS_PROP_COLUMN_WIDTH:
 			case CSS_PROP_COLUMN_GAP:
+			case CSS_PROP_ROW_GAP:
 				assert(BOTTOM_SET == (enum op_bottom)LEFT_SET);
 				assert(BOTTOM_SET == (enum op_bottom)RIGHT_SET);
 				assert(BOTTOM_SET == (enum op_bottom)TOP_SET);

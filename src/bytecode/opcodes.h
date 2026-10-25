@@ -931,6 +931,70 @@ enum op_transform {
 	TRANSFORM_TRANSLATE		= 0x0001
 };
 
+enum op_grid_template {
+	GRID_TEMPLATE_NONE		= 0x0000,
+	/* count, then GRID_TRACK_WORDS words per entry */
+	GRID_TEMPLATE_SET		= 0x0080
+};
+
+enum op_grid_template_areas {
+	GRID_TEMPLATE_AREAS_NONE	= 0x0000,
+	/* count, rows, columns, then GRID_AREA_WORDS words per area */
+	GRID_TEMPLATE_AREAS_SET		= 0x0080
+};
+
+enum op_grid_auto {
+	GRID_AUTO_AUTO			= 0x0000,
+	/* As GRID_TEMPLATE_SET */
+	GRID_AUTO_SET			= 0x0080
+};
+
+enum op_grid_auto_flow {
+	GRID_AUTO_FLOW_ROW		= 0x0000,
+	GRID_AUTO_FLOW_COLUMN		= 0x0001,
+	GRID_AUTO_FLOW_ROW_DENSE	= 0x0002,
+	GRID_AUTO_FLOW_COLUMN_DENSE	= 0x0003
+};
+
+enum op_grid_line {
+	GRID_LINE_AUTO			= 0x0000,
+	/* integer, then a string table entry if GRID_LINE_NAMED */
+	GRID_LINE_SET			= 0x0001,
+	GRID_LINE_SPAN			= 0x0002,
+	/* The value has a name; an integer of 0 means only a name */
+	GRID_LINE_NAMED			= 0x0080
+};
+
+/** Words of bytecode per grid track list entry: flags and kind, minimum
+ * value and unit, maximum value and unit, string table entry */
+#define GRID_TRACK_WORDS 6
+/** Words of bytecode per grid area: string table entry, row start and
+ * end, column start and end */
+#define GRID_AREA_WORDS 5
+
+enum op_row_gap {
+	ROW_GAP_NORMAL			= 0x0000,
+	ROW_GAP_CALC			= VALUE_IS_CALC,
+	ROW_GAP_SET			= 0x0080
+};
+
+enum op_justify_items {
+	JUSTIFY_ITEMS_STRETCH		= 0x0000,
+	JUSTIFY_ITEMS_START		= 0x0001,
+	JUSTIFY_ITEMS_END		= 0x0002,
+	JUSTIFY_ITEMS_CENTER		= 0x0003,
+	JUSTIFY_ITEMS_BASELINE		= 0x0004
+};
+
+enum op_justify_self {
+	JUSTIFY_SELF_STRETCH		= 0x0000,
+	JUSTIFY_SELF_START		= 0x0001,
+	JUSTIFY_SELF_END		= 0x0002,
+	JUSTIFY_SELF_CENTER		= 0x0003,
+	JUSTIFY_SELF_BASELINE		= 0x0004,
+	JUSTIFY_SELF_AUTO		= 0x0005
+};
+
 enum op_z_index {
 	Z_INDEX_CALC			= VALUE_IS_CALC,
 	Z_INDEX_SET			= 0x0080,

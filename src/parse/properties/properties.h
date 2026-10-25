@@ -274,10 +274,70 @@ css_error css__parse_font_variant(css_language *c,
 css_error css__parse_font_weight(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
+css_error css__parse_gap(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_area(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_auto_columns(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_auto_flow(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_auto_rows(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_column(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_column_end(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_column_gap(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_column_start(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_gap(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_row(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_row_end(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_row_gap(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_row_start(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_template(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_template_areas(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_template_columns(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_grid_template_rows(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
 css_error css__parse_height(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
 css_error css__parse_justify_content(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_justify_items(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_justify_self(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
 css_error css__parse_left(css_language *c,
@@ -400,6 +460,15 @@ css_error css__parse_pitch_range(css_language *c,
 css_error css__parse_pitch(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
+css_error css__parse_place_content(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_place_items(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_place_self(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
 css_error css__parse_play_during(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
@@ -413,6 +482,9 @@ css_error css__parse_richness(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
 css_error css__parse_right(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_row_gap(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
 css_error css__parse_speak_header(css_language *c,
@@ -595,7 +667,7 @@ extern const uint32_t property_unit_mask[CSS_N_PROPERTIES];
 #define UNIT_MASK_BREAK_INSIDE          (0)
 #define UNIT_MASK_COLUMN_COUNT          (0)
 #define UNIT_MASK_COLUMN_FILL           (0)
-#define UNIT_MASK_COLUMN_GAP            (UNIT_LENGTH)
+#define UNIT_MASK_COLUMN_GAP            (UNIT_LENGTH | UNIT_PCT)
 #define UNIT_MASK_COLUMN_RULE_COLOR     (0)
 #define UNIT_MASK_COLUMN_RULE_STYLE     (0)
 #define UNIT_MASK_COLUMN_RULE_WIDTH     (UNIT_LENGTH)
@@ -605,6 +677,19 @@ extern const uint32_t property_unit_mask[CSS_N_PROPERTIES];
 #define UNIT_MASK_OVERFLOW_WRAP         (0)
 #define UNIT_MASK_WORD_BREAK            (0)
 #define UNIT_MASK_TRANSFORM             (UNIT_LENGTH | UNIT_PCT)
+#define UNIT_MASK_GRID_TEMPLATE_COLUMNS (UNIT_LENGTH | UNIT_PCT)
+#define UNIT_MASK_GRID_TEMPLATE_ROWS    (UNIT_LENGTH | UNIT_PCT)
+#define UNIT_MASK_GRID_TEMPLATE_AREAS   (0)
+#define UNIT_MASK_GRID_AUTO_COLUMNS     (UNIT_LENGTH | UNIT_PCT)
+#define UNIT_MASK_GRID_AUTO_ROWS        (UNIT_LENGTH | UNIT_PCT)
+#define UNIT_MASK_GRID_AUTO_FLOW        (0)
+#define UNIT_MASK_GRID_COLUMN_START     (0)
+#define UNIT_MASK_GRID_COLUMN_END       (0)
+#define UNIT_MASK_GRID_ROW_START        (0)
+#define UNIT_MASK_GRID_ROW_END          (0)
+#define UNIT_MASK_ROW_GAP               (UNIT_LENGTH | UNIT_PCT)
+#define UNIT_MASK_JUSTIFY_ITEMS         (0)
+#define UNIT_MASK_JUSTIFY_SELF          (0)
 #define UNIT_MASK_OVERFLOW_Y            (0)
 #define UNIT_MASK_BOX_SIZING            (0)
 #define UNIT_MASK_ALIGN_CONTENT         (0)
