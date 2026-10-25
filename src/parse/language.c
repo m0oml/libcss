@@ -6,6 +6,7 @@
  */
 
 #include <assert.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include <parserutils/utils/stack.h>
@@ -19,6 +20,7 @@
 #include "parse/mq.h"
 #include "parse/parse.h"
 #include "parse/propstrings.h"
+#include "parse/supports.h"
 #include "parse/properties/properties.h"
 #include "parse/properties/utils.h"
 
@@ -100,6 +102,9 @@ static css_error parseSelectorList(css_language *c,
 		const parserutils_vector *vector, css_rule *rule);
 
 /* Declaration parsing */
+static css_error handleNestedAtRule(css_language *c,
+		const parserutils_vector *vector, const css_rule *parent,
+		const css_token *keyword);
 static css_error parseProperty(css_language *c,
 		const css_token *property, const parserutils_vector *vector,
 		int32_t *ctx, css_rule *rule);
@@ -362,6 +367,8 @@ css_error handleStartAtRule(css_language *c, const parserutils_vector *vector)
 
 	assert(c != NULL);
 
+	/* A nested at-rule may follow whitespace */
+	consumeWhitespace(vector, &ctx);
 	atkeyword = parserutils_vector_iterate(vector, &ctx);
 
 	consumeWhitespace(vector, &ctx);
@@ -574,6 +581,48 @@ css_error handleStartAtRule(css_language *c, const parserutils_vector *vector)
 
 		c->state = HAD_RULE;
 	} else if (lwc_string_caseless_isequal(atkeyword->idata,
+			c->strings[SUPPORTS], &match) == lwc_error_ok &&
+			match) {
+		css_mq_query *media;
+		bool supported;
+
+		/* any0 = supports condition.  The rule is held as a media
+		 * rule, which matches all media if the condition holds, and
+		 * none if not. */
+		error = css__parse_supports(c, vector, &ctx, &supported);
+		if (error != CSS_OK)
+			supported = false;
+
+		media = calloc(1, sizeof(*media));
+		if (media == NULL)
+			return CSS_NOMEM;
+		media->type = supported ? CSS_MEDIA_ALL : 0;
+
+		error = css__stylesheet_rule_create(c->sheet,
+				CSS_RULE_MEDIA, &rule);
+		if (error != CSS_OK) {
+			css__mq_query_destroy(media);
+			return error;
+		}
+
+		error = css__stylesheet_rule_set_media(c->sheet, rule, media);
+		if (error != CSS_OK) {
+			css__stylesheet_rule_destroy(c->sheet, rule);
+			css__mq_query_destroy(media);
+			return error;
+		}
+
+		error = css__stylesheet_add_rule(c->sheet, rule, NULL);
+		if (error != CSS_OK) {
+			css__stylesheet_rule_destroy(c->sheet, rule);
+			return error;
+		}
+
+		/* Rule is now owned by the sheet,
+		 * so no need to destroy it */
+
+		c->state = HAD_RULE;
+	} else if (lwc_string_caseless_isequal(atkeyword->idata,
 			c->strings[FONT_FACE], &match) == lwc_error_ok &&
 			match) {
 		error = css__stylesheet_rule_create(c->sheet,
@@ -718,6 +767,19 @@ css_error handleEndBlock(css_language *c, const parserutils_vector *vector)
 			return handleEndRuleset(c, vector);
 	}
 
+	/* A nested at-rule's entry ends with its block */
+	if (rule != NULL && rule->type == CSS_RULE_MEDIA) {
+		entry = parserutils_stack_get_current(c->context);
+		if (entry != NULL && entry->type == CSS_PARSER_START_RULESET &&
+				entry->data == rule) {
+			perror = parserutils_stack_pop(c->context, NULL);
+			if (perror != PARSERUTILS_OK) {
+				return css_error_from_parserutils_error(
+						perror);
+			}
+		}
+	}
+
 	return CSS_OK;
 }
 
@@ -742,6 +804,15 @@ css_error handleBlockContent(css_language *c, const parserutils_vector *vector)
 		return CSS_INVALID;
 
 	if (rule->type == CSS_RULE_MEDIA) {
+		int32_t ctx = 0;
+		const css_token *token;
+
+		consumeWhitespace(vector, &ctx);
+		token = parserutils_vector_peek(vector, ctx);
+		if (token != NULL && token->type == CSS_TOKEN_ATKEYWORD) {
+			return handleNestedAtRule(c, vector, rule, token);
+		}
+
 		/* Expect rulesets */
 		return handleStartRuleset(c, vector);
 	} else {
@@ -750,6 +821,67 @@ css_error handleBlockContent(css_language *c, const parserutils_vector *vector)
 	}
 
 	return CSS_OK;
+}
+
+/**
+ * Check whether a media rule matches all media, as it is @media all or
+ * an @supports whose condition holds.
+ */
+static bool mediaRuleIsAlways(const css_rule *rule)
+{
+	const css_mq_query *media = ((const css_rule_media *) rule)->media;
+
+	return media == NULL || (media->next == NULL &&
+			media->negate_type == 0 && media->cond == NULL &&
+			media->type == CSS_MEDIA_ALL);
+}
+
+/**
+ * Handle an at-rule in the block of a media rule.
+ *
+ * Inside a rule which matches all media, @media and @supports rules are
+ * added as if they were at the top level of the sheet.  Other nested
+ * at-rules are ignored.
+ *
+ * \param c       Parsing context
+ * \param vector  Vector of tokens, starting with the at-rule
+ * \param parent  The media rule
+ * \param keyword The at-keyword token
+ * \return CSS_OK on success, appropriate error otherwise
+ */
+static css_error handleNestedAtRule(css_language *c,
+		const parserutils_vector *vector, const css_rule *parent,
+		const css_token *keyword)
+{
+	parserutils_error perror;
+	context_entry entry = { CSS_PARSER_START_RULESET, NULL };
+	context_entry *cur;
+	bool media = false, supports = false;
+	css_error error;
+
+	lwc_string_caseless_isequal(keyword->idata, c->strings[MEDIA],
+			&media);
+	lwc_string_caseless_isequal(keyword->idata, c->strings[SUPPORTS],
+			&supports);
+
+	if ((media == false && supports == false) ||
+			mediaRuleIsAlways(parent) == false)
+		return CSS_INVALID;
+
+	error = handleStartAtRule(c, vector);
+	if (error != CSS_OK)
+		return error;
+
+	/* Swap the at-rule's entry for one which its block's end pops, as
+	 * the end of a nested at-rule is not reported */
+	cur = parserutils_stack_get_current(c->context);
+	entry.data = cur->data;
+
+	perror = parserutils_stack_pop(c->context, NULL);
+	if (perror == PARSERUTILS_OK)
+		perror = parserutils_stack_push(c->context, (void *) &entry);
+
+	return css_error_from_parserutils_error(perror);
 }
 
 css_error handleEndBlockContent(css_language *c, const parserutils_vector *vector)

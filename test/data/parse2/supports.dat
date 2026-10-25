@@ -1,0 +1,154 @@
+#data
+@supports (display: grid) { a { color: red } }
+#errors
+#expected
+| @media 3ff
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (display: bogus) { a { color: red } }
+#errors
+#expected
+| @media 000
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (bogus: grid) { a { color: red } }
+#errors
+#expected
+| @media 000
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports not (display: bogus) { a { color: red } }
+#errors
+#expected
+| @media 3ff
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (display: grid) and (gap: 1px) { a { color: red } }
+#errors
+#expected
+| @media 3ff
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (display: grid) and (gap: bogus) { a { color: red } }
+#errors
+#expected
+| @media 000
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (display: bogus) or (flex-flow: row wrap) { a { color: red } }
+#errors
+#expected
+| @media 3ff
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports ((display: grid) and (color: red)) or (x: y) { a { color: red } }
+#errors
+#expected
+| @media 3ff
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (display: grid) and (color: red) or (x: y) { a { color: red } }
+#errors
+#expected
+| @media 000
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports selector(:has(a)) { a { color: red } }
+#errors
+#expected
+| @media 000
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (--x: 1) { a { color: red } }
+#errors
+#expected
+| @media 3ff
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (width: var(--w)) { a { color: red } }
+#errors
+#expected
+| @media 3ff
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (display: grid !important) { a { color: red } }
+#errors
+#expected
+| @media 000
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (display: grid) { @media screen { a { color: red } } }
+#errors
+#expected
+| @media 3ff
+| @media 040
+|  a
+|   color: #ffff0000
+#reset
+
+#data
+@supports (display: bogus) { @media screen { a { color: red } } } b { color: red }
+#errors
+#expected
+| @media 000
+| b
+|  color: #ffff0000
+#reset
+
+#data
+@media screen { @media print { a { color: red } } } b { color: red }
+#errors
+#expected
+| @media 040
+| b
+|  color: #ffff0000
+#reset
+
+#data
+@supports (display: grid) { @supports (gap: 1px) { a { color: red } } }
+#errors
+#expected
+| @media 3ff
+| @media 3ff
+|  a
+|   color: #ffff0000
+#reset

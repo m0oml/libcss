@@ -31,3 +31,4 @@ bgsize.dat		background-size tests
 boxshadow.dat		box-shadow tests
 borderradius.dat		border-radius tests
 grid.dat		Grid property tests
+supports.dat		@supports tests
