@@ -4857,3 +4857,93 @@ p:before { content: open-quote url('http://picodrive.acornarcade.com/') " : " at
 #expected
 | 1 *
 #reset
+
+## 84 - overflow-wrap
+
+#data
+* { overflow-wrap: normal; }
+#errors
+#expected
+| 1 *
+|   0x00000084
+#reset
+
+#data
+* { overflow-wrap: break-word; }
+#errors
+#expected
+| 1 *
+|   0x00040084
+#reset
+
+#data
+* { overflow-wrap: anywhere; }
+#errors
+#expected
+| 1 *
+|   0x00080084
+#reset
+
+#data
+* { overflow-wrap: inherit; }
+#errors
+#expected
+| 1 *
+|   0x00000884
+#reset
+
+#data
+* { word-wrap: break-word; }
+#errors
+#expected
+| 1 *
+|   0x00040084
+#reset
+
+#data
+* { word-wrap: break-all; }
+#errors
+#expected
+| 1 *
+#reset
+
+## 85 - word-break
+
+#data
+* { word-break: normal; }
+#errors
+#expected
+| 1 *
+|   0x00000085
+#reset
+
+#data
+* { word-break: break-all; }
+#errors
+#expected
+| 1 *
+|   0x00040085
+#reset
+
+#data
+* { word-break: keep-all; }
+#errors
+#expected
+| 1 *
+|   0x00080085
+#reset
+
+#data
+* { word-break: break-word !important; }
+#errors
+#expected
+| 1 *
+|   0x000c0485
+#reset
+
+#data
+* { word-break: anywhere; }
+#errors
+#expected
+| 1 *
+#reset

@@ -337,6 +337,12 @@ uint8_t css_computed_empty_cells(
 uint8_t css_computed_float(
 		const css_computed_style *style);
 
+uint8_t css_computed_overflow_wrap(
+		const css_computed_style *style);
+
+uint8_t css_computed_word_break(
+		const css_computed_style *style);
+
 uint8_t css_computed_writing_mode(
 		const css_computed_style *style);
 

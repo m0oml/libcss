@@ -9,9 +9,9 @@
 #define CSS_COMPUTED_PROPGET_H_
 
 
-#define ALIGN_CONTENT_INDEX 15
-#define ALIGN_CONTENT_SHIFT 23
-#define ALIGN_CONTENT_MASK 0x3800000
+#define ALIGN_CONTENT_INDEX 10
+#define ALIGN_CONTENT_SHIFT 20
+#define ALIGN_CONTENT_MASK 0x700000
 static inline uint8_t get_align_content(const css_computed_style *style)
 {
 	uint8_t type;
@@ -28,9 +28,9 @@ static inline uint8_t get_align_content(const css_computed_style *style)
 #undef ALIGN_CONTENT_SHIFT
 #undef ALIGN_CONTENT_MASK
 
-#define ALIGN_ITEMS_INDEX 15
-#define ALIGN_ITEMS_SHIFT 26
-#define ALIGN_ITEMS_MASK 0x1c000000
+#define ALIGN_ITEMS_INDEX 10
+#define ALIGN_ITEMS_SHIFT 23
+#define ALIGN_ITEMS_MASK 0x3800000
 static inline uint8_t get_align_items(const css_computed_style *style)
 {
 	uint8_t type;
@@ -47,9 +47,9 @@ static inline uint8_t get_align_items(const css_computed_style *style)
 #undef ALIGN_ITEMS_SHIFT
 #undef ALIGN_ITEMS_MASK
 
-#define ALIGN_SELF_INDEX 15
-#define ALIGN_SELF_SHIFT 29
-#define ALIGN_SELF_MASK 0xe0000000
+#define ALIGN_SELF_INDEX 10
+#define ALIGN_SELF_SHIFT 26
+#define ALIGN_SELF_MASK 0x1c000000
 static inline uint8_t get_align_self(const css_computed_style *style)
 {
 	uint8_t type;
@@ -67,8 +67,8 @@ static inline uint8_t get_align_self(const css_computed_style *style)
 #undef ALIGN_SELF_MASK
 
 #define BACKGROUND_ATTACHMENT_INDEX 16
-#define BACKGROUND_ATTACHMENT_SHIFT 30
-#define BACKGROUND_ATTACHMENT_MASK 0xc0000000
+#define BACKGROUND_ATTACHMENT_SHIFT 26
+#define BACKGROUND_ATTACHMENT_MASK 0xc000000
 static inline uint8_t get_background_attachment(const css_computed_style *style)
 {
 	uint8_t type;
@@ -85,9 +85,9 @@ static inline uint8_t get_background_attachment(const css_computed_style *style)
 #undef BACKGROUND_ATTACHMENT_SHIFT
 #undef BACKGROUND_ATTACHMENT_MASK
 
-#define BACKGROUND_COLOR_INDEX 10
-#define BACKGROUND_COLOR_SHIFT 0
-#define BACKGROUND_COLOR_MASK 0x3
+#define BACKGROUND_COLOR_INDEX 16
+#define BACKGROUND_COLOR_SHIFT 28
+#define BACKGROUND_COLOR_MASK 0x30000000
 static inline uint8_t get_background_color(const css_computed_style *style,
 		css_color *color)
 {
@@ -107,8 +107,8 @@ static inline uint8_t get_background_color(const css_computed_style *style,
 #undef BACKGROUND_COLOR_MASK
 
 #define BACKGROUND_IMAGE_INDEX 16
-#define BACKGROUND_IMAGE_SHIFT 21
-#define BACKGROUND_IMAGE_MASK 0x200000
+#define BACKGROUND_IMAGE_SHIFT 16
+#define BACKGROUND_IMAGE_MASK 0x10000
 static inline uint8_t get_background_image(const css_computed_style *style,
 		lwc_string **string)
 {
@@ -154,9 +154,9 @@ static inline uint8_t get_background_position(const css_computed_style *style,
 #undef BACKGROUND_POSITION_SHIFT
 #undef BACKGROUND_POSITION_MASK
 
-#define BACKGROUND_REPEAT_INDEX 9
-#define BACKGROUND_REPEAT_SHIFT 2
-#define BACKGROUND_REPEAT_MASK 0x1c
+#define BACKGROUND_REPEAT_INDEX 10
+#define BACKGROUND_REPEAT_SHIFT 29
+#define BACKGROUND_REPEAT_MASK 0xe0000000
 static inline uint8_t get_background_repeat(const css_computed_style *style)
 {
 	uint8_t type;
@@ -198,9 +198,9 @@ static inline uint8_t get_background_size(const css_computed_style *style,
 #undef BACKGROUND_SIZE_SHIFT
 #undef BACKGROUND_SIZE_MASK
 
-#define BORDER_BOTTOM_COLOR_INDEX 10
-#define BORDER_BOTTOM_COLOR_SHIFT 2
-#define BORDER_BOTTOM_COLOR_MASK 0xc
+#define BORDER_BOTTOM_COLOR_INDEX 16
+#define BORDER_BOTTOM_COLOR_SHIFT 30
+#define BORDER_BOTTOM_COLOR_MASK 0xc0000000
 static inline uint8_t get_border_bottom_color(const css_computed_style *style,
 		css_color *color)
 {
@@ -219,7 +219,7 @@ static inline uint8_t get_border_bottom_color(const css_computed_style *style,
 #undef BORDER_BOTTOM_COLOR_SHIFT
 #undef BORDER_BOTTOM_COLOR_MASK
 
-#define BORDER_BOTTOM_LEFT_RADIUS_INDEX 12
+#define BORDER_BOTTOM_LEFT_RADIUS_INDEX 13
 #define BORDER_BOTTOM_LEFT_RADIUS_SHIFT 10
 #define BORDER_BOTTOM_LEFT_RADIUS_MASK 0x1ffc00
 static inline uint8_t get_border_bottom_left_radius(const css_computed_style
@@ -246,7 +246,7 @@ static inline uint8_t get_border_bottom_left_radius(const css_computed_style
 #undef BORDER_BOTTOM_LEFT_RADIUS_SHIFT
 #undef BORDER_BOTTOM_LEFT_RADIUS_MASK
 
-#define BORDER_BOTTOM_RIGHT_RADIUS_INDEX 12
+#define BORDER_BOTTOM_RIGHT_RADIUS_INDEX 13
 #define BORDER_BOTTOM_RIGHT_RADIUS_SHIFT 21
 #define BORDER_BOTTOM_RIGHT_RADIUS_MASK 0xffe00000
 static inline uint8_t get_border_bottom_right_radius(const css_computed_style
@@ -273,7 +273,7 @@ static inline uint8_t get_border_bottom_right_radius(const css_computed_style
 #undef BORDER_BOTTOM_RIGHT_RADIUS_SHIFT
 #undef BORDER_BOTTOM_RIGHT_RADIUS_MASK
 
-#define BORDER_BOTTOM_STYLE_INDEX 14
+#define BORDER_BOTTOM_STYLE_INDEX 15
 #define BORDER_BOTTOM_STYLE_SHIFT 4
 #define BORDER_BOTTOM_STYLE_MASK 0xf0
 static inline uint8_t get_border_bottom_style(const css_computed_style *style)
@@ -292,7 +292,7 @@ static inline uint8_t get_border_bottom_style(const css_computed_style *style)
 #undef BORDER_BOTTOM_STYLE_SHIFT
 #undef BORDER_BOTTOM_STYLE_MASK
 
-#define BORDER_BOTTOM_WIDTH_INDEX 13
+#define BORDER_BOTTOM_WIDTH_INDEX 14
 #define BORDER_BOTTOM_WIDTH_SHIFT 8
 #define BORDER_BOTTOM_WIDTH_MASK 0xff00
 static inline uint8_t get_border_bottom_width(const css_computed_style *style,
@@ -316,9 +316,9 @@ static inline uint8_t get_border_bottom_width(const css_computed_style *style,
 #undef BORDER_BOTTOM_WIDTH_SHIFT
 #undef BORDER_BOTTOM_WIDTH_MASK
 
-#define BORDER_COLLAPSE_INDEX 10
-#define BORDER_COLLAPSE_SHIFT 4
-#define BORDER_COLLAPSE_MASK 0x30
+#define BORDER_COLLAPSE_INDEX 11
+#define BORDER_COLLAPSE_SHIFT 0
+#define BORDER_COLLAPSE_MASK 0x3
 static inline uint8_t get_border_collapse(const css_computed_style *style)
 {
 	uint8_t type;
@@ -335,9 +335,9 @@ static inline uint8_t get_border_collapse(const css_computed_style *style)
 #undef BORDER_COLLAPSE_SHIFT
 #undef BORDER_COLLAPSE_MASK
 
-#define BORDER_LEFT_COLOR_INDEX 10
-#define BORDER_LEFT_COLOR_SHIFT 6
-#define BORDER_LEFT_COLOR_MASK 0xc0
+#define BORDER_LEFT_COLOR_INDEX 11
+#define BORDER_LEFT_COLOR_SHIFT 2
+#define BORDER_LEFT_COLOR_MASK 0xc
 static inline uint8_t get_border_left_color(const css_computed_style *style,
 		css_color *color)
 {
@@ -356,7 +356,7 @@ static inline uint8_t get_border_left_color(const css_computed_style *style,
 #undef BORDER_LEFT_COLOR_SHIFT
 #undef BORDER_LEFT_COLOR_MASK
 
-#define BORDER_LEFT_STYLE_INDEX 14
+#define BORDER_LEFT_STYLE_INDEX 15
 #define BORDER_LEFT_STYLE_SHIFT 8
 #define BORDER_LEFT_STYLE_MASK 0xf00
 static inline uint8_t get_border_left_style(const css_computed_style *style)
@@ -375,7 +375,7 @@ static inline uint8_t get_border_left_style(const css_computed_style *style)
 #undef BORDER_LEFT_STYLE_SHIFT
 #undef BORDER_LEFT_STYLE_MASK
 
-#define BORDER_LEFT_WIDTH_INDEX 13
+#define BORDER_LEFT_WIDTH_INDEX 14
 #define BORDER_LEFT_WIDTH_SHIFT 16
 #define BORDER_LEFT_WIDTH_MASK 0xff0000
 static inline uint8_t get_border_left_width(const css_computed_style *style,
@@ -399,9 +399,9 @@ static inline uint8_t get_border_left_width(const css_computed_style *style,
 #undef BORDER_LEFT_WIDTH_SHIFT
 #undef BORDER_LEFT_WIDTH_MASK
 
-#define BORDER_RIGHT_COLOR_INDEX 10
-#define BORDER_RIGHT_COLOR_SHIFT 8
-#define BORDER_RIGHT_COLOR_MASK 0x300
+#define BORDER_RIGHT_COLOR_INDEX 11
+#define BORDER_RIGHT_COLOR_SHIFT 4
+#define BORDER_RIGHT_COLOR_MASK 0x30
 static inline uint8_t get_border_right_color(const css_computed_style *style,
 		css_color *color)
 {
@@ -420,7 +420,7 @@ static inline uint8_t get_border_right_color(const css_computed_style *style,
 #undef BORDER_RIGHT_COLOR_SHIFT
 #undef BORDER_RIGHT_COLOR_MASK
 
-#define BORDER_RIGHT_STYLE_INDEX 14
+#define BORDER_RIGHT_STYLE_INDEX 15
 #define BORDER_RIGHT_STYLE_SHIFT 12
 #define BORDER_RIGHT_STYLE_MASK 0xf000
 static inline uint8_t get_border_right_style(const css_computed_style *style)
@@ -439,7 +439,7 @@ static inline uint8_t get_border_right_style(const css_computed_style *style)
 #undef BORDER_RIGHT_STYLE_SHIFT
 #undef BORDER_RIGHT_STYLE_MASK
 
-#define BORDER_RIGHT_WIDTH_INDEX 13
+#define BORDER_RIGHT_WIDTH_INDEX 14
 #define BORDER_RIGHT_WIDTH_SHIFT 24
 #define BORDER_RIGHT_WIDTH_MASK 0xff000000
 static inline uint8_t get_border_right_width(const css_computed_style *style,
@@ -463,7 +463,7 @@ static inline uint8_t get_border_right_width(const css_computed_style *style,
 #undef BORDER_RIGHT_WIDTH_SHIFT
 #undef BORDER_RIGHT_WIDTH_MASK
 
-#define BORDER_SPACING_INDEX 11
+#define BORDER_SPACING_INDEX 12
 #define BORDER_SPACING_SHIFT 10
 #define BORDER_SPACING_MASK 0x1ffc00
 static inline uint8_t get_border_spacing(const css_computed_style *style,
@@ -490,9 +490,9 @@ static inline uint8_t get_border_spacing(const css_computed_style *style,
 #undef BORDER_SPACING_SHIFT
 #undef BORDER_SPACING_MASK
 
-#define BORDER_TOP_COLOR_INDEX 10
-#define BORDER_TOP_COLOR_SHIFT 10
-#define BORDER_TOP_COLOR_MASK 0xc00
+#define BORDER_TOP_COLOR_INDEX 11
+#define BORDER_TOP_COLOR_SHIFT 6
+#define BORDER_TOP_COLOR_MASK 0xc0
 static inline uint8_t get_border_top_color(const css_computed_style *style,
 		css_color *color)
 {
@@ -511,7 +511,7 @@ static inline uint8_t get_border_top_color(const css_computed_style *style,
 #undef BORDER_TOP_COLOR_SHIFT
 #undef BORDER_TOP_COLOR_MASK
 
-#define BORDER_TOP_LEFT_RADIUS_INDEX 11
+#define BORDER_TOP_LEFT_RADIUS_INDEX 12
 #define BORDER_TOP_LEFT_RADIUS_SHIFT 21
 #define BORDER_TOP_LEFT_RADIUS_MASK 0xffe00000
 static inline uint8_t get_border_top_left_radius(const css_computed_style
@@ -565,7 +565,7 @@ static inline uint8_t get_border_top_right_radius(const css_computed_style
 #undef BORDER_TOP_RIGHT_RADIUS_SHIFT
 #undef BORDER_TOP_RIGHT_RADIUS_MASK
 
-#define BORDER_TOP_STYLE_INDEX 14
+#define BORDER_TOP_STYLE_INDEX 15
 #define BORDER_TOP_STYLE_SHIFT 16
 #define BORDER_TOP_STYLE_MASK 0xf0000
 static inline uint8_t get_border_top_style(const css_computed_style *style)
@@ -632,9 +632,9 @@ static inline uint8_t get_bottom(const css_computed_style *style, css_fixed
 #undef BOTTOM_SHIFT
 #undef BOTTOM_MASK
 
-#define BOX_SHADOW_INDEX 10
-#define BOX_SHADOW_SHIFT 12
-#define BOX_SHADOW_MASK 0x3000
+#define BOX_SHADOW_INDEX 11
+#define BOX_SHADOW_SHIFT 8
+#define BOX_SHADOW_MASK 0x300
 static inline uint8_t get_box_shadow(const css_computed_style *style, const
 		css_computed_shadow **shadow_arr)
 {
@@ -653,9 +653,9 @@ static inline uint8_t get_box_shadow(const css_computed_style *style, const
 #undef BOX_SHADOW_SHIFT
 #undef BOX_SHADOW_MASK
 
-#define BOX_SIZING_INDEX 10
-#define BOX_SIZING_SHIFT 14
-#define BOX_SIZING_MASK 0xc000
+#define BOX_SIZING_INDEX 11
+#define BOX_SIZING_SHIFT 10
+#define BOX_SIZING_MASK 0xc00
 static inline uint8_t get_box_sizing(const css_computed_style *style)
 {
 	uint8_t type;
@@ -672,7 +672,7 @@ static inline uint8_t get_box_sizing(const css_computed_style *style)
 #undef BOX_SIZING_SHIFT
 #undef BOX_SIZING_MASK
 
-#define BREAK_AFTER_INDEX 14
+#define BREAK_AFTER_INDEX 15
 #define BREAK_AFTER_SHIFT 20
 #define BREAK_AFTER_MASK 0xf00000
 static inline uint8_t get_break_after(const css_computed_style *style)
@@ -691,7 +691,7 @@ static inline uint8_t get_break_after(const css_computed_style *style)
 #undef BREAK_AFTER_SHIFT
 #undef BREAK_AFTER_MASK
 
-#define BREAK_BEFORE_INDEX 14
+#define BREAK_BEFORE_INDEX 15
 #define BREAK_BEFORE_SHIFT 24
 #define BREAK_BEFORE_MASK 0xf000000
 static inline uint8_t get_break_before(const css_computed_style *style)
@@ -710,7 +710,7 @@ static inline uint8_t get_break_before(const css_computed_style *style)
 #undef BREAK_BEFORE_SHIFT
 #undef BREAK_BEFORE_MASK
 
-#define BREAK_INSIDE_INDEX 14
+#define BREAK_INSIDE_INDEX 15
 #define BREAK_INSIDE_SHIFT 28
 #define BREAK_INSIDE_MASK 0xf0000000
 static inline uint8_t get_break_inside(const css_computed_style *style)
@@ -729,9 +729,9 @@ static inline uint8_t get_break_inside(const css_computed_style *style)
 #undef BREAK_INSIDE_SHIFT
 #undef BREAK_INSIDE_MASK
 
-#define CAPTION_SIDE_INDEX 10
-#define CAPTION_SIDE_SHIFT 16
-#define CAPTION_SIDE_MASK 0x30000
+#define CAPTION_SIDE_INDEX 11
+#define CAPTION_SIDE_SHIFT 12
+#define CAPTION_SIDE_MASK 0x3000
 static inline uint8_t get_caption_side(const css_computed_style *style)
 {
 	uint8_t type;
@@ -749,8 +749,8 @@ static inline uint8_t get_caption_side(const css_computed_style *style)
 #undef CAPTION_SIDE_MASK
 
 #define CLEAR_INDEX 9
-#define CLEAR_SHIFT 5
-#define CLEAR_MASK 0xe0
+#define CLEAR_SHIFT 2
+#define CLEAR_MASK 0x1c
 static inline uint8_t get_clear(const css_computed_style *style)
 {
 	uint8_t type;
@@ -810,8 +810,8 @@ static inline uint8_t get_clip(
 #undef CLIP_MASK
 
 #define COLOR_INDEX 16
-#define COLOR_SHIFT 22
-#define COLOR_MASK 0x400000
+#define COLOR_SHIFT 17
+#define COLOR_MASK 0x20000
 static inline uint8_t get_color(const css_computed_style *style, css_color
 		*color)
 {
@@ -830,9 +830,9 @@ static inline uint8_t get_color(const css_computed_style *style, css_color
 #undef COLOR_SHIFT
 #undef COLOR_MASK
 
-#define COLUMN_COUNT_INDEX 10
-#define COLUMN_COUNT_SHIFT 18
-#define COLUMN_COUNT_MASK 0xc0000
+#define COLUMN_COUNT_INDEX 11
+#define COLUMN_COUNT_SHIFT 14
+#define COLUMN_COUNT_MASK 0xc000
 static inline uint8_t get_column_count(const css_computed_style *style, int32_t
 		*integer)
 {
@@ -851,9 +851,9 @@ static inline uint8_t get_column_count(const css_computed_style *style, int32_t
 #undef COLUMN_COUNT_SHIFT
 #undef COLUMN_COUNT_MASK
 
-#define COLUMN_FILL_INDEX 10
-#define COLUMN_FILL_SHIFT 20
-#define COLUMN_FILL_MASK 0x300000
+#define COLUMN_FILL_INDEX 11
+#define COLUMN_FILL_SHIFT 16
+#define COLUMN_FILL_MASK 0x30000
 static inline uint8_t get_column_fill(const css_computed_style *style)
 {
 	uint8_t type;
@@ -894,9 +894,9 @@ static inline uint8_t get_column_gap(const css_computed_style *style, css_fixed
 #undef COLUMN_GAP_SHIFT
 #undef COLUMN_GAP_MASK
 
-#define COLUMN_RULE_COLOR_INDEX 10
-#define COLUMN_RULE_COLOR_SHIFT 22
-#define COLUMN_RULE_COLOR_MASK 0xc00000
+#define COLUMN_RULE_COLOR_INDEX 11
+#define COLUMN_RULE_COLOR_SHIFT 18
+#define COLUMN_RULE_COLOR_MASK 0xc0000
 static inline uint8_t get_column_rule_color(const css_computed_style *style,
 		css_color *color)
 {
@@ -958,9 +958,9 @@ static inline uint8_t get_column_rule_width(const css_computed_style *style,
 #undef COLUMN_RULE_WIDTH_SHIFT
 #undef COLUMN_RULE_WIDTH_MASK
 
-#define COLUMN_SPAN_INDEX 10
-#define COLUMN_SPAN_SHIFT 24
-#define COLUMN_SPAN_MASK 0x3000000
+#define COLUMN_SPAN_INDEX 11
+#define COLUMN_SPAN_SHIFT 20
+#define COLUMN_SPAN_MASK 0x300000
 static inline uint8_t get_column_span(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1001,9 +1001,9 @@ static inline uint8_t get_column_width(const css_computed_style *style,
 #undef COLUMN_WIDTH_SHIFT
 #undef COLUMN_WIDTH_MASK
 
-#define CONTENT_INDEX 10
-#define CONTENT_SHIFT 26
-#define CONTENT_MASK 0xc000000
+#define CONTENT_INDEX 11
+#define CONTENT_SHIFT 22
+#define CONTENT_MASK 0xc00000
 static inline uint8_t get_content(const css_computed_style *style, const
 		css_computed_content_item **content_item)
 {
@@ -1025,8 +1025,8 @@ static inline uint8_t get_content(const css_computed_style *style, const
 #undef CONTENT_MASK
 
 #define COUNTER_INCREMENT_INDEX 16
-#define COUNTER_INCREMENT_SHIFT 23
-#define COUNTER_INCREMENT_MASK 0x800000
+#define COUNTER_INCREMENT_SHIFT 18
+#define COUNTER_INCREMENT_MASK 0x40000
 static inline uint8_t get_counter_increment(const css_computed_style *style,
 		const css_computed_counter **counter_arr)
 {
@@ -1046,8 +1046,8 @@ static inline uint8_t get_counter_increment(const css_computed_style *style,
 #undef COUNTER_INCREMENT_MASK
 
 #define COUNTER_RESET_INDEX 16
-#define COUNTER_RESET_SHIFT 24
-#define COUNTER_RESET_MASK 0x1000000
+#define COUNTER_RESET_SHIFT 19
+#define COUNTER_RESET_MASK 0x80000
 static inline uint8_t get_counter_reset(const css_computed_style *style, const
 		css_computed_counter **counter_arr)
 {
@@ -1087,9 +1087,9 @@ static inline uint8_t get_cursor(const css_computed_style *style, lwc_string
 #undef CURSOR_SHIFT
 #undef CURSOR_MASK
 
-#define DIRECTION_INDEX 10
-#define DIRECTION_SHIFT 28
-#define DIRECTION_MASK 0x30000000
+#define DIRECTION_INDEX 11
+#define DIRECTION_SHIFT 24
+#define DIRECTION_MASK 0x3000000
 static inline uint8_t get_direction(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1125,9 +1125,9 @@ static inline uint8_t get_display(const css_computed_style *style)
 #undef DISPLAY_SHIFT
 #undef DISPLAY_MASK
 
-#define EMPTY_CELLS_INDEX 10
-#define EMPTY_CELLS_SHIFT 30
-#define EMPTY_CELLS_MASK 0xc0000000
+#define EMPTY_CELLS_INDEX 11
+#define EMPTY_CELLS_SHIFT 26
+#define EMPTY_CELLS_MASK 0xc000000
 static inline uint8_t get_empty_cells(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1145,8 +1145,8 @@ static inline uint8_t get_empty_cells(const css_computed_style *style)
 #undef EMPTY_CELLS_MASK
 
 #define FILL_OPACITY_INDEX 16
-#define FILL_OPACITY_SHIFT 25
-#define FILL_OPACITY_MASK 0x2000000
+#define FILL_OPACITY_SHIFT 20
+#define FILL_OPACITY_MASK 0x100000
 static inline uint8_t get_fill_opacity(const css_computed_style *style,
 		css_fixed *fixed)
 {
@@ -1192,8 +1192,8 @@ static inline uint8_t get_flex_basis(const css_computed_style *style, css_fixed
 #undef FLEX_BASIS_MASK
 
 #define FLEX_DIRECTION_INDEX 9
-#define FLEX_DIRECTION_SHIFT 8
-#define FLEX_DIRECTION_MASK 0x700
+#define FLEX_DIRECTION_SHIFT 5
+#define FLEX_DIRECTION_MASK 0xe0
 static inline uint8_t get_flex_direction(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1211,8 +1211,8 @@ static inline uint8_t get_flex_direction(const css_computed_style *style)
 #undef FLEX_DIRECTION_MASK
 
 #define FLEX_GROW_INDEX 16
-#define FLEX_GROW_SHIFT 26
-#define FLEX_GROW_MASK 0x4000000
+#define FLEX_GROW_SHIFT 21
+#define FLEX_GROW_MASK 0x200000
 static inline uint8_t get_flex_grow(const css_computed_style *style, css_fixed
 		*fixed)
 {
@@ -1234,8 +1234,8 @@ static inline uint8_t get_flex_grow(const css_computed_style *style, css_fixed
 #undef FLEX_GROW_MASK
 
 #define FLEX_SHRINK_INDEX 16
-#define FLEX_SHRINK_SHIFT 27
-#define FLEX_SHRINK_MASK 0x8000000
+#define FLEX_SHRINK_SHIFT 22
+#define FLEX_SHRINK_MASK 0x400000
 static inline uint8_t get_flex_shrink(const css_computed_style *style,
 		css_fixed *fixed)
 {
@@ -1256,9 +1256,9 @@ static inline uint8_t get_flex_shrink(const css_computed_style *style,
 #undef FLEX_SHRINK_SHIFT
 #undef FLEX_SHRINK_MASK
 
-#define FLEX_WRAP_INDEX 15
-#define FLEX_WRAP_SHIFT 1
-#define FLEX_WRAP_MASK 0x6
+#define FLEX_WRAP_INDEX 11
+#define FLEX_WRAP_SHIFT 28
+#define FLEX_WRAP_MASK 0x30000000
 static inline uint8_t get_flex_wrap(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1275,9 +1275,9 @@ static inline uint8_t get_flex_wrap(const css_computed_style *style)
 #undef FLEX_WRAP_SHIFT
 #undef FLEX_WRAP_MASK
 
-#define FLOAT_INDEX 15
-#define FLOAT_SHIFT 3
-#define FLOAT_MASK 0x18
+#define FLOAT_INDEX 11
+#define FLOAT_SHIFT 30
+#define FLOAT_MASK 0xc0000000
 static inline uint8_t get_float(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1295,8 +1295,8 @@ static inline uint8_t get_float(const css_computed_style *style)
 #undef FLOAT_MASK
 
 #define FONT_FAMILY_INDEX 9
-#define FONT_FAMILY_SHIFT 11
-#define FONT_FAMILY_MASK 0x3800
+#define FONT_FAMILY_SHIFT 8
+#define FONT_FAMILY_MASK 0x700
 static inline uint8_t get_font_family(const css_computed_style *style,
 		lwc_string ***string_arr)
 {
@@ -1315,7 +1315,7 @@ static inline uint8_t get_font_family(const css_computed_style *style,
 #undef FONT_FAMILY_SHIFT
 #undef FONT_FAMILY_MASK
 
-#define FONT_SIZE_INDEX 12
+#define FONT_SIZE_INDEX 13
 #define FONT_SIZE_SHIFT 1
 #define FONT_SIZE_MASK 0x3fe
 static inline uint8_t get_font_size(const css_computed_style *style, css_fixed
@@ -1339,9 +1339,9 @@ static inline uint8_t get_font_size(const css_computed_style *style, css_fixed
 #undef FONT_SIZE_SHIFT
 #undef FONT_SIZE_MASK
 
-#define FONT_STYLE_INDEX 15
-#define FONT_STYLE_SHIFT 5
-#define FONT_STYLE_MASK 0x60
+#define FONT_STYLE_INDEX 10
+#define FONT_STYLE_SHIFT 0
+#define FONT_STYLE_MASK 0x3
 static inline uint8_t get_font_style(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1358,9 +1358,9 @@ static inline uint8_t get_font_style(const css_computed_style *style)
 #undef FONT_STYLE_SHIFT
 #undef FONT_STYLE_MASK
 
-#define FONT_VARIANT_INDEX 15
-#define FONT_VARIANT_SHIFT 7
-#define FONT_VARIANT_MASK 0x180
+#define FONT_VARIANT_INDEX 10
+#define FONT_VARIANT_SHIFT 2
+#define FONT_VARIANT_MASK 0xc
 static inline uint8_t get_font_variant(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1421,8 +1421,8 @@ static inline uint8_t get_height(const css_computed_style *style, css_fixed
 #undef HEIGHT_MASK
 
 #define JUSTIFY_CONTENT_INDEX 9
-#define JUSTIFY_CONTENT_SHIFT 14
-#define JUSTIFY_CONTENT_MASK 0x1c000
+#define JUSTIFY_CONTENT_SHIFT 11
+#define JUSTIFY_CONTENT_MASK 0x3800
 static inline uint8_t get_justify_content(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1515,8 +1515,8 @@ static inline uint8_t get_line_height(
 #undef LINE_HEIGHT_MASK
 
 #define LIST_STYLE_IMAGE_INDEX 16
-#define LIST_STYLE_IMAGE_SHIFT 28
-#define LIST_STYLE_IMAGE_MASK 0x10000000
+#define LIST_STYLE_IMAGE_SHIFT 23
+#define LIST_STYLE_IMAGE_MASK 0x800000
 static inline uint8_t get_list_style_image(const css_computed_style *style,
 		lwc_string **string)
 {
@@ -1535,9 +1535,9 @@ static inline uint8_t get_list_style_image(const css_computed_style *style,
 #undef LIST_STYLE_IMAGE_SHIFT
 #undef LIST_STYLE_IMAGE_MASK
 
-#define LIST_STYLE_POSITION_INDEX 15
-#define LIST_STYLE_POSITION_SHIFT 9
-#define LIST_STYLE_POSITION_MASK 0x600
+#define LIST_STYLE_POSITION_INDEX 10
+#define LIST_STYLE_POSITION_SHIFT 4
+#define LIST_STYLE_POSITION_MASK 0x30
 static inline uint8_t get_list_style_position(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1766,8 +1766,8 @@ static inline uint8_t get_min_width(const css_computed_style *style, css_fixed
 #undef MIN_WIDTH_MASK
 
 #define OPACITY_INDEX 16
-#define OPACITY_SHIFT 29
-#define OPACITY_MASK 0x20000000
+#define OPACITY_SHIFT 24
+#define OPACITY_MASK 0x1000000
 static inline uint8_t get_opacity(const css_computed_style *style, css_fixed
 		*fixed)
 {
@@ -1788,9 +1788,9 @@ static inline uint8_t get_opacity(const css_computed_style *style, css_fixed
 #undef OPACITY_SHIFT
 #undef OPACITY_MASK
 
-#define ORDER_INDEX 15
-#define ORDER_SHIFT 0
-#define ORDER_MASK 0x1
+#define ORDER_INDEX 16
+#define ORDER_SHIFT 25
+#define ORDER_MASK 0x2000000
 static inline uint8_t get_order(const css_computed_style *style, int32_t
 		*integer)
 {
@@ -1811,7 +1811,7 @@ static inline uint8_t get_order(const css_computed_style *style, int32_t
 #undef ORDER_SHIFT
 #undef ORDER_MASK
 
-#define ORPHANS_INDEX 14
+#define ORPHANS_INDEX 15
 #define ORPHANS_SHIFT 0
 #define ORPHANS_MASK 0x1
 static inline uint8_t get_orphans(const css_computed_style *style, int32_t
@@ -1832,9 +1832,9 @@ static inline uint8_t get_orphans(const css_computed_style *style, int32_t
 #undef ORPHANS_SHIFT
 #undef ORPHANS_MASK
 
-#define OUTLINE_COLOR_INDEX 15
-#define OUTLINE_COLOR_SHIFT 11
-#define OUTLINE_COLOR_MASK 0x1800
+#define OUTLINE_COLOR_INDEX 10
+#define OUTLINE_COLOR_SHIFT 6
+#define OUTLINE_COLOR_MASK 0xc0
 static inline uint8_t get_outline_color(const css_computed_style *style,
 		css_color *color)
 {
@@ -1898,9 +1898,28 @@ static inline uint8_t get_outline_width(const css_computed_style *style,
 #undef OUTLINE_WIDTH_SHIFT
 #undef OUTLINE_WIDTH_MASK
 
+#define OVERFLOW_WRAP_INDEX 10
+#define OVERFLOW_WRAP_SHIFT 8
+#define OVERFLOW_WRAP_MASK 0x300
+static inline uint8_t get_overflow_wrap(const css_computed_style *style)
+{
+	uint8_t type;
+	uint32_t bits = style->i.bits[OVERFLOW_WRAP_INDEX];
+	bits &= OVERFLOW_WRAP_MASK;
+	bits >>= OVERFLOW_WRAP_SHIFT;
+
+	/* 2bits: tt : type */
+	type = bits & 0x3;
+
+	return type;
+}
+#undef OVERFLOW_WRAP_INDEX
+#undef OVERFLOW_WRAP_SHIFT
+#undef OVERFLOW_WRAP_MASK
+
 #define OVERFLOW_X_INDEX 9
-#define OVERFLOW_X_SHIFT 17
-#define OVERFLOW_X_MASK 0xe0000
+#define OVERFLOW_X_SHIFT 14
+#define OVERFLOW_X_MASK 0x1c000
 static inline uint8_t get_overflow_x(const css_computed_style *style)
 {
 	uint8_t type;
@@ -1918,8 +1937,8 @@ static inline uint8_t get_overflow_x(const css_computed_style *style)
 #undef OVERFLOW_X_MASK
 
 #define OVERFLOW_Y_INDEX 9
-#define OVERFLOW_Y_SHIFT 20
-#define OVERFLOW_Y_MASK 0x700000
+#define OVERFLOW_Y_SHIFT 17
+#define OVERFLOW_Y_MASK 0xe0000
 static inline uint8_t get_overflow_y(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2033,8 +2052,8 @@ static inline uint8_t get_padding_top(const css_computed_style *style,
 #undef PADDING_TOP_MASK
 
 #define PAGE_BREAK_AFTER_INDEX 9
-#define PAGE_BREAK_AFTER_SHIFT 23
-#define PAGE_BREAK_AFTER_MASK 0x3800000
+#define PAGE_BREAK_AFTER_SHIFT 20
+#define PAGE_BREAK_AFTER_MASK 0x700000
 static inline uint8_t get_page_break_after(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2052,8 +2071,8 @@ static inline uint8_t get_page_break_after(const css_computed_style *style)
 #undef PAGE_BREAK_AFTER_MASK
 
 #define PAGE_BREAK_BEFORE_INDEX 9
-#define PAGE_BREAK_BEFORE_SHIFT 26
-#define PAGE_BREAK_BEFORE_MASK 0x1c000000
+#define PAGE_BREAK_BEFORE_SHIFT 23
+#define PAGE_BREAK_BEFORE_MASK 0x3800000
 static inline uint8_t get_page_break_before(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2070,9 +2089,9 @@ static inline uint8_t get_page_break_before(const css_computed_style *style)
 #undef PAGE_BREAK_BEFORE_SHIFT
 #undef PAGE_BREAK_BEFORE_MASK
 
-#define PAGE_BREAK_INSIDE_INDEX 15
-#define PAGE_BREAK_INSIDE_SHIFT 13
-#define PAGE_BREAK_INSIDE_MASK 0x6000
+#define PAGE_BREAK_INSIDE_INDEX 10
+#define PAGE_BREAK_INSIDE_SHIFT 10
+#define PAGE_BREAK_INSIDE_MASK 0xc00
 static inline uint8_t get_page_break_inside(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2090,8 +2109,8 @@ static inline uint8_t get_page_break_inside(const css_computed_style *style)
 #undef PAGE_BREAK_INSIDE_MASK
 
 #define POSITION_INDEX 9
-#define POSITION_SHIFT 29
-#define POSITION_MASK 0xe0000000
+#define POSITION_SHIFT 26
+#define POSITION_MASK 0x1c000000
 static inline uint8_t get_position(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2108,7 +2127,7 @@ static inline uint8_t get_position(const css_computed_style *style)
 #undef POSITION_SHIFT
 #undef POSITION_MASK
 
-#define QUOTES_INDEX 13
+#define QUOTES_INDEX 14
 #define QUOTES_SHIFT 0
 #define QUOTES_MASK 0x1
 static inline uint8_t get_quotes(const css_computed_style *style, lwc_string
@@ -2153,7 +2172,7 @@ static inline uint8_t get_right(const css_computed_style *style, css_fixed
 #undef RIGHT_SHIFT
 #undef RIGHT_MASK
 
-#define STROKE_OPACITY_INDEX 12
+#define STROKE_OPACITY_INDEX 13
 #define STROKE_OPACITY_SHIFT 0
 #define STROKE_OPACITY_MASK 0x1
 static inline uint8_t get_stroke_opacity(const css_computed_style *style,
@@ -2176,9 +2195,9 @@ static inline uint8_t get_stroke_opacity(const css_computed_style *style,
 #undef STROKE_OPACITY_SHIFT
 #undef STROKE_OPACITY_MASK
 
-#define TABLE_LAYOUT_INDEX 15
-#define TABLE_LAYOUT_SHIFT 15
-#define TABLE_LAYOUT_MASK 0x18000
+#define TABLE_LAYOUT_INDEX 10
+#define TABLE_LAYOUT_SHIFT 12
+#define TABLE_LAYOUT_MASK 0x3000
 static inline uint8_t get_table_layout(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2257,9 +2276,9 @@ static inline uint8_t get_text_indent(const css_computed_style *style,
 #undef TEXT_INDENT_SHIFT
 #undef TEXT_INDENT_MASK
 
-#define TEXT_TRANSFORM_INDEX 14
-#define TEXT_TRANSFORM_SHIFT 1
-#define TEXT_TRANSFORM_MASK 0xe
+#define TEXT_TRANSFORM_INDEX 9
+#define TEXT_TRANSFORM_SHIFT 29
+#define TEXT_TRANSFORM_MASK 0xe0000000
 static inline uint8_t get_text_transform(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2300,9 +2319,9 @@ static inline uint8_t get_top(const css_computed_style *style, css_fixed
 #undef TOP_SHIFT
 #undef TOP_MASK
 
-#define UNICODE_BIDI_INDEX 15
-#define UNICODE_BIDI_SHIFT 17
-#define UNICODE_BIDI_MASK 0x60000
+#define UNICODE_BIDI_INDEX 10
+#define UNICODE_BIDI_SHIFT 14
+#define UNICODE_BIDI_MASK 0xc000
 static inline uint8_t get_unicode_bidi(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2319,7 +2338,7 @@ static inline uint8_t get_unicode_bidi(const css_computed_style *style)
 #undef UNICODE_BIDI_SHIFT
 #undef UNICODE_BIDI_MASK
 
-#define VERTICAL_ALIGN_INDEX 11
+#define VERTICAL_ALIGN_INDEX 12
 #define VERTICAL_ALIGN_SHIFT 1
 #define VERTICAL_ALIGN_MASK 0x3fe
 static inline uint8_t get_vertical_align(const css_computed_style *style,
@@ -2343,9 +2362,9 @@ static inline uint8_t get_vertical_align(const css_computed_style *style,
 #undef VERTICAL_ALIGN_SHIFT
 #undef VERTICAL_ALIGN_MASK
 
-#define VISIBILITY_INDEX 15
-#define VISIBILITY_SHIFT 19
-#define VISIBILITY_MASK 0x180000
+#define VISIBILITY_INDEX 10
+#define VISIBILITY_SHIFT 16
+#define VISIBILITY_MASK 0x30000
 static inline uint8_t get_visibility(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2362,9 +2381,9 @@ static inline uint8_t get_visibility(const css_computed_style *style)
 #undef VISIBILITY_SHIFT
 #undef VISIBILITY_MASK
 
-#define WHITE_SPACE_INDEX 8
-#define WHITE_SPACE_SHIFT 0
-#define WHITE_SPACE_MASK 0x7
+#define WHITE_SPACE_INDEX 15
+#define WHITE_SPACE_SHIFT 1
+#define WHITE_SPACE_MASK 0xe
 static inline uint8_t get_white_space(const css_computed_style *style)
 {
 	uint8_t type;
@@ -2381,7 +2400,7 @@ static inline uint8_t get_white_space(const css_computed_style *style)
 #undef WHITE_SPACE_SHIFT
 #undef WHITE_SPACE_MASK
 
-#define WIDOWS_INDEX 11
+#define WIDOWS_INDEX 12
 #define WIDOWS_SHIFT 0
 #define WIDOWS_MASK 0x1
 static inline uint8_t get_widows(const css_computed_style *style, int32_t
@@ -2426,7 +2445,26 @@ static inline uint8_t get_width(const css_computed_style *style,
 #undef WIDTH_SHIFT
 #undef WIDTH_MASK
 
-#define WORD_SPACING_INDEX 13
+#define WORD_BREAK_INDEX 8
+#define WORD_BREAK_SHIFT 0
+#define WORD_BREAK_MASK 0x7
+static inline uint8_t get_word_break(const css_computed_style *style)
+{
+	uint8_t type;
+	uint32_t bits = style->i.bits[WORD_BREAK_INDEX];
+	bits &= WORD_BREAK_MASK;
+	bits >>= WORD_BREAK_SHIFT;
+
+	/* 3bits: ttt : type */
+	type = bits & 0x7;
+
+	return type;
+}
+#undef WORD_BREAK_INDEX
+#undef WORD_BREAK_SHIFT
+#undef WORD_BREAK_MASK
+
+#define WORD_SPACING_INDEX 14
 #define WORD_SPACING_SHIFT 1
 #define WORD_SPACING_MASK 0xfe
 static inline uint8_t get_word_spacing(const css_computed_style *style,
@@ -2450,9 +2488,9 @@ static inline uint8_t get_word_spacing(const css_computed_style *style,
 #undef WORD_SPACING_SHIFT
 #undef WORD_SPACING_MASK
 
-#define WRITING_MODE_INDEX 15
-#define WRITING_MODE_SHIFT 21
-#define WRITING_MODE_MASK 0x600000
+#define WRITING_MODE_INDEX 10
+#define WRITING_MODE_SHIFT 18
+#define WRITING_MODE_MASK 0xc0000
 static inline uint8_t get_writing_mode(const css_computed_style *style)
 {
 	uint8_t type;

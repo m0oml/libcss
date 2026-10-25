@@ -128,6 +128,8 @@ widows.c \
 width.c \
 word_spacing.c \
 writing_mode.c \
+overflow_wrap.c \
+word_break.c \
 z_index.c
 
 include $(NSBUILD)/Makefile.subdir

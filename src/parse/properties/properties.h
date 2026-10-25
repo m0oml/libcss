@@ -352,6 +352,9 @@ css_error css__parse_outline_width(css_language *c,
 css_error css__parse_overflow(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
+css_error css__parse_overflow_wrap(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
 css_error css__parse_overflow_x(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
@@ -475,7 +478,13 @@ css_error css__parse_widows(css_language *c,
 css_error css__parse_width(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
+css_error css__parse_word_break(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
 css_error css__parse_word_spacing(css_language *c,
+		const parserutils_vector *vector, int32_t *ctx,
+		css_style *result);
+css_error css__parse_word_wrap(css_language *c,
 		const parserutils_vector *vector, int32_t *ctx,
 		css_style *result);
 css_error css__parse_writing_mode(css_language *c,
@@ -590,6 +599,8 @@ extern const uint32_t property_unit_mask[CSS_N_PROPERTIES];
 #define UNIT_MASK_COLUMN_SPAN           (0)
 #define UNIT_MASK_COLUMN_WIDTH          (UNIT_LENGTH)
 #define UNIT_MASK_WRITING_MODE          (0)
+#define UNIT_MASK_OVERFLOW_WRAP         (0)
+#define UNIT_MASK_WORD_BREAK            (0)
 #define UNIT_MASK_OVERFLOW_Y            (0)
 #define UNIT_MASK_BOX_SIZING            (0)
 #define UNIT_MASK_ALIGN_CONTENT         (0)

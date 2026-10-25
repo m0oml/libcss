@@ -499,6 +499,8 @@ static const char *opcode_names[] = {
 	"border-top-right-radius",
 	"border-bottom-right-radius",
 	"border-bottom-left-radius",
+	"overflow-wrap",
+	"word-break",
 };
 
 static void dump_css_fixed(css_fixed f, char **ptr)
@@ -2995,6 +2997,35 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 					break;
 				case WHITE_SPACE_PRE_LINE:
 					*ptr += sprintf(*ptr, "pre-line");
+					break;
+				}
+				break;
+			case CSS_PROP_OVERFLOW_WRAP:
+				switch (value) {
+				case OVERFLOW_WRAP_NORMAL:
+					*ptr += sprintf(*ptr, "normal");
+					break;
+				case OVERFLOW_WRAP_BREAK_WORD:
+					*ptr += sprintf(*ptr, "break-word");
+					break;
+				case OVERFLOW_WRAP_ANYWHERE:
+					*ptr += sprintf(*ptr, "anywhere");
+					break;
+				}
+				break;
+			case CSS_PROP_WORD_BREAK:
+				switch (value) {
+				case WORD_BREAK_NORMAL:
+					*ptr += sprintf(*ptr, "normal");
+					break;
+				case WORD_BREAK_BREAK_ALL:
+					*ptr += sprintf(*ptr, "break-all");
+					break;
+				case WORD_BREAK_KEEP_ALL:
+					*ptr += sprintf(*ptr, "keep-all");
+					break;
+				case WORD_BREAK_BREAK_WORD:
+					*ptr += sprintf(*ptr, "break-word");
 					break;
 				}
 				break;

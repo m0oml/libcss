@@ -3375,6 +3375,47 @@ static void dump_computed_style(const css_computed_style *style, char *buf,
 	ptr += wrote;
 	*len -= wrote;
 
+	/* overflow-wrap, only where it is not the initial value */
+	val = css_computed_overflow_wrap(style);
+	switch (val) {
+	case CSS_OVERFLOW_WRAP_INHERIT:
+		wrote = snprintf(ptr, *len, "overflow-wrap: inherit\n");
+		break;
+	case CSS_OVERFLOW_WRAP_BREAK_WORD:
+		wrote = snprintf(ptr, *len, "overflow-wrap: break-word\n");
+		break;
+	case CSS_OVERFLOW_WRAP_ANYWHERE:
+		wrote = snprintf(ptr, *len, "overflow-wrap: anywhere\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
+	/* word-break, only where it is not the initial value */
+	val = css_computed_word_break(style);
+	switch (val) {
+	case CSS_WORD_BREAK_INHERIT:
+		wrote = snprintf(ptr, *len, "word-break: inherit\n");
+		break;
+	case CSS_WORD_BREAK_BREAK_ALL:
+		wrote = snprintf(ptr, *len, "word-break: break-all\n");
+		break;
+	case CSS_WORD_BREAK_KEEP_ALL:
+		wrote = snprintf(ptr, *len, "word-break: keep-all\n");
+		break;
+	case CSS_WORD_BREAK_BREAK_WORD:
+		wrote = snprintf(ptr, *len, "word-break: break-word\n");
+		break;
+	default:
+		wrote = 0;
+		break;
+	}
+	ptr += wrote;
+	*len -= wrote;
+
 	/* writing-mode */
 	val = css_computed_writing_mode(style);
 	switch (val) {

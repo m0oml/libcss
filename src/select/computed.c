@@ -392,6 +392,16 @@ uint8_t css_computed_word_spacing(const css_computed_style *style,
 	return get_word_spacing(style, length, unit);
 }
 
+uint8_t css_computed_overflow_wrap(const css_computed_style *style)
+{
+	return get_overflow_wrap(style);
+}
+
+uint8_t css_computed_word_break(const css_computed_style *style)
+{
+	return get_word_break(style);
+}
+
 uint8_t css_computed_writing_mode(const css_computed_style *style)
 {
 	return get_writing_mode(style);

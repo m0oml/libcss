@@ -11,9 +11,9 @@
 #include "select/propget.h"
 
 
-#define ALIGN_CONTENT_INDEX 15
-#define ALIGN_CONTENT_SHIFT 23
-#define ALIGN_CONTENT_MASK 0x3800000
+#define ALIGN_CONTENT_INDEX 10
+#define ALIGN_CONTENT_SHIFT 20
+#define ALIGN_CONTENT_MASK 0x700000
 
 static inline css_error set_align_content(css_computed_style *style, uint8_t
 		type)
@@ -30,9 +30,9 @@ static inline css_error set_align_content(css_computed_style *style, uint8_t
 #undef ALIGN_CONTENT_SHIFT
 #undef ALIGN_CONTENT_MASK
 
-#define ALIGN_ITEMS_INDEX 15
-#define ALIGN_ITEMS_SHIFT 26
-#define ALIGN_ITEMS_MASK 0x1c000000
+#define ALIGN_ITEMS_INDEX 10
+#define ALIGN_ITEMS_SHIFT 23
+#define ALIGN_ITEMS_MASK 0x3800000
 
 static inline css_error set_align_items(css_computed_style *style, uint8_t type)
 {
@@ -48,9 +48,9 @@ static inline css_error set_align_items(css_computed_style *style, uint8_t type)
 #undef ALIGN_ITEMS_SHIFT
 #undef ALIGN_ITEMS_MASK
 
-#define ALIGN_SELF_INDEX 15
-#define ALIGN_SELF_SHIFT 29
-#define ALIGN_SELF_MASK 0xe0000000
+#define ALIGN_SELF_INDEX 10
+#define ALIGN_SELF_SHIFT 26
+#define ALIGN_SELF_MASK 0x1c000000
 
 static inline css_error set_align_self(css_computed_style *style, uint8_t type)
 {
@@ -67,8 +67,8 @@ static inline css_error set_align_self(css_computed_style *style, uint8_t type)
 #undef ALIGN_SELF_MASK
 
 #define BACKGROUND_ATTACHMENT_INDEX 16
-#define BACKGROUND_ATTACHMENT_SHIFT 30
-#define BACKGROUND_ATTACHMENT_MASK 0xc0000000
+#define BACKGROUND_ATTACHMENT_SHIFT 26
+#define BACKGROUND_ATTACHMENT_MASK 0xc000000
 
 static inline css_error set_background_attachment(css_computed_style *style,
 		uint8_t type)
@@ -85,9 +85,9 @@ static inline css_error set_background_attachment(css_computed_style *style,
 #undef BACKGROUND_ATTACHMENT_SHIFT
 #undef BACKGROUND_ATTACHMENT_MASK
 
-#define BACKGROUND_COLOR_INDEX 10
-#define BACKGROUND_COLOR_SHIFT 0
-#define BACKGROUND_COLOR_MASK 0x3
+#define BACKGROUND_COLOR_INDEX 16
+#define BACKGROUND_COLOR_SHIFT 28
+#define BACKGROUND_COLOR_MASK 0x30000000
 
 static inline css_error set_background_color(css_computed_style *style, uint8_t
 		type, css_color color)
@@ -107,8 +107,8 @@ static inline css_error set_background_color(css_computed_style *style, uint8_t
 #undef BACKGROUND_COLOR_MASK
 
 #define BACKGROUND_IMAGE_INDEX 16
-#define BACKGROUND_IMAGE_SHIFT 21
-#define BACKGROUND_IMAGE_MASK 0x200000
+#define BACKGROUND_IMAGE_SHIFT 16
+#define BACKGROUND_IMAGE_MASK 0x10000
 
 static inline css_error set_background_image(css_computed_style *style, uint8_t
 		type, lwc_string *string)
@@ -160,9 +160,9 @@ static inline css_error set_background_position(css_computed_style *style,
 #undef BACKGROUND_POSITION_SHIFT
 #undef BACKGROUND_POSITION_MASK
 
-#define BACKGROUND_REPEAT_INDEX 9
-#define BACKGROUND_REPEAT_SHIFT 2
-#define BACKGROUND_REPEAT_MASK 0x1c
+#define BACKGROUND_REPEAT_INDEX 10
+#define BACKGROUND_REPEAT_SHIFT 29
+#define BACKGROUND_REPEAT_MASK 0xe0000000
 
 static inline css_error set_background_repeat(css_computed_style *style,
 		uint8_t type)
@@ -203,9 +203,9 @@ static inline css_error set_background_size(css_computed_style *style, uint8_t
 #undef BACKGROUND_SIZE_SHIFT
 #undef BACKGROUND_SIZE_MASK
 
-#define BORDER_BOTTOM_COLOR_INDEX 10
-#define BORDER_BOTTOM_COLOR_SHIFT 2
-#define BORDER_BOTTOM_COLOR_MASK 0xc
+#define BORDER_BOTTOM_COLOR_INDEX 16
+#define BORDER_BOTTOM_COLOR_SHIFT 30
+#define BORDER_BOTTOM_COLOR_MASK 0xc0000000
 
 static inline css_error set_border_bottom_color(css_computed_style *style,
 		uint8_t type, css_color color)
@@ -224,7 +224,7 @@ static inline css_error set_border_bottom_color(css_computed_style *style,
 #undef BORDER_BOTTOM_COLOR_SHIFT
 #undef BORDER_BOTTOM_COLOR_MASK
 
-#define BORDER_BOTTOM_LEFT_RADIUS_INDEX 12
+#define BORDER_BOTTOM_LEFT_RADIUS_INDEX 13
 #define BORDER_BOTTOM_LEFT_RADIUS_SHIFT 10
 #define BORDER_BOTTOM_LEFT_RADIUS_MASK 0x1ffc00
 
@@ -249,7 +249,7 @@ static inline css_error set_border_bottom_left_radius(css_computed_style
 #undef BORDER_BOTTOM_LEFT_RADIUS_SHIFT
 #undef BORDER_BOTTOM_LEFT_RADIUS_MASK
 
-#define BORDER_BOTTOM_RIGHT_RADIUS_INDEX 12
+#define BORDER_BOTTOM_RIGHT_RADIUS_INDEX 13
 #define BORDER_BOTTOM_RIGHT_RADIUS_SHIFT 21
 #define BORDER_BOTTOM_RIGHT_RADIUS_MASK 0xffe00000
 
@@ -274,7 +274,7 @@ static inline css_error set_border_bottom_right_radius(css_computed_style
 #undef BORDER_BOTTOM_RIGHT_RADIUS_SHIFT
 #undef BORDER_BOTTOM_RIGHT_RADIUS_MASK
 
-#define BORDER_BOTTOM_STYLE_INDEX 14
+#define BORDER_BOTTOM_STYLE_INDEX 15
 #define BORDER_BOTTOM_STYLE_SHIFT 4
 #define BORDER_BOTTOM_STYLE_MASK 0xf0
 
@@ -293,7 +293,7 @@ static inline css_error set_border_bottom_style(css_computed_style *style,
 #undef BORDER_BOTTOM_STYLE_SHIFT
 #undef BORDER_BOTTOM_STYLE_MASK
 
-#define BORDER_BOTTOM_WIDTH_INDEX 13
+#define BORDER_BOTTOM_WIDTH_INDEX 14
 #define BORDER_BOTTOM_WIDTH_SHIFT 8
 #define BORDER_BOTTOM_WIDTH_MASK 0xff00
 
@@ -314,9 +314,9 @@ static inline css_error set_border_bottom_width(css_computed_style *style,
 #undef BORDER_BOTTOM_WIDTH_SHIFT
 #undef BORDER_BOTTOM_WIDTH_MASK
 
-#define BORDER_COLLAPSE_INDEX 10
-#define BORDER_COLLAPSE_SHIFT 4
-#define BORDER_COLLAPSE_MASK 0x30
+#define BORDER_COLLAPSE_INDEX 11
+#define BORDER_COLLAPSE_SHIFT 0
+#define BORDER_COLLAPSE_MASK 0x3
 
 static inline css_error set_border_collapse(css_computed_style *style, uint8_t
 		type)
@@ -333,9 +333,9 @@ static inline css_error set_border_collapse(css_computed_style *style, uint8_t
 #undef BORDER_COLLAPSE_SHIFT
 #undef BORDER_COLLAPSE_MASK
 
-#define BORDER_LEFT_COLOR_INDEX 10
-#define BORDER_LEFT_COLOR_SHIFT 6
-#define BORDER_LEFT_COLOR_MASK 0xc0
+#define BORDER_LEFT_COLOR_INDEX 11
+#define BORDER_LEFT_COLOR_SHIFT 2
+#define BORDER_LEFT_COLOR_MASK 0xc
 
 static inline css_error set_border_left_color(css_computed_style *style,
 		uint8_t type, css_color color)
@@ -354,7 +354,7 @@ static inline css_error set_border_left_color(css_computed_style *style,
 #undef BORDER_LEFT_COLOR_SHIFT
 #undef BORDER_LEFT_COLOR_MASK
 
-#define BORDER_LEFT_STYLE_INDEX 14
+#define BORDER_LEFT_STYLE_INDEX 15
 #define BORDER_LEFT_STYLE_SHIFT 8
 #define BORDER_LEFT_STYLE_MASK 0xf00
 
@@ -373,7 +373,7 @@ static inline css_error set_border_left_style(css_computed_style *style,
 #undef BORDER_LEFT_STYLE_SHIFT
 #undef BORDER_LEFT_STYLE_MASK
 
-#define BORDER_LEFT_WIDTH_INDEX 13
+#define BORDER_LEFT_WIDTH_INDEX 14
 #define BORDER_LEFT_WIDTH_SHIFT 16
 #define BORDER_LEFT_WIDTH_MASK 0xff0000
 
@@ -394,9 +394,9 @@ static inline css_error set_border_left_width(css_computed_style *style,
 #undef BORDER_LEFT_WIDTH_SHIFT
 #undef BORDER_LEFT_WIDTH_MASK
 
-#define BORDER_RIGHT_COLOR_INDEX 10
-#define BORDER_RIGHT_COLOR_SHIFT 8
-#define BORDER_RIGHT_COLOR_MASK 0x300
+#define BORDER_RIGHT_COLOR_INDEX 11
+#define BORDER_RIGHT_COLOR_SHIFT 4
+#define BORDER_RIGHT_COLOR_MASK 0x30
 
 static inline css_error set_border_right_color(css_computed_style *style,
 		uint8_t type, css_color color)
@@ -415,7 +415,7 @@ static inline css_error set_border_right_color(css_computed_style *style,
 #undef BORDER_RIGHT_COLOR_SHIFT
 #undef BORDER_RIGHT_COLOR_MASK
 
-#define BORDER_RIGHT_STYLE_INDEX 14
+#define BORDER_RIGHT_STYLE_INDEX 15
 #define BORDER_RIGHT_STYLE_SHIFT 12
 #define BORDER_RIGHT_STYLE_MASK 0xf000
 
@@ -434,7 +434,7 @@ static inline css_error set_border_right_style(css_computed_style *style,
 #undef BORDER_RIGHT_STYLE_SHIFT
 #undef BORDER_RIGHT_STYLE_MASK
 
-#define BORDER_RIGHT_WIDTH_INDEX 13
+#define BORDER_RIGHT_WIDTH_INDEX 14
 #define BORDER_RIGHT_WIDTH_SHIFT 24
 #define BORDER_RIGHT_WIDTH_MASK 0xff000000
 
@@ -455,7 +455,7 @@ static inline css_error set_border_right_width(css_computed_style *style,
 #undef BORDER_RIGHT_WIDTH_SHIFT
 #undef BORDER_RIGHT_WIDTH_MASK
 
-#define BORDER_SPACING_INDEX 11
+#define BORDER_SPACING_INDEX 12
 #define BORDER_SPACING_SHIFT 10
 #define BORDER_SPACING_MASK 0x1ffc00
 
@@ -479,9 +479,9 @@ static inline css_error set_border_spacing(css_computed_style *style, uint8_t
 #undef BORDER_SPACING_SHIFT
 #undef BORDER_SPACING_MASK
 
-#define BORDER_TOP_COLOR_INDEX 10
-#define BORDER_TOP_COLOR_SHIFT 10
-#define BORDER_TOP_COLOR_MASK 0xc00
+#define BORDER_TOP_COLOR_INDEX 11
+#define BORDER_TOP_COLOR_SHIFT 6
+#define BORDER_TOP_COLOR_MASK 0xc0
 
 static inline css_error set_border_top_color(css_computed_style *style, uint8_t
 		type, css_color color)
@@ -500,7 +500,7 @@ static inline css_error set_border_top_color(css_computed_style *style, uint8_t
 #undef BORDER_TOP_COLOR_SHIFT
 #undef BORDER_TOP_COLOR_MASK
 
-#define BORDER_TOP_LEFT_RADIUS_INDEX 11
+#define BORDER_TOP_LEFT_RADIUS_INDEX 12
 #define BORDER_TOP_LEFT_RADIUS_SHIFT 21
 #define BORDER_TOP_LEFT_RADIUS_MASK 0xffe00000
 
@@ -550,7 +550,7 @@ static inline css_error set_border_top_right_radius(css_computed_style *style,
 #undef BORDER_TOP_RIGHT_RADIUS_SHIFT
 #undef BORDER_TOP_RIGHT_RADIUS_MASK
 
-#define BORDER_TOP_STYLE_INDEX 14
+#define BORDER_TOP_STYLE_INDEX 15
 #define BORDER_TOP_STYLE_SHIFT 16
 #define BORDER_TOP_STYLE_MASK 0xf0000
 
@@ -611,9 +611,9 @@ static inline css_error set_bottom(css_computed_style *style, uint8_t type,
 #undef BOTTOM_SHIFT
 #undef BOTTOM_MASK
 
-#define BOX_SHADOW_INDEX 10
-#define BOX_SHADOW_SHIFT 12
-#define BOX_SHADOW_MASK 0x3000
+#define BOX_SHADOW_INDEX 11
+#define BOX_SHADOW_SHIFT 8
+#define BOX_SHADOW_MASK 0x300
 static inline css_error set_box_shadow(
 		css_computed_style *style, uint8_t type,
 		css_computed_shadow *shadow_arr)
@@ -638,9 +638,9 @@ static inline css_error set_box_shadow(
 #undef BOX_SHADOW_SHIFT
 #undef BOX_SHADOW_MASK
 
-#define BOX_SIZING_INDEX 10
-#define BOX_SIZING_SHIFT 14
-#define BOX_SIZING_MASK 0xc000
+#define BOX_SIZING_INDEX 11
+#define BOX_SIZING_SHIFT 10
+#define BOX_SIZING_MASK 0xc00
 
 static inline css_error set_box_sizing(css_computed_style *style, uint8_t type)
 {
@@ -656,7 +656,7 @@ static inline css_error set_box_sizing(css_computed_style *style, uint8_t type)
 #undef BOX_SIZING_SHIFT
 #undef BOX_SIZING_MASK
 
-#define BREAK_AFTER_INDEX 14
+#define BREAK_AFTER_INDEX 15
 #define BREAK_AFTER_SHIFT 20
 #define BREAK_AFTER_MASK 0xf00000
 
@@ -674,7 +674,7 @@ static inline css_error set_break_after(css_computed_style *style, uint8_t type)
 #undef BREAK_AFTER_SHIFT
 #undef BREAK_AFTER_MASK
 
-#define BREAK_BEFORE_INDEX 14
+#define BREAK_BEFORE_INDEX 15
 #define BREAK_BEFORE_SHIFT 24
 #define BREAK_BEFORE_MASK 0xf000000
 
@@ -693,7 +693,7 @@ static inline css_error set_break_before(css_computed_style *style, uint8_t
 #undef BREAK_BEFORE_SHIFT
 #undef BREAK_BEFORE_MASK
 
-#define BREAK_INSIDE_INDEX 14
+#define BREAK_INSIDE_INDEX 15
 #define BREAK_INSIDE_SHIFT 28
 #define BREAK_INSIDE_MASK 0xf0000000
 
@@ -712,9 +712,9 @@ static inline css_error set_break_inside(css_computed_style *style, uint8_t
 #undef BREAK_INSIDE_SHIFT
 #undef BREAK_INSIDE_MASK
 
-#define CAPTION_SIDE_INDEX 10
-#define CAPTION_SIDE_SHIFT 16
-#define CAPTION_SIDE_MASK 0x30000
+#define CAPTION_SIDE_INDEX 11
+#define CAPTION_SIDE_SHIFT 12
+#define CAPTION_SIDE_MASK 0x3000
 
 static inline css_error set_caption_side(css_computed_style *style, uint8_t
 		type)
@@ -732,8 +732,8 @@ static inline css_error set_caption_side(css_computed_style *style, uint8_t
 #undef CAPTION_SIDE_MASK
 
 #define CLEAR_INDEX 9
-#define CLEAR_SHIFT 5
-#define CLEAR_MASK 0xe0
+#define CLEAR_SHIFT 2
+#define CLEAR_MASK 0x1c
 
 static inline css_error set_clear(css_computed_style *style, uint8_t type)
 {
@@ -792,8 +792,8 @@ static inline css_error set_clip(
 #undef CLIP_MASK
 
 #define COLOR_INDEX 16
-#define COLOR_SHIFT 22
-#define COLOR_MASK 0x400000
+#define COLOR_SHIFT 17
+#define COLOR_MASK 0x20000
 
 static inline css_error set_color(css_computed_style *style, uint8_t type,
 		css_color color)
@@ -811,9 +811,9 @@ static inline css_error set_color(css_computed_style *style, uint8_t type,
 #undef COLOR_SHIFT
 #undef COLOR_MASK
 
-#define COLUMN_COUNT_INDEX 10
-#define COLUMN_COUNT_SHIFT 18
-#define COLUMN_COUNT_MASK 0xc0000
+#define COLUMN_COUNT_INDEX 11
+#define COLUMN_COUNT_SHIFT 14
+#define COLUMN_COUNT_MASK 0xc000
 
 static inline css_error set_column_count(css_computed_style *style, uint8_t
 		type, int32_t integer)
@@ -832,9 +832,9 @@ static inline css_error set_column_count(css_computed_style *style, uint8_t
 #undef COLUMN_COUNT_SHIFT
 #undef COLUMN_COUNT_MASK
 
-#define COLUMN_FILL_INDEX 10
-#define COLUMN_FILL_SHIFT 20
-#define COLUMN_FILL_MASK 0x300000
+#define COLUMN_FILL_INDEX 11
+#define COLUMN_FILL_SHIFT 16
+#define COLUMN_FILL_MASK 0x30000
 
 static inline css_error set_column_fill(css_computed_style *style, uint8_t type)
 {
@@ -871,9 +871,9 @@ static inline css_error set_column_gap(css_computed_style *style, uint8_t type,
 #undef COLUMN_GAP_SHIFT
 #undef COLUMN_GAP_MASK
 
-#define COLUMN_RULE_COLOR_INDEX 10
-#define COLUMN_RULE_COLOR_SHIFT 22
-#define COLUMN_RULE_COLOR_MASK 0xc00000
+#define COLUMN_RULE_COLOR_INDEX 11
+#define COLUMN_RULE_COLOR_SHIFT 18
+#define COLUMN_RULE_COLOR_MASK 0xc0000
 
 static inline css_error set_column_rule_color(css_computed_style *style,
 		uint8_t type, css_color color)
@@ -932,9 +932,9 @@ static inline css_error set_column_rule_width(css_computed_style *style,
 #undef COLUMN_RULE_WIDTH_SHIFT
 #undef COLUMN_RULE_WIDTH_MASK
 
-#define COLUMN_SPAN_INDEX 10
-#define COLUMN_SPAN_SHIFT 24
-#define COLUMN_SPAN_MASK 0x3000000
+#define COLUMN_SPAN_INDEX 11
+#define COLUMN_SPAN_SHIFT 20
+#define COLUMN_SPAN_MASK 0x300000
 
 static inline css_error set_column_span(css_computed_style *style, uint8_t type)
 {
@@ -971,9 +971,9 @@ static inline css_error set_column_width(css_computed_style *style, uint8_t
 #undef COLUMN_WIDTH_SHIFT
 #undef COLUMN_WIDTH_MASK
 
-#define CONTENT_INDEX 10
-#define CONTENT_SHIFT 26
-#define CONTENT_MASK 0xc000000
+#define CONTENT_INDEX 11
+#define CONTENT_SHIFT 22
+#define CONTENT_MASK 0xc00000
 static inline css_error set_content(
 		css_computed_style *style, uint8_t type,
 		css_computed_content_item *content)
@@ -1055,8 +1055,8 @@ static inline css_error set_content(
 #undef CONTENT_MASK
 
 #define COUNTER_INCREMENT_INDEX 16
-#define COUNTER_INCREMENT_SHIFT 23
-#define COUNTER_INCREMENT_MASK 0x800000
+#define COUNTER_INCREMENT_SHIFT 18
+#define COUNTER_INCREMENT_MASK 0x40000
 
 static inline css_error set_counter_increment(css_computed_style *style,
 		uint8_t type, css_computed_counter *counter_arr)
@@ -1091,8 +1091,8 @@ static inline css_error set_counter_increment(css_computed_style *style,
 #undef COUNTER_INCREMENT_MASK
 
 #define COUNTER_RESET_INDEX 16
-#define COUNTER_RESET_SHIFT 24
-#define COUNTER_RESET_MASK 0x1000000
+#define COUNTER_RESET_SHIFT 19
+#define COUNTER_RESET_MASK 0x80000
 
 static inline css_error set_counter_reset(css_computed_style *style, uint8_t
 		type, css_computed_counter *counter_arr)
@@ -1162,9 +1162,9 @@ static inline css_error set_cursor(css_computed_style *style, uint8_t type,
 #undef CURSOR_SHIFT
 #undef CURSOR_MASK
 
-#define DIRECTION_INDEX 10
-#define DIRECTION_SHIFT 28
-#define DIRECTION_MASK 0x30000000
+#define DIRECTION_INDEX 11
+#define DIRECTION_SHIFT 24
+#define DIRECTION_MASK 0x3000000
 
 static inline css_error set_direction(css_computed_style *style, uint8_t type)
 {
@@ -1198,9 +1198,9 @@ static inline css_error set_display(css_computed_style *style, uint8_t type)
 #undef DISPLAY_SHIFT
 #undef DISPLAY_MASK
 
-#define EMPTY_CELLS_INDEX 10
-#define EMPTY_CELLS_SHIFT 30
-#define EMPTY_CELLS_MASK 0xc0000000
+#define EMPTY_CELLS_INDEX 11
+#define EMPTY_CELLS_SHIFT 26
+#define EMPTY_CELLS_MASK 0xc000000
 
 static inline css_error set_empty_cells(css_computed_style *style, uint8_t type)
 {
@@ -1217,8 +1217,8 @@ static inline css_error set_empty_cells(css_computed_style *style, uint8_t type)
 #undef EMPTY_CELLS_MASK
 
 #define FILL_OPACITY_INDEX 16
-#define FILL_OPACITY_SHIFT 25
-#define FILL_OPACITY_MASK 0x2000000
+#define FILL_OPACITY_SHIFT 20
+#define FILL_OPACITY_MASK 0x100000
 
 static inline css_error set_fill_opacity(css_computed_style *style, uint8_t
 		type, css_fixed fixed)
@@ -1259,8 +1259,8 @@ static inline css_error set_flex_basis(css_computed_style *style, uint8_t type,
 #undef FLEX_BASIS_MASK
 
 #define FLEX_DIRECTION_INDEX 9
-#define FLEX_DIRECTION_SHIFT 8
-#define FLEX_DIRECTION_MASK 0x700
+#define FLEX_DIRECTION_SHIFT 5
+#define FLEX_DIRECTION_MASK 0xe0
 
 static inline css_error set_flex_direction(css_computed_style *style, uint8_t
 		type)
@@ -1278,8 +1278,8 @@ static inline css_error set_flex_direction(css_computed_style *style, uint8_t
 #undef FLEX_DIRECTION_MASK
 
 #define FLEX_GROW_INDEX 16
-#define FLEX_GROW_SHIFT 26
-#define FLEX_GROW_MASK 0x4000000
+#define FLEX_GROW_SHIFT 21
+#define FLEX_GROW_MASK 0x200000
 
 static inline css_error set_flex_grow(css_computed_style *style, uint8_t type,
 		css_fixed fixed)
@@ -1299,8 +1299,8 @@ static inline css_error set_flex_grow(css_computed_style *style, uint8_t type,
 #undef FLEX_GROW_MASK
 
 #define FLEX_SHRINK_INDEX 16
-#define FLEX_SHRINK_SHIFT 27
-#define FLEX_SHRINK_MASK 0x8000000
+#define FLEX_SHRINK_SHIFT 22
+#define FLEX_SHRINK_MASK 0x400000
 
 static inline css_error set_flex_shrink(css_computed_style *style, uint8_t
 		type, css_fixed fixed)
@@ -1319,9 +1319,9 @@ static inline css_error set_flex_shrink(css_computed_style *style, uint8_t
 #undef FLEX_SHRINK_SHIFT
 #undef FLEX_SHRINK_MASK
 
-#define FLEX_WRAP_INDEX 15
-#define FLEX_WRAP_SHIFT 1
-#define FLEX_WRAP_MASK 0x6
+#define FLEX_WRAP_INDEX 11
+#define FLEX_WRAP_SHIFT 28
+#define FLEX_WRAP_MASK 0x30000000
 
 static inline css_error set_flex_wrap(css_computed_style *style, uint8_t type)
 {
@@ -1337,9 +1337,9 @@ static inline css_error set_flex_wrap(css_computed_style *style, uint8_t type)
 #undef FLEX_WRAP_SHIFT
 #undef FLEX_WRAP_MASK
 
-#define FLOAT_INDEX 15
-#define FLOAT_SHIFT 3
-#define FLOAT_MASK 0x18
+#define FLOAT_INDEX 11
+#define FLOAT_SHIFT 30
+#define FLOAT_MASK 0xc0000000
 
 static inline css_error set_float(css_computed_style *style, uint8_t type)
 {
@@ -1355,8 +1355,8 @@ static inline css_error set_float(css_computed_style *style, uint8_t type)
 #undef FLOAT_MASK
 
 #define FONT_FAMILY_INDEX 9
-#define FONT_FAMILY_SHIFT 11
-#define FONT_FAMILY_MASK 0x3800
+#define FONT_FAMILY_SHIFT 8
+#define FONT_FAMILY_MASK 0x700
 
 static inline css_error set_font_family(css_computed_style *style, uint8_t
 		type, lwc_string **string_arr)
@@ -1390,7 +1390,7 @@ static inline css_error set_font_family(css_computed_style *style, uint8_t
 #undef FONT_FAMILY_SHIFT
 #undef FONT_FAMILY_MASK
 
-#define FONT_SIZE_INDEX 12
+#define FONT_SIZE_INDEX 13
 #define FONT_SIZE_SHIFT 1
 #define FONT_SIZE_MASK 0x3fe
 
@@ -1411,9 +1411,9 @@ static inline css_error set_font_size(css_computed_style *style, uint8_t type,
 #undef FONT_SIZE_SHIFT
 #undef FONT_SIZE_MASK
 
-#define FONT_STYLE_INDEX 15
-#define FONT_STYLE_SHIFT 5
-#define FONT_STYLE_MASK 0x60
+#define FONT_STYLE_INDEX 10
+#define FONT_STYLE_SHIFT 0
+#define FONT_STYLE_MASK 0x3
 
 static inline css_error set_font_style(css_computed_style *style, uint8_t type)
 {
@@ -1429,9 +1429,9 @@ static inline css_error set_font_style(css_computed_style *style, uint8_t type)
 #undef FONT_STYLE_SHIFT
 #undef FONT_STYLE_MASK
 
-#define FONT_VARIANT_INDEX 15
-#define FONT_VARIANT_SHIFT 7
-#define FONT_VARIANT_MASK 0x180
+#define FONT_VARIANT_INDEX 10
+#define FONT_VARIANT_SHIFT 2
+#define FONT_VARIANT_MASK 0xc
 
 static inline css_error set_font_variant(css_computed_style *style, uint8_t
 		type)
@@ -1488,8 +1488,8 @@ static inline css_error set_height(css_computed_style *style, uint8_t type,
 #undef HEIGHT_MASK
 
 #define JUSTIFY_CONTENT_INDEX 9
-#define JUSTIFY_CONTENT_SHIFT 14
-#define JUSTIFY_CONTENT_MASK 0x1c000
+#define JUSTIFY_CONTENT_SHIFT 11
+#define JUSTIFY_CONTENT_MASK 0x3800
 
 static inline css_error set_justify_content(css_computed_style *style, uint8_t
 		type)
@@ -1570,8 +1570,8 @@ static inline css_error set_line_height(css_computed_style *style, uint8_t
 #undef LINE_HEIGHT_MASK
 
 #define LIST_STYLE_IMAGE_INDEX 16
-#define LIST_STYLE_IMAGE_SHIFT 28
-#define LIST_STYLE_IMAGE_MASK 0x10000000
+#define LIST_STYLE_IMAGE_SHIFT 23
+#define LIST_STYLE_IMAGE_MASK 0x800000
 
 static inline css_error set_list_style_image(css_computed_style *style, uint8_t
 		type, lwc_string *string)
@@ -1598,9 +1598,9 @@ static inline css_error set_list_style_image(css_computed_style *style, uint8_t
 #undef LIST_STYLE_IMAGE_SHIFT
 #undef LIST_STYLE_IMAGE_MASK
 
-#define LIST_STYLE_POSITION_INDEX 15
-#define LIST_STYLE_POSITION_SHIFT 9
-#define LIST_STYLE_POSITION_MASK 0x600
+#define LIST_STYLE_POSITION_INDEX 10
+#define LIST_STYLE_POSITION_SHIFT 4
+#define LIST_STYLE_POSITION_MASK 0x30
 
 static inline css_error set_list_style_position(css_computed_style *style,
 		uint8_t type)
@@ -1805,8 +1805,8 @@ static inline css_error set_min_width(css_computed_style *style, uint8_t type,
 #undef MIN_WIDTH_MASK
 
 #define OPACITY_INDEX 16
-#define OPACITY_SHIFT 29
-#define OPACITY_MASK 0x20000000
+#define OPACITY_SHIFT 24
+#define OPACITY_MASK 0x1000000
 
 static inline css_error set_opacity(css_computed_style *style, uint8_t type,
 		css_fixed fixed)
@@ -1825,9 +1825,9 @@ static inline css_error set_opacity(css_computed_style *style, uint8_t type,
 #undef OPACITY_SHIFT
 #undef OPACITY_MASK
 
-#define ORDER_INDEX 15
-#define ORDER_SHIFT 0
-#define ORDER_MASK 0x1
+#define ORDER_INDEX 16
+#define ORDER_SHIFT 25
+#define ORDER_MASK 0x2000000
 
 static inline css_error set_order(css_computed_style *style, uint8_t type,
 		int32_t integer)
@@ -1845,7 +1845,7 @@ static inline css_error set_order(css_computed_style *style, uint8_t type,
 #undef ORDER_SHIFT
 #undef ORDER_MASK
 
-#define ORPHANS_INDEX 14
+#define ORPHANS_INDEX 15
 #define ORPHANS_SHIFT 0
 #define ORPHANS_MASK 0x1
 
@@ -1866,9 +1866,9 @@ static inline css_error set_orphans(css_computed_style *style, uint8_t type,
 #undef ORPHANS_SHIFT
 #undef ORPHANS_MASK
 
-#define OUTLINE_COLOR_INDEX 15
-#define OUTLINE_COLOR_SHIFT 11
-#define OUTLINE_COLOR_MASK 0x1800
+#define OUTLINE_COLOR_INDEX 10
+#define OUTLINE_COLOR_SHIFT 6
+#define OUTLINE_COLOR_MASK 0xc0
 
 static inline css_error set_outline_color(css_computed_style *style, uint8_t
 		type, css_color color)
@@ -1927,9 +1927,28 @@ static inline css_error set_outline_width(css_computed_style *style, uint8_t
 #undef OUTLINE_WIDTH_SHIFT
 #undef OUTLINE_WIDTH_MASK
 
+#define OVERFLOW_WRAP_INDEX 10
+#define OVERFLOW_WRAP_SHIFT 8
+#define OVERFLOW_WRAP_MASK 0x300
+
+static inline css_error set_overflow_wrap(css_computed_style *style, uint8_t
+		type)
+{
+	uint32_t *bits = &style->i.bits[OVERFLOW_WRAP_INDEX];
+
+	/* 2bits: tt : type */
+	*bits = (*bits & ~OVERFLOW_WRAP_MASK) | (((uint32_t)type & 0x3) <<
+			OVERFLOW_WRAP_SHIFT);
+
+	return CSS_OK;
+}
+#undef OVERFLOW_WRAP_INDEX
+#undef OVERFLOW_WRAP_SHIFT
+#undef OVERFLOW_WRAP_MASK
+
 #define OVERFLOW_X_INDEX 9
-#define OVERFLOW_X_SHIFT 17
-#define OVERFLOW_X_MASK 0xe0000
+#define OVERFLOW_X_SHIFT 14
+#define OVERFLOW_X_MASK 0x1c000
 
 static inline css_error set_overflow_x(css_computed_style *style, uint8_t type)
 {
@@ -1946,8 +1965,8 @@ static inline css_error set_overflow_x(css_computed_style *style, uint8_t type)
 #undef OVERFLOW_X_MASK
 
 #define OVERFLOW_Y_INDEX 9
-#define OVERFLOW_Y_SHIFT 20
-#define OVERFLOW_Y_MASK 0x700000
+#define OVERFLOW_Y_SHIFT 17
+#define OVERFLOW_Y_MASK 0xe0000
 
 static inline css_error set_overflow_y(css_computed_style *style, uint8_t type)
 {
@@ -2048,8 +2067,8 @@ static inline css_error set_padding_top(css_computed_style *style, uint8_t
 #undef PADDING_TOP_MASK
 
 #define PAGE_BREAK_AFTER_INDEX 9
-#define PAGE_BREAK_AFTER_SHIFT 23
-#define PAGE_BREAK_AFTER_MASK 0x3800000
+#define PAGE_BREAK_AFTER_SHIFT 20
+#define PAGE_BREAK_AFTER_MASK 0x700000
 
 static inline css_error set_page_break_after(css_computed_style *style, uint8_t
 		type)
@@ -2067,8 +2086,8 @@ static inline css_error set_page_break_after(css_computed_style *style, uint8_t
 #undef PAGE_BREAK_AFTER_MASK
 
 #define PAGE_BREAK_BEFORE_INDEX 9
-#define PAGE_BREAK_BEFORE_SHIFT 26
-#define PAGE_BREAK_BEFORE_MASK 0x1c000000
+#define PAGE_BREAK_BEFORE_SHIFT 23
+#define PAGE_BREAK_BEFORE_MASK 0x3800000
 
 static inline css_error set_page_break_before(css_computed_style *style,
 		uint8_t type)
@@ -2085,9 +2104,9 @@ static inline css_error set_page_break_before(css_computed_style *style,
 #undef PAGE_BREAK_BEFORE_SHIFT
 #undef PAGE_BREAK_BEFORE_MASK
 
-#define PAGE_BREAK_INSIDE_INDEX 15
-#define PAGE_BREAK_INSIDE_SHIFT 13
-#define PAGE_BREAK_INSIDE_MASK 0x6000
+#define PAGE_BREAK_INSIDE_INDEX 10
+#define PAGE_BREAK_INSIDE_SHIFT 10
+#define PAGE_BREAK_INSIDE_MASK 0xc00
 
 static inline css_error set_page_break_inside(css_computed_style *style,
 		uint8_t type)
@@ -2105,8 +2124,8 @@ static inline css_error set_page_break_inside(css_computed_style *style,
 #undef PAGE_BREAK_INSIDE_MASK
 
 #define POSITION_INDEX 9
-#define POSITION_SHIFT 29
-#define POSITION_MASK 0xe0000000
+#define POSITION_SHIFT 26
+#define POSITION_MASK 0x1c000000
 
 static inline css_error set_position(css_computed_style *style, uint8_t type)
 {
@@ -2122,7 +2141,7 @@ static inline css_error set_position(css_computed_style *style, uint8_t type)
 #undef POSITION_SHIFT
 #undef POSITION_MASK
 
-#define QUOTES_INDEX 13
+#define QUOTES_INDEX 14
 #define QUOTES_SHIFT 0
 #define QUOTES_MASK 0x1
 
@@ -2179,7 +2198,7 @@ static inline css_error set_right(css_computed_style *style, uint8_t type,
 #undef RIGHT_SHIFT
 #undef RIGHT_MASK
 
-#define STROKE_OPACITY_INDEX 12
+#define STROKE_OPACITY_INDEX 13
 #define STROKE_OPACITY_SHIFT 0
 #define STROKE_OPACITY_MASK 0x1
 
@@ -2200,9 +2219,9 @@ static inline css_error set_stroke_opacity(css_computed_style *style, uint8_t
 #undef STROKE_OPACITY_SHIFT
 #undef STROKE_OPACITY_MASK
 
-#define TABLE_LAYOUT_INDEX 15
-#define TABLE_LAYOUT_SHIFT 15
-#define TABLE_LAYOUT_MASK 0x18000
+#define TABLE_LAYOUT_INDEX 10
+#define TABLE_LAYOUT_SHIFT 12
+#define TABLE_LAYOUT_MASK 0x3000
 
 static inline css_error set_table_layout(css_computed_style *style, uint8_t
 		type)
@@ -2277,9 +2296,9 @@ static inline css_error set_text_indent(css_computed_style *style, uint8_t
 #undef TEXT_INDENT_SHIFT
 #undef TEXT_INDENT_MASK
 
-#define TEXT_TRANSFORM_INDEX 14
-#define TEXT_TRANSFORM_SHIFT 1
-#define TEXT_TRANSFORM_MASK 0xe
+#define TEXT_TRANSFORM_INDEX 9
+#define TEXT_TRANSFORM_SHIFT 29
+#define TEXT_TRANSFORM_MASK 0xe0000000
 
 static inline css_error set_text_transform(css_computed_style *style, uint8_t
 		type)
@@ -2317,9 +2336,9 @@ static inline css_error set_top(css_computed_style *style, uint8_t type,
 #undef TOP_SHIFT
 #undef TOP_MASK
 
-#define UNICODE_BIDI_INDEX 15
-#define UNICODE_BIDI_SHIFT 17
-#define UNICODE_BIDI_MASK 0x60000
+#define UNICODE_BIDI_INDEX 10
+#define UNICODE_BIDI_SHIFT 14
+#define UNICODE_BIDI_MASK 0xc000
 
 static inline css_error set_unicode_bidi(css_computed_style *style, uint8_t
 		type)
@@ -2336,7 +2355,7 @@ static inline css_error set_unicode_bidi(css_computed_style *style, uint8_t
 #undef UNICODE_BIDI_SHIFT
 #undef UNICODE_BIDI_MASK
 
-#define VERTICAL_ALIGN_INDEX 11
+#define VERTICAL_ALIGN_INDEX 12
 #define VERTICAL_ALIGN_SHIFT 1
 #define VERTICAL_ALIGN_MASK 0x3fe
 
@@ -2357,9 +2376,9 @@ static inline css_error set_vertical_align(css_computed_style *style, uint8_t
 #undef VERTICAL_ALIGN_SHIFT
 #undef VERTICAL_ALIGN_MASK
 
-#define VISIBILITY_INDEX 15
-#define VISIBILITY_SHIFT 19
-#define VISIBILITY_MASK 0x180000
+#define VISIBILITY_INDEX 10
+#define VISIBILITY_SHIFT 16
+#define VISIBILITY_MASK 0x30000
 
 static inline css_error set_visibility(css_computed_style *style, uint8_t type)
 {
@@ -2375,9 +2394,9 @@ static inline css_error set_visibility(css_computed_style *style, uint8_t type)
 #undef VISIBILITY_SHIFT
 #undef VISIBILITY_MASK
 
-#define WHITE_SPACE_INDEX 8
-#define WHITE_SPACE_SHIFT 0
-#define WHITE_SPACE_MASK 0x7
+#define WHITE_SPACE_INDEX 15
+#define WHITE_SPACE_SHIFT 1
+#define WHITE_SPACE_MASK 0xe
 
 static inline css_error set_white_space(css_computed_style *style, uint8_t type)
 {
@@ -2393,7 +2412,7 @@ static inline css_error set_white_space(css_computed_style *style, uint8_t type)
 #undef WHITE_SPACE_SHIFT
 #undef WHITE_SPACE_MASK
 
-#define WIDOWS_INDEX 11
+#define WIDOWS_INDEX 12
 #define WIDOWS_SHIFT 0
 #define WIDOWS_MASK 0x1
 
@@ -2449,7 +2468,25 @@ static inline css_error set_width(css_computed_style *style, uint8_t type,
 #undef WIDTH_SHIFT
 #undef WIDTH_MASK
 
-#define WORD_SPACING_INDEX 13
+#define WORD_BREAK_INDEX 8
+#define WORD_BREAK_SHIFT 0
+#define WORD_BREAK_MASK 0x7
+
+static inline css_error set_word_break(css_computed_style *style, uint8_t type)
+{
+	uint32_t *bits = &style->i.bits[WORD_BREAK_INDEX];
+
+	/* 3bits: ttt : type */
+	*bits = (*bits & ~WORD_BREAK_MASK) | (((uint32_t)type & 0x7) <<
+			WORD_BREAK_SHIFT);
+
+	return CSS_OK;
+}
+#undef WORD_BREAK_INDEX
+#undef WORD_BREAK_SHIFT
+#undef WORD_BREAK_MASK
+
+#define WORD_SPACING_INDEX 14
 #define WORD_SPACING_SHIFT 1
 #define WORD_SPACING_MASK 0xfe
 
@@ -2470,9 +2507,9 @@ static inline css_error set_word_spacing(css_computed_style *style, uint8_t
 #undef WORD_SPACING_SHIFT
 #undef WORD_SPACING_MASK
 
-#define WRITING_MODE_INDEX 15
-#define WRITING_MODE_SHIFT 21
-#define WRITING_MODE_MASK 0x600000
+#define WRITING_MODE_INDEX 10
+#define WRITING_MODE_SHIFT 18
+#define WRITING_MODE_MASK 0xc0000
 
 static inline css_error set_writing_mode(css_computed_style *style, uint8_t
 		type)

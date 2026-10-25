@@ -1466,7 +1466,28 @@ Opcodes
 	a length and unit, where the unit may be a percentage.  The
 	shorthand, border-radius, is parsed into these four.
 
-84-3fe - Reserved for future expansion.
+84 - overflow-wrap
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			00000000 => normal,
+			00000001 => break-word,
+			00000010 => anywhere,
+			other    => Reserved for future expansion.
+
+	The legacy name, word-wrap, is parsed into this property.
+
+85 - word-break
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			00000000 => normal,
+			00000001 => break-all,
+			00000010 => keep-all,
+			00000011 => break-word,
+			other    => Reserved for future expansion.
+
+86-3fe - Reserved for future expansion.
 
 3ff - custom property (--name: value)
 	<value> (14bits) : MBZ

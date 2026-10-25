@@ -546,5 +546,13 @@ struct prop_table prop_dispatch[CSS_N_PROPERTIES] = {
 	{
 		PROPERTY_FUNCS(border_bottom_left_radius),
 		0,
+	},
+	{
+		PROPERTY_FUNCS(overflow_wrap),
+		1,
+	},
+	{
+		PROPERTY_FUNCS(word_break),
+		1,
 	}
 };

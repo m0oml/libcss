@@ -92,6 +92,7 @@
 /* set_outline_color(style, 0, 0, CSS_UNIT_PX); */
 /* set_outline_style(style, 0, 0, CSS_UNIT_PX); */
 /* set_outline_width(style, 0, 0, CSS_UNIT_PX); */
+/* set_overflow_wrap(style, 0, 0, CSS_UNIT_PX); */
 /* set_overflow_x(style, 0, 0, CSS_UNIT_PX); */
 /* set_overflow_y(style, 0, 0, CSS_UNIT_PX); */
 /* set_padding_bottom(style, 0, 0, CSS_UNIT_PX); */
@@ -117,6 +118,7 @@
 /* set_white_space(style, 0, 0, CSS_UNIT_PX); */
 /* set_widows(style, 0, 0, CSS_UNIT_PX); */
 set_width(style, 0, (css_fixed_or_calc)0, CSS_UNIT_PX);
+/* set_word_break(style, 0, 0, CSS_UNIT_PX); */
 /* set_word_spacing(style, 0, 0, CSS_UNIT_PX); */
 /* set_writing_mode(style, 0, 0, CSS_UNIT_PX); */
 /* set_z_index(style, 0, 0, CSS_UNIT_PX); */

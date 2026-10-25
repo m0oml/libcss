@@ -160,6 +160,8 @@ style = {
     ('word_spacing', 2, 'length',
         'CSS_WORD_SPACING_SET', 'CSS_WORD_SPACING_NORMAL'),
     ('writing_mode', 2, None, None, 'CSS_WRITING_MODE_HORIZONTAL_TB'),
+    ('overflow_wrap', 2, None, None, 'CSS_OVERFLOW_WRAP_NORMAL'),
+    ('word_break', 3, None, None, 'CSS_WORD_BREAK_NORMAL'),
     # Uncommon group, arrays
     ('counter_increment', 1, 'counter_arr', None, 'CSS_COUNTER_INCREMENT_NONE',
         'Encode counter_increment as an array of name, value pairs, '

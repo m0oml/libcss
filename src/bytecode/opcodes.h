@@ -913,6 +913,19 @@ enum op_writing_mode {
 	WRITING_MODE_VERTICAL_LR	= 0x0002
 };
 
+enum op_overflow_wrap {
+	OVERFLOW_WRAP_NORMAL		= 0x0000,
+	OVERFLOW_WRAP_BREAK_WORD	= 0x0001,
+	OVERFLOW_WRAP_ANYWHERE		= 0x0002
+};
+
+enum op_word_break {
+	WORD_BREAK_NORMAL		= 0x0000,
+	WORD_BREAK_BREAK_ALL		= 0x0001,
+	WORD_BREAK_KEEP_ALL		= 0x0002,
+	WORD_BREAK_BREAK_WORD		= 0x0003
+};
+
 enum op_z_index {
 	Z_INDEX_CALC			= VALUE_IS_CALC,
 	Z_INDEX_SET			= 0x0080,

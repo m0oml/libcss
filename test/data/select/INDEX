@@ -10,3 +10,4 @@ vars.dat		Custom properties and var()
 bgsize.dat		background-size
 boxshadow.dat		box-shadow
 borderradius.dat		border-radius
+wordbreak.dat		overflow-wrap and word-break

@@ -197,6 +197,7 @@ const stringmap_entry stringmap[LAST_KNOWN] = {
 	SMAP("outline-style"),
 	SMAP("outline-width"),
 	SMAP("overflow"),
+	SMAP("overflow-wrap"),
 	SMAP("overflow-x"),
 	SMAP("overflow-y"),
 	SMAP("padding"),
@@ -238,7 +239,9 @@ const stringmap_entry stringmap[LAST_KNOWN] = {
 	SMAP("white-space"),
 	SMAP("widows"),
 	SMAP("width"),
+	SMAP("word-break"),
 	SMAP("word-spacing"),
+	SMAP("word-wrap"),
 	SMAP("writing-mode"),
 	SMAP("z-index"),
 
@@ -503,6 +506,10 @@ const stringmap_entry stringmap[LAST_KNOWN] = {
 	SMAP("calc"),
 	SMAP("cover"),
 	SMAP("contain"),
+	SMAP("break-word"),
+	SMAP("anywhere"),
+	SMAP("break-all"),
+	SMAP("keep-all"),
 
 	/* Named colours */
 	SMAP("aliceblue"),

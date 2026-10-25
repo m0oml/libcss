@@ -153,6 +153,8 @@ PROPERTY_FUNCS(widows);
 PROPERTY_FUNCS(width);
 PROPERTY_FUNCS(word_spacing);
 PROPERTY_FUNCS(writing_mode);
+PROPERTY_FUNCS(overflow_wrap);
+PROPERTY_FUNCS(word_break);
 PROPERTY_FUNCS(z_index);
 
 #undef PROPERTY_FUNCS
