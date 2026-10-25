@@ -148,6 +148,7 @@ enum css_properties_e {
 	CSS_PROP_BORDER_BOTTOM_LEFT_RADIUS	= 0x083,
 	CSS_PROP_OVERFLOW_WRAP			= 0x084,
 	CSS_PROP_WORD_BREAK			= 0x085,
+	CSS_PROP_TRANSFORM			= 0x086,
 
 	CSS_N_PROPERTIES
 };
@@ -946,6 +947,12 @@ enum css_word_break_e {
 	CSS_WORD_BREAK_BREAK_ALL		= 0x2,
 	CSS_WORD_BREAK_KEEP_ALL			= 0x3,
 	CSS_WORD_BREAK_BREAK_WORD		= 0x4
+};
+
+enum css_transform_e {
+	CSS_TRANSFORM_INHERIT			= 0x0,
+	CSS_TRANSFORM_NONE			= 0x1,
+	CSS_TRANSFORM_TRANSLATE			= 0x2
 };
 
 enum css_z_index_e {

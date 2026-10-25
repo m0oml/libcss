@@ -1487,7 +1487,22 @@ Opcodes
 			00000011 => break-word,
 			other    => Reserved for future expansion.
 
-86-3fe - Reserved for future expansion.
+86 - transform
+	<value> (14bits) :
+		bits 8-13: MBZ
+		bits 0-7 :
+			00000000 => none,
+			00000001 => translation follows,
+			other    => Reserved for future expansion.
+
+	The translation is the horizontal distance then the vertical
+	distance, each a length and unit, where the unit may be a
+	percentage of the box's own size.  Only the translation which the
+	transform functions make is kept: translate(), translateX(),
+	translateY(), translate3d() and the translation of matrix() and
+	matrix3d().  Other functions are accepted and ignored.
+
+87-3fe - Reserved for future expansion.
 
 3ff - custom property (--name: value)
 	<value> (14bits) : MBZ

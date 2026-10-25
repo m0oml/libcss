@@ -38,6 +38,7 @@ DIR_SOURCES :=				\
 	border.c			\
 	border_color.c			\
 	border_radius.c			\
+	transform.c			\
 	border_spacing.c		\
 	border_style.c			\
 	border_width.c			\

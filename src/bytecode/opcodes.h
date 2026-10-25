@@ -926,6 +926,11 @@ enum op_word_break {
 	WORD_BREAK_BREAK_WORD		= 0x0003
 };
 
+enum op_transform {
+	TRANSFORM_NONE			= 0x0000,
+	TRANSFORM_TRANSLATE		= 0x0001
+};
+
 enum op_z_index {
 	Z_INDEX_CALC			= VALUE_IS_CALC,
 	Z_INDEX_SET			= 0x0080,

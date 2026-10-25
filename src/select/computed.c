@@ -402,6 +402,13 @@ uint8_t css_computed_word_break(const css_computed_style *style)
 	return get_word_break(style);
 }
 
+uint8_t css_computed_transform(const css_computed_style *style,
+		css_fixed *x, css_unit *x_unit,
+		css_fixed *y, css_unit *y_unit)
+{
+	return get_transform(style, x, x_unit, y, y_unit);
+}
+
 uint8_t css_computed_writing_mode(const css_computed_style *style)
 {
 	return get_writing_mode(style);

@@ -155,6 +155,7 @@ PROPERTY_FUNCS(word_spacing);
 PROPERTY_FUNCS(writing_mode);
 PROPERTY_FUNCS(overflow_wrap);
 PROPERTY_FUNCS(word_break);
+PROPERTY_FUNCS(transform);
 PROPERTY_FUNCS(z_index);
 
 #undef PROPERTY_FUNCS

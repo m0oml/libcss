@@ -4947,3 +4947,75 @@ p:before { content: open-quote url('http://picodrive.acornarcade.com/') " : " at
 #expected
 | 1 *
 #reset
+
+## 86 - transform
+
+#data
+* { transform: none; }
+#errors
+#expected
+| 1 *
+|   0x00000086
+#reset
+
+#data
+* { transform: inherit; }
+#errors
+#expected
+| 1 *
+|   0x00000886
+#reset
+
+#data
+* { transform: translateX(-110%); }
+#errors
+#expected
+| 1 *
+|   0x00040086 0xfffe4800 0x00000200 0x00000000 0x00000100
+#reset
+
+#data
+* { transform: translate(10px, -50%); }
+#errors
+#expected
+| 1 *
+|   0x00040086 0x00002800 0x00000100 0xffff3800 0x00000200
+#reset
+
+#data
+* { transform: rotate(45deg) translateY(10px) scale(2) translateY(5px); }
+#errors
+#expected
+| 1 *
+|   0x00040086 0x00000000 0x00000100 0x00003c00 0x00000100
+#reset
+
+#data
+* { transform: matrix(1, 0, 0, 1, 10, 20); }
+#errors
+#expected
+| 1 *
+|   0x00040086 0x00002800 0x00000100 0x00005000 0x00000100
+#reset
+
+#data
+* { transform: translate(calc(10px + 5px), 4px) translate3d(1px, 1px, 9px); }
+#errors
+#expected
+| 1 *
+|   0x00040086 0x00000400 0x00000100 0x00001400 0x00000100
+#reset
+
+#data
+* { transform: 10px; }
+#errors
+#expected
+| 1 *
+#reset
+
+#data
+* { transform: translate(10px; }
+#errors
+#expected
+| 1 *
+#reset

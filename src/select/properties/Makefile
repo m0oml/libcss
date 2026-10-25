@@ -130,6 +130,7 @@ word_spacing.c \
 writing_mode.c \
 overflow_wrap.c \
 word_break.c \
+transform.c \
 z_index.c
 
 include $(NSBUILD)/Makefile.subdir

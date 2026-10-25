@@ -3416,6 +3416,34 @@ static void dump_computed_style(const css_computed_style *style, char *buf,
 	ptr += wrote;
 	*len -= wrote;
 
+	/* transform, only where it is not the initial value */
+	val = css_computed_transform(style, &len1, &unit1, &len2, &unit2);
+	if (val == CSS_TRANSFORM_INHERIT) {
+		wrote = snprintf(ptr, *len, "transform: inherit\n");
+		ptr += wrote;
+		*len -= wrote;
+	} else if (val == CSS_TRANSFORM_TRANSLATE) {
+		wrote = snprintf(ptr, *len, "transform: translate(");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len1, unit1, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, ", ");
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = dump_css_unit(len2, unit2, ptr, *len);
+		ptr += wrote;
+		*len -= wrote;
+
+		wrote = snprintf(ptr, *len, ")\n");
+		ptr += wrote;
+		*len -= wrote;
+	}
+
 	/* writing-mode */
 	val = css_computed_writing_mode(style);
 	switch (val) {

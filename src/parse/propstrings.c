@@ -231,6 +231,7 @@ const stringmap_entry stringmap[LAST_KNOWN] = {
 	SMAP("text-indent"),
 	SMAP("text-transform"),
 	SMAP("top"),
+	SMAP("transform"),
 	SMAP("unicode-bidi"),
 	SMAP("vertical-align"),
 	SMAP("visibility"),
@@ -510,6 +511,12 @@ const stringmap_entry stringmap[LAST_KNOWN] = {
 	SMAP("anywhere"),
 	SMAP("break-all"),
 	SMAP("keep-all"),
+	SMAP("translate"),
+	SMAP("translatex"),
+	SMAP("translatey"),
+	SMAP("translate3d"),
+	SMAP("matrix"),
+	SMAP("matrix3d"),
 
 	/* Named colours */
 	SMAP("aliceblue"),

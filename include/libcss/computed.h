@@ -343,6 +343,11 @@ uint8_t css_computed_overflow_wrap(
 uint8_t css_computed_word_break(
 		const css_computed_style *style);
 
+uint8_t css_computed_transform(
+		const css_computed_style *style,
+		css_fixed *x, css_unit *x_unit,
+		css_fixed *y, css_unit *y_unit);
+
 uint8_t css_computed_writing_mode(
 		const css_computed_style *style);
 

@@ -501,6 +501,7 @@ static const char *opcode_names[] = {
 	"border-bottom-left-radius",
 	"overflow-wrap",
 	"word-break",
+	"transform",
 };
 
 static void dump_css_fixed(css_fixed f, char **ptr)
@@ -1235,6 +1236,27 @@ void dump_bytecode(css_style *style, char **ptr, uint32_t depth)
 							*ptr += sprintf(*ptr, " ");
 						dump_unit(val, unit, ptr);
 					}
+				}
+				break;
+			case CSS_PROP_TRANSFORM:
+				if (value == TRANSFORM_NONE) {
+					*ptr += sprintf(*ptr, "none");
+				} else if (value == TRANSFORM_TRANSLATE) {
+					uint32_t i;
+
+					*ptr += sprintf(*ptr, "translate(");
+					for (i = 0; i < 2; i++) {
+						uint32_t unit;
+						css_fixed val = *((css_fixed *)
+								bytecode);
+						ADVANCE(sizeof(val));
+						unit = *((uint32_t *) bytecode);
+						ADVANCE(sizeof(unit));
+						if (i == 1)
+							*ptr += sprintf(*ptr, ", ");
+						dump_unit(val, unit, ptr);
+					}
+					*ptr += sprintf(*ptr, ")");
 				}
 				break;
 			case CSS_PROP_BACKGROUND_REPEAT:

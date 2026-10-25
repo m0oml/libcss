@@ -112,6 +112,7 @@
 /* set_text_indent(style, 0, 0, CSS_UNIT_PX); */
 /* set_text_transform(style, 0, 0, CSS_UNIT_PX); */
 /* set_top(style, 0, 0, CSS_UNIT_PX); */
+/* set_transform(style, 0, 0, CSS_UNIT_PX); */
 /* set_unicode_bidi(style, 0, 0, CSS_UNIT_PX); */
 /* set_vertical_align(style, 0, 0, CSS_UNIT_PX); */
 /* set_visibility(style, 0, 0, CSS_UNIT_PX); */
