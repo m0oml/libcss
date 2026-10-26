@@ -106,10 +106,14 @@ css_error css__cascade_font_family(uint32_t opv, css_style *style,
 			 * incorrectly overwrite the named fonts list too.
 			 */
 			css_hint hint;
-			css_error error;
+			css_error error = CSS_INVALID;
 
-			error = state->handler->ua_default_for_property(
-					state->pw, CSS_PROP_FONT_FAMILY, &hint);
+			/* There is no handler when composing a style which
+			 * had var() in it */
+			if (state->handler != NULL)
+				error = state->handler->ua_default_for_property(
+						state->pw, CSS_PROP_FONT_FAMILY,
+						&hint);
 			if (error == CSS_OK) {
 				lwc_string **item;
 
