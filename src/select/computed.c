@@ -981,6 +981,14 @@ uint8_t css_computed_min_height(const css_computed_style *style,
 	return min_height;
 }
 
+bool css_computed_min_width_is_auto(const css_computed_style *style)
+{
+	css_fixed length;
+	css_unit unit;
+
+	return get_min_width(style, &length, &unit) == CSS_MIN_WIDTH_AUTO;
+}
+
 uint8_t css_computed_min_width(const css_computed_style *style,
 		css_fixed *length, css_unit *unit)
 {

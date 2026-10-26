@@ -13,6 +13,8 @@ extern "C"
 {
 #endif
 
+#include <stdbool.h>
+
 #include <libwapcaplet/libwapcaplet.h>
 
 #include <libcss/errors.h>
@@ -478,6 +480,18 @@ uint8_t css_computed_min_height(
 uint8_t css_computed_min_width(
 		const css_computed_style *style,
 		css_fixed *length, css_unit *unit);
+
+/**
+ * Whether the min-width of a style is the keyword auto
+ *
+ * css_computed_min_width() gives auto as zero unless the style is of a
+ * flex container, so it can't tell auto from an explicit zero.
+ *
+ * \param style  The style
+ * \return true if min-width is auto
+ */
+bool css_computed_min_width_is_auto(
+		const css_computed_style *style);
 
 uint8_t css_computed_background_repeat(
 		const css_computed_style *style);
